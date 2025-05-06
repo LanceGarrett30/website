@@ -1,5 +1,8 @@
+HTML
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,20 +11,25 @@
     * {
       box-sizing: border-box;
     }
+
     body {
       background-image: url('images/Background.png');
       background-repeat: no-repeat;
       background-position: center center;
-      background-size: cover; /* or 'cover' depending on preference */
-      background-attachment: fixed; /* optional: keeps image fixed on scroll */
+      background-size: cover;
+      /* or 'cover' depending on preference */
+      background-attachment: fixed;
+      /* optional: keeps image fixed on scroll */
       margin: 0;
       padding: 0;
       min-height: 100vh;
     }
+
     a {
       text-decoration: none;
       color: inherit;
     }
+
     nav {
       background-color: #2ebe5e;
       color: white;
@@ -30,6 +38,7 @@
       top: 0;
       z-index: 1000;
     }
+
     .nav-container {
       max-width: 1000px;
       margin: 0 auto;
@@ -37,16 +46,19 @@
       align-items: center;
       justify-content: space-between;
     }
+
     .logo {
       font-weight: bold;
       font-size: 1.3rem;
       display: flex;
       align-items: center;
     }
+
     .logo img {
       height: 35px;
       margin-right: 10px;
     }
+
     ul.nav-links {
       list-style: none;
       display: flex;
@@ -54,6 +66,7 @@
       padding: 0;
       margin: 0;
     }
+
     ul.nav-links li a {
       color: white;
       font-weight: 600;
@@ -61,15 +74,19 @@
       border-radius: 4px;
       transition: background 0.3s ease;
     }
+
     ul.nav-links li a:hover,
     ul.nav-links li a.active {
-      background-color: #2ebe5e;
+      background-color: #004080;
     }
+
     .menu-toggle {
       display: none;
       flex-direction: column;
       cursor: pointer;
+      padding: 0.5rem; /* Add padding for easier tapping */
     }
+
     .menu-toggle div {
       width: 25px;
       height: 3px;
@@ -90,9 +107,11 @@
         transform: translateX(100%);
         transition: transform 0.3s ease-in-out;
       }
+
       ul.nav-links.open {
         transform: translateX(0);
       }
+
       .menu-toggle {
         display: flex;
       }
@@ -104,18 +123,46 @@
       padding: 0 1rem;
     }
 
+    /* --- Improved Contact Section --- */
     .contact-section {
       display: flex;
       gap: 2rem;
       flex-wrap: wrap;
       background: white;
-      padding: 2rem;
+      padding: 1rem;
+      /* Reduce padding on mobile */
       border-radius: 10px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
     }
 
     .contact-left {
-      flex: 1 1 45%;
+      flex: 1 1 100%;
+      /* Take full width on mobile */
+    }
+
+    .contact-form {
+      flex: 1 1 100%;
+      /* Take full width on mobile */
+      background-color: #4CAF50;
+      padding: 1rem;
+      /* Reduce padding on mobile */
+      border-radius: 8px;
+    }
+
+    @media (min-width: 768px) {
+      /* Adjust breakpoint if needed */
+      .contact-section {
+        padding: 2rem;
+      }
+
+      .contact-left,
+      .contact-form {
+        flex: 1 1 45%;
+      }
+
+      .contact-form {
+        padding: 1.5rem;
+      }
     }
 
     .contact-left h1 {
@@ -132,13 +179,6 @@
       width: 100%;
       height: 300px;
       border: 0;
-      border-radius: 8px;
-    }
-
-    .contact-form {
-      flex: 1 1 45%;
-      background-color: #4CAF50;
-      padding: 1.5rem;
       border-radius: 8px;
     }
 
@@ -174,139 +214,166 @@
       background-color: #e0a800;
     }
 
+    /* --- Improved Footer --- */
     .footer {
-    background-color: #000000;
-    color: white;
-    padding: 30px 400px;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    font-size: 0.9rem;
-  }
+      background-color: #000000;
+      color: white;
+      padding: 20px;
+      /* Reduced padding on mobile */
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      text-align: center;
+      /* Center text on mobile */
+    }
 
-  .footer div {
-    flex: 1;
-    min-width: 200px;
-    margin: 10px;
-  }
+    .footer div {
+      flex: 1 1 100%;
+      /* Stack on mobile */
+      min-width: 150px;
+      /* Or adjust as needed */
+      margin: 10px 0;
+      /* Reduced vertical margin */
+    }
 
-  .footer a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    margin: 5px 0;
-  }
+    @media (min-width: 768px) {
+      .footer {
+        padding: 30px 400px;
+        justify-content: space-around;
+        text-align: left;
+      }
 
-  .footer a:hover {
-    text-decoration: underline;
-  }
+      .footer div {
+        flex: 1;
+        min-width: 200px;
+        margin: 10px;
+      }
+    }
 
-  .footer-bottom {
-    text-align: center;
-    background-color: #56c252;
-    color: white;
-    padding: 10px;
-    font-size: 0.85rem;
-  }
+    .footer a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 5px 0;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      background-color: #56c252;
+      color: white;
+      padding: 10px;
+      font-size: 0.85rem;
+    }
+
+    /* --- General Image Styling (Add if needed) --- */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
   </style>
 </head>
+
 <body>
 
-<nav>
-  <div class="nav-container">
-    <div class="logo">
-      <img src="images/logo.png" alt="School Logo">
-      Taburnal Learning Center
+  <nav>
+    <div class="nav-container">
+      <div class="logo">
+        <img src="images/logo.png" alt="School Logo">
+        Taburnal Learning Center
+      </div>
+      <div class="menu-toggle" id="mobile-menu">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="virtual-tour.html">Virtual Tour</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
     </div>
-    <div class="menu-toggle" id="mobile-menu">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="admissions.html">Admissions</a></li>
-      <li><a href="virtual-tour.html">Virtual Tour</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="contact.html" class="active">Contact</a></li>
-    </ul>
-  </div>
-</nav>
+  </nav>
 
-<main>
-  <div class="contact-section">
-    <div class="contact-left">
-      <h1 style="color: #2ebe5e;">Connect with Taburnal Learning Center</h1>
-      <hr>
-      <p>At Taburnal Learning Center, we are dedicated to providing a unique educational experience. Reach out to discuss how we can support your learning journey.</p>
-      <iframe width="523" height="418" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=523&amp;height=418&amp;hl=en&amp;q=San%20rafael%20bato%20cam%20Sur%20Bato+(Taburnal%20Learning%20Center)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href='https://clouddevs.com/google-maps-generator/'>Maps Generator</a>
+  <main>
+    <div class="contact-section">
+      <div class="contact-left">
+        <h1 style="color: #2ebe5e;">Connect with Taburnal Learning Center</h1>
+        <hr>
+        <p>At Taburnal Learning Center, we are dedicated to providing a unique educational experience. Reach out to
+          discuss how we can support your learning journey.</p>
+        <iframe width="523" height="418" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+          id="gmap_canvas" src="https://maps.google.com/maps?width=523&height=418&hl=en&q=San%20rafael%20bato%20cam%20Sur%20Bato+(Taburnal%20Learning%20Center)&t=&z=12&ie=UTF8&iwloc=B&output=embed"></iframe><a
+          href='https://clouddevs.com/google-maps-generator/'>Maps Generator</a>
+      </div>
+      <div class="contact-form">
+        <form action="https://formsubmit.co/tlcmoreblessings@gmail.com" method="POST" class="contact-form">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <input type="tel" name="phone" placeholder="Your Phone" required />
+          <textarea name="message" placeholder="Describe Your Inquiry" required></textarea>
+          <button type="submit">SUBMIT YOUR REQUEST</button>
+        </form>
+      </div>
     </div>
-    <div class="contact-form">
-      <form action="https://formsubmit.co/tlcmoreblessings@gmail.com" method="POST" class="contact-form">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Your Email" required />
-        <input type="tel" name="phone" placeholder="Your Phone" required />
-        <textarea name="message" placeholder="Describe Your Inquiry" required></textarea>
-        <button type="submit">SUBMIT YOUR REQUEST</button>
-      </form>
-    </div>
-  </div>
-</main>
+  </main>
 
-<footer>
-  <div class="footer">
-    <!-- Navigation Links -->
-    <div>
-      <h4>Quick Links</h4>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="admissions.html">Admissions</a>
-      <a href="virtual-tour.html">Virtual Tour</a>
-      <a href="news.html">News</a>
-      <a href="contact.html">Contact</a>
-    </div>
+  <footer>
+    <div class="footer">
+      <div>
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="virtual-tour.html">Virtual Tour</a>
+        <a href="news.html">News</a>
+        <a href="contact.html">Contact</a>
+      </div>
 
-    <!-- Social Media -->
-    <div>
-      <h4>Follow Us</h4>
-      <a href="https://www.facebook.com/profile.php?id=100057529355713" target="_blank">Facebook</a>
-      <a href="https://www.youtube.com/@taburnallearningcentertlco9458" target="_blank">YouTube</a>
+      <div>
+        <h4>Follow Us</h4>
+        <a href="https://www.facebook.com/profile.php?id=100057529355713" target="_blank">Facebook</a>
+        <a href="https://www.youtube.com/@taburnallearningcentertlco9458" target="_blank">YouTube</a>
+      </div>
+
+      <div>
+        <h4>Contact Us</h4>
+        <p>Email: <a href="tlcmoreblessings@gmail.com ">tlcmoreblessings@gmail.com </a></p>
+        <p>Phone: 09915436059</p>
+        <p>Taburnal Learning Center<br>Zone 4 San Rafael Poblacion, Bato, Camarines Sur 4435</p>
+      </div>
     </div>
 
-    <!-- Contact Info -->
-    <div>
-      <h4>Contact Us</h4>
-      <p>Email: <a href="tlcmoreblessings@gmail.com ">tlcmoreblessings@gmail.com </a></p>
-      <p>Phone: 09915436059</p>
-      <p>Taburnal Learning Center<br>Zone 4 San Rafael Poblacion, Bato, Camarines Sur 4435</p>
+    <div class="footer-bottom">
+      © 2025 Taburnal Learning Center. All rights reserved.
     </div>
-  </div>
+  </footer>
 
-  <div class="footer-bottom">
-    &copy; 2025 Taburnal Learning Center. All rights reserved.
-  </div>
-</footer>
+  <script>
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
 
-<script>
-  const menuToggle = document.getElementById('mobile-menu');
-  const navLinks = document.getElementById('nav-links');
-
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      if (navLinks.classList.contains('open')) {
-        navLinks.classList.remove('open');
-      }
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
     });
-  });
 
-
-</script>
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+        }
+      });
+    });
+  </script>
 
 </body>
+
 </html>
