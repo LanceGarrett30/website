@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>School Website - About Us</title>
 <style>
   * {
@@ -12,38 +12,55 @@
     background-image: url('images/Background.png');
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover; /* or 'cover' depending on preference */
-    background-attachment: fixed; /* optional: keeps image fixed on scroll */
+    background-size: cover;
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    font-family: Arial, sans-serif;
   }
   a {
     text-decoration: none;
     color: inherit;
   }
 
+  /* History section styles */
   .history-section {
     display: flex;
     align-items: center;
     margin-bottom: 1.5rem;
     text-align: justify;
-    }
+  }
 
-    .history-image-left {
+  .history-image-left {
     width: 300px;
     height: 300px;
     object-fit: cover;
     margin-right: 1rem;
-    }
+  }
 
-    .history-image-right {
+  .history-image-right {
     width: 300px;
     height: 300px;
     object-fit: cover;
     margin-left: 1rem;
-    }
+  }
 
+  /* Responsive history sections */
+  @media (max-width: 768px) {
+    .history-section {
+      flex-direction: column;
+    }
+    
+    .history-image-left, .history-image-right {
+      width: 100%;
+      height: auto;
+      max-height: 250px;
+      margin: 0 0 1rem 0;
+    }
+  }
+
+  /* Navigation styles */
   nav {
     background-color: #2ebe5e;
     color: white;
@@ -89,9 +106,10 @@
   }
   ul.nav-links li a:hover,
   ul.nav-links li a.active {
-    background-color: #2ebe5e;
+    background-color: rgba(255, 255, 255, 0.2);
   }
 
+  /* Mobile menu styling */
   .menu-toggle {
     display: none;
     flex-direction: column;
@@ -104,18 +122,20 @@
     margin: 4px 0;
   }
 
-  @media (max-width: 600px) {
+  /* Mobile navigation responsiveness */
+  @media (max-width: 768px) {
     ul.nav-links {
       position: fixed;
       top: 55px;
       right: 0;
       width: 200px;
       height: calc(100% - 55px);
-      background-color: #004080;
+      background-color: #2ebe5e;
       flex-direction: column;
-      padding-top: 1rem;
+      padding: 1rem;
       transform: translateX(100%);
       transition: transform 0.3s ease-in-out;
+      z-index: 1000;
     }
     ul.nav-links.open {
       transform: translateX(0);
@@ -129,12 +149,21 @@
     }
   }
 
+  /* Main content styling */
   main {
     max-width: 900px;
     margin: 2rem auto;
     padding: 0 1rem;
   }
 
+  @media (max-width: 768px) {
+    main {
+      margin: 1rem auto;
+      padding: 0 0.5rem;
+    }
+  }
+
+  /* Hero section styling */
   header.hero {
     background: url('about3.jpeg') no-repeat center center/cover;
     height: 300px;
@@ -151,6 +180,16 @@
     font-size: 2.4rem;
   }
 
+  @media (max-width: 768px) {
+    header.hero {
+      height: 200px;
+    }
+    header.hero h1 {
+      font-size: 1.8rem;
+    }
+  }
+
+  /* Section styling */
   section {
     background: white;
     padding: 1.5rem 2rem;
@@ -158,31 +197,44 @@
     box-shadow: 0 0 12px rgba(0,0,0,0.05);
   }
 
+  @media (max-width: 768px) {
+    section {
+      padding: 1rem;
+    }
+  }
+
+  /* Typography */
   h1, h2 {
     color: #004080;
   }
 
+  @media (max-width: 768px) {
+    h1, h2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  /* Header image styling */
   .header-image {
     width: 100%;
-    height: 400px;
+    height: auto;
     overflow: hidden;
-    object-fit: cover;
     border-radius: 8px;
     margin-bottom: 2rem;
   }
 
   .header-image img {
-    width: 1250px;
+    width: 100%;
     height: auto;
-    max-height: 400px;
     display: block;
-    margin: 0 auto;
   }
 
+  /* Lists styling */
   ul {
     padding-left: 1.2rem;
   }
 
+  /* Image gallery styling */
   .image-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -198,29 +250,52 @@
     width: 300px;
   }
 
-  /* Flexbox for side-by-side layout */
+  @media (max-width: 768px) {
+    .image-gallery {
+      gap: 0.5rem;
+    }
+    .image-gallery img {
+      width: 100%;
+    }
+  }
+
+  /* Side-by-side layout */
   .side-by-side {
     display: flex;
     justify-content: space-between;
     gap: 2rem;
   }
 
-  /* Styling for titles */
+  @media (max-width: 768px) {
+    .side-by-side {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  /* Centered title styling */
   .centered-title {
     text-align: center;
     font-size: 1.6rem;
     margin-bottom: 1rem;
   }
 
-  /* Justifying the paragraphs */
+  @media (max-width: 768px) {
+    .centered-title {
+      font-size: 1.3rem;
+    }
+  }
+
+  /* Text justification */
   .side-by-side p {
     text-align: justify;
   }
 
+  /* Footer styling */
   .footer {
     background-color: #000000;
     color: white;
-    padding: 30px 400px;
+    padding: 30px 20px;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -251,6 +326,18 @@
     padding: 10px;
     font-size: 0.85rem;
   }
+
+  @media (max-width: 768px) {
+    .footer {
+      padding: 20px;
+      flex-direction: column;
+    }
+    
+    .footer div {
+      margin-bottom: 20px;
+      min-width: auto;
+    }
+  }
 </style>
 </head>
 <body>
@@ -276,9 +363,9 @@
   </div>
 </nav>
 
-      <div class="header-image">
-        <img src="images/Bannerabout.png" alt="School Header Image" />
-      </div>
+<div class="header-image">
+  <img src="images/Bannerabout.png" alt="School Header Image" />
+</div>
 
 <main>
   <section>
@@ -316,7 +403,7 @@
         <div class="side-by-side">
             <div>
             <h2 class="centered-title">TLC Vision</h2>
-            <p>Through enhanced and improved education, we see our school equipped with talented and innovative teachers fostering learners’ determination, socio-emotional well-being, leadership, and academic skills—enabling them to contribute to a rising community.</p>
+            <p>Through enhanced and improved education, we see our school equipped with talented and innovative teachers fostering learners' determination, socio-emotional well-being, leadership, and academic skills—enabling them to contribute to a rising community.</p>
             </div>
             <div>
             <h2 class="centered-title">TLC Mission</h2>
@@ -349,7 +436,7 @@
     <!-- Contact Info -->
     <div>
       <h4>Contact Us</h4>
-      <p>Email: <a href="tlcmoreblessings@gmail.com ">tlcmoreblessings@gmail.com </a></p>
+      <p>Email: <a href="mailto:tlcmoreblessings@gmail.com">tlcmoreblessings@gmail.com</a></p>
       <p>Phone: 09915436059</p>
       <p>Taburnal Learning Center<br>Zone 4 San Rafael Poblacion, Bato, Camarines Sur 4435</p>
     </div>
