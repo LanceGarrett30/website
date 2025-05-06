@@ -2,353 +2,353 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TLC | News</title>
-  <style>
-    /* Reset and base styles */
-    * {
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TLC | News</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            box-sizing: border-box;
+        }
 
-    body {
-      background-image: url('images/Background.png');
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: cover;
-      background-attachment: fixed;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-    }
+        body {
+            background-image: url('images/Background.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            /* or 'cover' depending on preference */
+            background-attachment: fixed;
+            /* optional: keeps image fixed on scroll */
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-    /* Navbar styling */
-    nav {
-      background-color: #2ebe5e;
-      color: white;
-      padding: 0.8rem 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+        /* Navbar styling */
+        nav {
+            background-color: #2ebe5e;
+            color: white;
+            padding: 0.8rem 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    .nav-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-    .logo {
-      font-weight: bold;
-      font-size: 1.3rem;
-      letter-spacing: 1px;
-      display: flex;
-      align-items: center;
-    }
+        .logo {
+            font-weight: bold;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+        }
 
-    .logo img {
-      height: 35px;
-      width: auto;
-      margin-right: 10px;
-    }
+        .logo img {
+            height: 35px;
+            width: auto;
+            margin-right: 10px;
+        }
 
-    ul.nav-links {
-      list-style: none;
-      display: flex;
-      padding: 0;
-      margin: 0;
-    }
+        ul.nav-links {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
 
-    ul.nav-links li {
-      margin-left: 1.3rem;
-    }
+        ul.nav-links li {
+            margin-left: 1.3rem;
+        }
 
-    ul.nav-links li a {
-      color: white;
-      font-weight: 600;
-      padding: 0.4rem 0.6rem;
-      border-radius: 4px;
-      transition: background-color 0.3s ease;
-    }
+        ul.nav-links li a {
+            color: white;
+            font-weight: 600;
+            padding: 0.4rem 0.6rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
 
-    ul.nav-links li a:hover,
-    ul.nav-links li a.active {
-      background-color: #004080;
-    }
+        ul.nav-links li a:hover,
+        ul.nav-links li a.active {
+            background-color: #2ebe5e;
+        }
 
-    /* Mobile menu */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      padding: 0.5rem;
-    }
+        /* Mobile menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
 
-    .menu-toggle div {
-      width: 25px;
-      height: 3px;
-      background-color: white;
-      margin: 4px 0;
-    }
+        .menu-toggle div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+        }
 
-    @media (max-width: 600px) {
-      ul.nav-links {
-        position: fixed;
-        top: 55px;
-        right: 0;
-        width: 200px;
-        height: calc(100% - 55px);
-        background-color: #004080;
-        flex-direction: column;
-        padding-top: 1rem;
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-      }
+        @media (max-width: 600px) {
+            ul.nav-links {
+                position: fixed;
+                top: 55px;
+                right: 0;
+                width: 200px;
+                height: calc(100% - 55px);
+                background-color: #004080;
+                flex-direction: column;
+                padding-top: 1rem;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+            }
 
-      ul.nav-links.open {
-        transform: translateX(0);
-      }
+            ul.nav-links.open {
+                transform: translateX(0);
+            }
 
-      ul.nav-links li {
-        margin: 1rem 0;
-        margin-left: 0;
-      }
+            ul.nav-links li {
+                margin: 1rem 0;
+                margin-left: 0;
+            }
 
-      .menu-toggle {
-        display: flex;
-      }
+            .menu-toggle {
+                display: flex;
+            }
+        }
 
-      /* --- Mobile Styles: Hide Side Images --- */
-      .side-image-wrapper {
-        display: none;
-        /* This will hide the image containers on mobile */
-      }
+        /* Main content styling */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: center;
+        }
 
-      .iframe-container {
-        flex-direction: column;
-        /* Stack the iframe on mobile */
-        align-items: center;
-        /* Center the iframe */
-        padding: 1rem;
-      }
+        .iframe-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 2rem 1rem;
+            flex-wrap: nowrap;
+        }
 
-      .iframe-wrapper {
-        width: 100%;
-        /* Make the iframe take full width */
-        max-width: none;
-      }
+        .side-image-wrapper {
+            width: auto;
+            /* Fixed width for side images */
+            height: 1000px;
+            /* Fixed height for side images */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-      .iframe-wrapper iframe {
-        width: 100%;
-        height: 600px;
-        /* Adjust height as needed for mobile */
-        border: none;
-        overflow: hidden;
-      }
-    }
+        .side-image {
+            height: 1000px;
+            /* Matches the desired height */
+            width: auto;
+            /* Adjust width to maintain aspect ratio */
+            object-fit: cover;
+        }
 
-    /* Main content styling for larger screens (Desktop - As it was) */
-    main {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      display: flex;
-      justify-content: center;
-    }
+        .iframe-wrapper {
+            flex: 1;
+            /* Take up remaining space */
+            display: flex;
+            justify-content: center;
+            height: 1000px;
+            /* Fix iframe height to match images */
+        }
 
-    .iframe-container {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 20px;
-      padding: 2rem 1rem;
-    }
+        .iframe-wrapper iframe {
+            width: 500px;
+            /* Keep iframe width fixed */
+            height: 1000px;
+            /* Keep iframe height fixed */
+            border: none;
+            overflow: hidden;
+        }
 
-    .side-image-wrapper {
-      width: 300px;
-      height: 1000px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        .footer {
+            background-color: #000000;
+            color: white;
+            padding: 30px 400px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
 
-    .side-image {
-      max-width: 100%;
-      height: 1000px;
-      object-fit: cover;
-    }
+        }
 
-    .iframe-wrapper {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      max-width: 700px;
-      height: 1000px;
-    }
+        .footer div {
+            flex: 1;
+            min-width: 250px;
+            margin: 10px;
+        }
 
-    .iframe-wrapper iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      overflow: hidden;
-    }
+        .footer a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 5px 0;
+        }
 
-    /* Footer styles */
-    .footer {
-      background-color: #000000;
-      color: white;
-      padding: 20px;
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      font-size: 0.9rem;
-      text-align: center;
-    }
+        .footer a:hover {
+            text-decoration: underline;
+        }
 
-    .footer div {
-      flex: 1 1 100%;
-      min-width: 150px;
-      margin: 10px 0;
-    }
+        .footer-bottom {
+            text-align: center;
+            background-color: #56c252;
+            color: white;
+            padding: 10px;
+            font-size: 0.85rem;
+        }
 
-    @media (min-width: 768px) {
-      .footer {
-        padding: 30px 400px;
-        justify-content: space-around;
-        text-align: left;
-      }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
 
-      .footer div {
-        flex: 1;
-        min-width: 250px;
-        margin: 10px;
-      }
-    }
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .iframe-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
 
-    .footer a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      margin: 5px 0;
-    }
+            .side-image-wrapper {
+                width: 100%;
+                height: auto;
+            }
 
-    .footer a:hover {
-      text-decoration: underline;
-    }
+            .side-image {
+                width: 100%;
+                height: auto;
+            }
 
-    .footer-bottom {
-      text-align: center;
-      background-color: #56c252;
-      color: white;
-      padding: 10px;
-      font-size: 0.85rem;
-    }
+            .iframe-wrapper {
+                width: 100%;
+                height: auto;
+            }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-  </style>
+            .iframe-wrapper iframe {
+                width: 100%;
+                height: 500px;
+                /* Adjust height as needed */
+            }
+
+            .footer {
+                padding: 20px;
+                /* Reduce padding for smaller screens */
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <nav>
-    <div class="nav-container">
-      <div class="logo">
-        <img src="images/logo.png" alt="School Logo">
-        Taburnal Learning Center
-      </div>
-      <div class="menu-toggle" id="mobile-menu">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="admissions.html">Admissions</a></li>
-        <li><a href="virtual-tour.html">Virtual Tour</a></li>
-        <li><a href="news.html" class="active">News</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="School Logo">
+                Taburnal Learning Center
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="admissions.html">Admissions</a></li>
+                <li><a href="virtual-tour.html">Virtual Tour</a></li>
+                <li><a href="news.html" class="active">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-  <main>
-    <div class="iframe-container">
-      <div class="side-image-wrapper">
-        <img src="images/news1.jpg" alt="Left Side" class="side-image" />
-      </div>
+    <main>
+        <div class="iframe-container">
+            <div class="side-image-wrapper">
+                <img src="images/news1.jpg" alt="Left Side" class="side-image" />
+            </div>
 
-      <div class="iframe-wrapper">
-        <iframe
-          src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100057529355713%26mibextid%3DwwXIfr%26rdid%3DPsVREaquf4ZaAqYS%23&tabs=timeline&width=700&height=1000&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-          style="border:none; overflow:hidden;" scrolling="no" frameborder="0" allowfullscreen="true"
-          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-        </iframe>
-      </div>
+            <div class="iframe-wrapper">
+                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100057529355713%26mibextid%3DwwXIfr%26rdid%3DPsVREaquf4ZaAqYS%23&tabs=timeline&width=700&height=1000&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                    width="500" height="1000" style="border:none; overflow:hidden;" scrolling="no" frameborder="0"
+                    allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                </iframe>
+            </div>
 
-      <div class="side-image-wrapper">
-        <img src="images/news2.jpg" alt="Right Side" class="side-image" />
-      </div>
-    </div>
-  </main>
+            <div class="side-image-wrapper">
+                <img src="images/news2.jpg" alt="Right Side" class="side-image" />
+            </div>
+        </div>
+    </main>
 
-  <footer>
-    <div class="footer container">
-      <div>
-        <h4>Quick Links</h4>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="admissions.html">Admissions</a>
-        <a href="virtual-tour.html">Virtual Tour</a>
-        <a href="news.html">News</a>
-        <a href="contact.html">Contact</a>
-      </div>
+    <footer>
+        <div class="footer container">
+            <div>
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="admissions.html">Admissions</a>
+                <a href="virtual-tour.html">Virtual Tour</a>
+                <a href="news.html">News</a>
+                <a href="contact.html">Contact</a>
+            </div>
 
-      <div>
-        <h4>Follow Us</h4>
-        <a href="https://www.facebook.com/profile.php?id=100057529355713" target="_blank">Facebook</a>
-        <a href="https://www.youtube.com/@taburnallearningcentertlco9458" target="_blank">YouTube</a>
-      </div>
+            <div>
+                <h4>Follow Us</h4>
+                <a href="https://www.facebook.com/profile.php?id=100057529355713" target="_blank">Facebook</a>
+                <a href="https://www.youtube.com/@taburnallearningcentertlco9458" target="_blank">YouTube</a>
+            </div>
 
-      <div>
-        <h4>Contact Us</h4>
-        <p>Email: <a href="tlcmoreblessings@gmail.com ">tlcmoreblessings@gmail.com </a></p>
-        <p>Phone: 09915436059</p>
-        <p>Taburnal Learning Center<br>Zone 4 San Rafael Poblacion, Bato, Camarines Sur 4435</p>
-      </div>
-    </div>
+            <div>
+                <h4>Contact Us</h4>
+                <p>Email: <a href="tlcmoreblessings@gmail.com ">tlcmoreblessings@gmail.com </a></p>
+                <p>Phone: 09915436059</p>
+                <p>Taburnal Learning Center<br>Zone 4 San Rafael Poblacion, Bato, Camarines Sur 4435</p>
+            </div>
+        </div>
 
-    <div class="footer-bottom">
-      © 2025 Taburnal Learning Center. All rights reserved.
-    </div>
-  </footer>
+        <div class="footer-bottom">
+            © 2025 Taburnal Learning Center. All rights reserved.
+        </div>
+    </footer>
 
-  <script>
-    const menuToggle = document.getElementById('mobile-menu');
-    const navLinks = document.getElementById('nav-links');
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
 
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
 
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (navLinks.classList.contains('open')) {
-          navLinks.classList.remove('open');
-        }
-      });
-    });
-  </script>
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('open')) {
+                    navLinks.classList.remove('open');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
