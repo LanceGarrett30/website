@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>School Website - Virtual Tour</title>
+<style>
+  /* Reset and base styles */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background-image: url('images/Background.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; /* or 'cover' depending on preference */
+    background-attachment: fixed; /* optional: keeps image fixed on scroll */
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Navbar styling */
+  nav {
+    background-color: #2ebe5e;
+    color: white;
+    padding: 0.8rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .nav-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-weight: bold;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+  }
+  .logo img {
+    height: 35px;
+    width: auto;
+    margin-right: 10px;
+  }
+  ul.nav-links {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+  }
+  ul.nav-links > li {
+    position: relative;
+    margin-left: 1.3rem;
+  }
+  ul.nav-links > li > a {
+    color: white;
+    font-weight: 600;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    display: block;
+    transition: background-color 0.3s ease;
+  }
+  ul.nav-links > li > a:hover,
+  ul.nav-links > li > a.active {
+    background-color: #2ebe5e;
+  }
+
+  /* Dropdown submenu */
+  ul.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #004080;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    list-style: none;
+    padding: 0.3rem 0;
+    margin: 0;
+    min-width: 160px;
+    display: none;
+  }
+  ul.submenu li {
+    margin: 0;
+  }
+  ul.submenu li a {
+    padding: 0.5rem 1rem;
+    display: block;
+    font-weight: normal;
+    border-radius: 0;
+    color: white;
+  }
+  ul.submenu li a:hover,
+  ul.submenu li a.active {
+    background-color: #0066cc;
+  }
+  
+  /* Show submenu on hover (desktop) */
+  ul.nav-links > li:hover > ul.submenu {
+    display: block;
+  }
+
+  /* Mobile menu toggle */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .menu-toggle div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+  }
+
+  @media (max-width: 600px) {
+    ul.nav-links {
+      position: fixed;
+      top: 55px;
+      right: 0;
+      width: 200px;
+      height: calc(100% - 55px);
+      background-color: #004080;
+      flex-direction: column;
+      padding-top: 1rem;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+      overflow-y: auto;
+    }
+    ul.nav-links.open {
+      transform: translateX(0);
+    }
+    ul.nav-links > li {
+      margin: 1rem 0;
+      margin-left: 0;
+    }
+    ul.submenu {
+      position: static;
+      box-shadow: none;
+      border-radius: 0;
+      display: none;
+      padding-left: 1rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    ul.submenu.open {
+      display: block;
+      max-height: 500px; /* large enough */
+    }
+    ul.submenu li a {
+      padding: 0.4rem 0;
+    }
+    .menu-toggle {
+      display: flex;
+    }
+    /* Add caret icon for dropdown */
+    ul.nav-links > li > a.dropdown-toggle::after {
+      content: ' ▼';
+      font-size: 0.7rem;
+    }
+  }
+
+  /* Main content styling */
+  main {
+    max-width: 1250px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  section {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.05);
+  }
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .footer {
+    background-color: #000000;
+    color: white;
+    padding: 30px 400px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+  }
+
+  .footer div {
+    flex: 1;
+    min-width: 100px;
+    margin: 10px;
+  }
+
+  .footer a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 5px 0;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    background-color: #56c252;
+    color: white;
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+    <nav>
+    <div class="nav-container">
+        <div class="logo">
+            <img src="images/logo.png" alt="School Logo">
+            Taburnal Learning Center
+            </div>
+            <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" role="button" tabindex="0">
+        <div></div>
+        <div></div>
+        <div></div>
+        </div>
+        <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li>
+            <a href="virtual-tour.html" class="active dropdown-toggle" aria-haspopup="true" aria-expanded="false">Virtual Tour</a>
+            <ul class="submenu" aria-label="submenu">
+            <li><a href="manual-tour.html">Manual Tour</a></li>
+            </ul>
+        </li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+    </nav>
+
+<main>
+  <section>
+    <h1>Virtual Tour</h1>
+    <p>Explore our campus from the comfort of your home with this virtual tour video.</p>
+    <div class="video-container">
+      <iframe src="https://realsee.ai/7kyyZ8nl?fbclid=IwY2xjawKFcYlleHRuA2FlbQIxMABicmlkETFvYktKVFJISGw4YXR2a2RLAR59BbLSb6CW7BnLOT5JG5AC1LYNc_yKUNvX8d6XHBkc0vjx02bH-Vhjbuiy-Q_aem__QD2wVv_hpig5V0LR3IyWA" allowfullscreen title="Virtual Tour"></iframe>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer">
+    <!-- Navigation Links -->
+    <div>
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="admissions.html">Admissions</a>
+      <a href="virtual-tour.html">Virtual Tour</a>
+      <a href="news.html">News</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h4>Follow Us</h4>
+      <a href="https://www.facebook.com/profile.php?id=100057529355713" target="_blank">Facebook</a>
+      <a href="https://www.youtube.com/@taburnallearningcentertlco9458" target="_blank">YouTube</a>
+    </div>
+
+    <!-- Contact Info -->
+    <div>
+      <h4>Contact Us</h4>
+      <p>Email: <a href="tlcmoreblessings@gmail.com ">tlcmoreblessings@gmail.com </a></p>
+      <p>Phone: 09915436059</p>
+      <p>Taburnal Learning Center<br>Zone 4 San Rafael Poblacion, Bato, Camarines Sur 4435</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    &copy; 2025 Taburnal Learning Center. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  const menuToggle = document.getElementById('mobile-menu');
+  const navLinks = document.getElementById('nav-links');
+  const dropdownToggle = document.querySelector('.dropdown-toggle');
+  const submenu = document.querySelector('.submenu');
+
+  // Mobile menu toggle
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  // Close mobile menu when a link is clicked
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+      }
+      // If on mobile, hide submenu as well
+      if(submenu.classList.contains('open')){
+        submenu.classList.remove('open');
+        dropdownToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  // Toggle submenu visibility on mobile for dropdown menu
+  dropdownToggle.addEventListener('click', e => {
+    if(window.innerWidth <= 600){
+      e.preventDefault();
+      submenu.classList.toggle('open');
+      const expanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
+      dropdownToggle.setAttribute('aria-expanded', String(!expanded));
+    }
+  });
+
+  // Accessibility: allow toggle by keyboard
+  dropdownToggle.addEventListener('keydown', e => {
+    if(window.innerWidth <= 600 && (e.key === 'Enter' || e.key === ' ')){
+      e.preventDefault();
+      submenu.classList.toggle('open');
+      const expanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
+      dropdownToggle.setAttribute('aria-expanded', String(!expanded));
+    }
+  });
+</script>
+</body>
+</html>

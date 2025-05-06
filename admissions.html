@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>School Website - Admissions</title>
+<style>
+    * {
+    box-sizing: border-box;
+    }
+    body {
+      background-image: url('images/Background.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover; /* or 'cover' depending on preference */
+      background-attachment: fixed; /* optional: keeps image fixed on scroll */
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    a {
+    text-decoration: none;
+    color: inherit;
+    }
+    nav {
+    background-color: #2ebe5e;
+    color: white;
+    padding: 0.8rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    }
+    .nav-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    }
+    .logo {
+    font-weight: bold;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    }
+    .logo img {
+    height: 35px;
+    margin-right: 10px;
+    }
+    ul.nav-links {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    }
+    ul.nav-links li {
+    margin-left: 1.3rem;
+    }
+    ul.nav-links li a {
+    color: white;
+    font-weight: 600;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    }
+    ul.nav-links li a:hover,
+    ul.nav-links li a.active {
+    background-color: #2ebe5e;
+    }
+    .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    }
+    .menu-toggle div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    }
+    @media (max-width: 600px) {
+    ul.nav-links {
+        position: fixed;
+        top: 55px;
+        right: 0;
+        width: 200px;
+        height: calc(100% - 55px);
+        background-color: #004080;
+        flex-direction: column;
+        padding-top: 1rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+    ul.nav-links.open {
+        transform: translateX(0);
+    }
+    ul.nav-links li {
+        margin: 1rem 0;
+    }
+    .menu-toggle {
+        display: flex;
+    }
+    }
+    header img {
+    width: 1250px;
+    height: auto;
+    max-height: 400px;
+    display: block;
+    margin: 0 auto;
+  }
+    main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    }
+    section {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    }
+    .grid-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    }
+    .grid-cell {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    max-width: 600px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    }
+    .grid-cell img {
+    max-height: 350px;
+    width: 300px;
+    object-fit: Contain;
+    border-radius: 4px;
+    }
+    .grid-cell h3 {
+    margin: 0.5rem 0;
+    }
+    .grid-cell ul, 
+    .grid-cell li {
+    text-align: left;
+    list-style-position: inside;
+    }
+
+    .footer {
+    background-color: #000000;
+    color: white;
+    padding: 30px 400px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+  }
+
+  .footer div {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+  }
+
+  .footer a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 5px 0;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    background-color: #56c252;
+    color: white;
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-container">
+    <div class="logo">
+      <img src="images/logo.png" alt="School Logo">
+      Tabrunal learning Center
+    </div>
+    <div class="menu-toggle" id="mobile-menu">
+      <div></div><div></div><div></div>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="admissions.html" class="active">Admissions</a></li>
+      <li><a href="virtual-tour.html">Virtual Tour</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header>
+  <img src="images/banneradmission.jpg" alt="Admissions Banner" >
+</header>
+
+<main>
+  <section>
+    <h2 style="color:rgb(65, 233, 59);" >Why Choose taburnal Learning Center?</h2>
+    <div class="grid-section">
+      <div class="grid-cell">
+        <h3>PRE-SCHOOL DEPARTMENT</h3>
+        <img src="images/Admission1.jpg" alt=" ">
+        <p>Where little explorers start their adventure! Kids learn through play, creativity, and curiosity, making their first friends and discovering the joys of learning.</p>
+      </div>
+      <div class="grid-cell">
+        <h3>ELEMENTARY</h3>
+        <img src="images/Admission2.jpg" alt=" ">
+        <p>The primary stage of formal education, covering grades 1 to 6, where students acquire fundamental knowledge and skills in core subjects such as mathematics, language, science, and social studies.</p>
+      </div>
+      <div class="grid-cell">
+        <h3>JUNIOR HIGH SCHOOL</h3>
+        <img src="images/Admission3.jpeg" alt=" ">
+        <p>From grades 7 to 10, where students engage in more advanced coursework and begin exploring specialized subjects.</p>
+      </div>
+      <div class="grid-cell">
+        <h3>SENIOR HIGH SCHOOL</h3>
+        <img src="images/admission4.png" alt=" ">
+        <p>K-12 education system, covering Grades 11 and 12. It offers specialized tracks, including Academic, Technical-Vocational-Livelihood (TVL), Arts and Design, and Sports, preparing students for college, employment, or entrepreneurship.</p>
+      </div>
+      <div class="grid-cell">
+        <h3>ACADEMIC TRACK</h3>
+        <img src="images/Admission5.jpeg" alt=" ">
+            <ul>
+                <li>General Academic Strand (GAS)</li>
+                <li>Humanities and Social Sciences Strand HUMSS</li>
+                <li>Science, Technology, Engineering, and Mathematics Strand (STEM)</li>
+                <li>Accountancy, Business, and Management Strand (ABM)</li>
+                
+                  <strong>Technical-Vocational-Livelihood Track (TVL):</strong>
+                  <ul>
+                    <li>AGRI-FISHERIES</li>
+                  </ul>
+                
+            </ul>
+      </div>
+      <div class="grid-cell">
+        <h3>ESC and Voucher Program</h3>
+        <img src="images/Admission6.jpeg" alt=" ">
+        <p>Aims to increase access to quality basic education by providing financial assistance to "poor but deserving" elementary graduates to attend private high schools.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer">
+    <!-- Navigation Links -->
+    <div>
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="admissions.html">Admissions</a>
+      <a href="virtual-tour.html">Virtual Tour</a>
+      <a href="news.html">News</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h4>Follow Us</h4>
+      <a href="https://www.facebook.com/profile.php?id=100057529355713" target="_blank">Facebook</a>
+      <a href="https://www.youtube.com/@taburnallearningcentertlco9458" target="_blank">YouTube</a>
+    </div>
+
+    <!-- Contact Info -->
+    <div>
+      <h4>Contact Us</h4>
+      <p>Email: <a href="tlcmoreblessings@gmail.com ">tlcmoreblessings@gmail.com </a></p>
+      <p>Phone: 09915436059</p>
+      <p>Taburnal Learning Center<br>Zone 4 San Rafael Poblacion, Bato, Camarines Sur 4435</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    &copy; 2025 Taburnal Learning Center. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  const menuToggle = document.getElementById('mobile-menu');
+  const navLinks = document.getElementById('nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+      }
+    });
+  });
+
+  // document.querySelector('form').addEventListener('submit', e => {
+  //   e.preventDefault();
+  //   alert('Your application has been submitted! Thank you.');
+  //   e.target.reset();
+  // });
+</script>
+</body>
+</html>

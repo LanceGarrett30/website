@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>School Website - Contact Us</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background-image: url('images/Background.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover; /* or 'cover' depending on preference */
+      background-attachment: fixed; /* optional: keeps image fixed on scroll */
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    nav {
+      background-color: #2ebe5e;
+      color: white;
+      padding: 0.8rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .nav-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      height: 35px;
+      margin-right: 10px;
+    }
+    ul.nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      padding: 0;
+      margin: 0;
+    }
+    ul.nav-links li a {
+      color: white;
+      font-weight: 600;
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+    ul.nav-links li a:hover,
+    ul.nav-links li a.active {
+      background-color: #2ebe5e;
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 4px 0;
+    }
+
+    @media (max-width: 768px) {
+      ul.nav-links {
+        position: fixed;
+        top: 55px;
+        right: 0;
+        width: 200px;
+        height: calc(100% - 55px);
+        background-color: #004080;
+        flex-direction: column;
+        padding-top: 1rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      ul.nav-links.open {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    .contact-section {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .contact-left {
+      flex: 1 1 45%;
+    }
+
+    .contact-left h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-left p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .contact-left iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+      border-radius: 8px;
+    }
+
+    .contact-form {
+      flex: 1 1 45%;
+      background-color: #4CAF50;
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      height: 120px;
+    }
+
+    .contact-form button {
+      width: 100%;
+      background-color: #ffc107;
+      border: none;
+      padding: 0.9rem;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #333;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .contact-form button:hover {
+      background-color: #e0a800;
+    }
+
+    .footer {
+    background-color: #000000;
+    color: white;
+    padding: 30px 400px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+  }
+
+  .footer div {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+  }
+
+  .footer a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 5px 0;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    background-color: #56c252;
+    color: white;
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-container">
+    <div class="logo">
+      <img src="images/logo.png" alt="School Logo">
+      Taburnal Learning Center
+    </div>
+    <div class="menu-toggle" id="mobile-menu">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="admissions.html">Admissions</a></li>
+      <li><a href="virtual-tour.html">Virtual Tour</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <div class="contact-section">
+    <div class="contact-left">
+      <h1 style="color: #2ebe5e;">Connect with Taburnal Learning Center</h1>
+      <hr>
+      <p>At Taburnal Learning Center, we are dedicated to providing a unique educational experience. Reach out to discuss how we can support your learning journey.</p>
+      <iframe width="523" height="418" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=523&amp;height=418&amp;hl=en&amp;q=San%20rafael%20bato%20cam%20Sur%20Bato+(Taburnal%20Learning%20Center)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href='https://clouddevs.com/google-maps-generator/'>Maps Generator</a>
+    </div>
+    <div class="contact-form">
+      <form action="https://formsubmit.co/tlcmoreblessings@gmail.com" method="POST" class="contact-form">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <input type="tel" name="phone" placeholder="Your Phone" required />
+        <textarea name="message" placeholder="Describe Your Inquiry" required></textarea>
+        <button type="submit">SUBMIT YOUR REQUEST</button>
+      </form>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer">
+    <!-- Navigation Links -->
+    <div>
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="admissions.html">Admissions</a>
+      <a href="virtual-tour.html">Virtual Tour</a>
+      <a href="news.html">News</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h4>Follow Us</h4>
+      <a href="https://www.facebook.com/profile.php?id=100057529355713" target="_blank">Facebook</a>
+      <a href="https://www.youtube.com/@taburnallearningcentertlco9458" target="_blank">YouTube</a>
+    </div>
+
+    <!-- Contact Info -->
+    <div>
+      <h4>Contact Us</h4>
+      <p>Email: <a href="tlcmoreblessings@gmail.com ">tlcmoreblessings@gmail.com </a></p>
+      <p>Phone: 09915436059</p>
+      <p>Taburnal Learning Center<br>Zone 4 San Rafael Poblacion, Bato, Camarines Sur 4435</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    &copy; 2025 Taburnal Learning Center. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  const menuToggle = document.getElementById('mobile-menu');
+  const navLinks = document.getElementById('nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+      }
+    });
+  });
+
+
+</script>
+
+</body>
+</html>
