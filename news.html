@@ -127,13 +127,14 @@
 
       /* --- Adjusted for Mobile - Show Only Iframe --- */
       .iframe-container {
-        display: flex;
-        justify-content: center; /* Center the iframe */
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center the iframe */
         padding: 1rem;
       }
 
+      /* Hide side images on mobile */
       .side-image-wrapper {
-        display: none; /* Hide the side images on mobile */
+        display: none;
       }
 
       .iframe-wrapper {
@@ -150,7 +151,7 @@
       }
     }
 
-    /* Main content styling for larger screens */
+    /* Main content styling for larger screens (Desktop - As it was) */
     main {
       max-width: 1200px;
       margin: 2rem auto;
