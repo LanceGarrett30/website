@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>School Website - Contact Us</title>
+  <title>TLC | Contact Us</title>
   <style>
     * {
       box-sizing: border-box;
@@ -21,6 +21,7 @@
       margin: 0;
       padding: 0;
       min-height: 100vh;
+      font-family: Arial, sans-serif; /* Added consistent font family */
     }
 
     a {
@@ -50,13 +51,16 @@
       font-size: 1.3rem;
       display: flex;
       align-items: center;
+      letter-spacing: 1px; /* Added for consistency with homepage */
     }
 
     .logo img {
       height: 35px;
       margin-right: 10px;
+      width: auto; /* Added for consistency */
     }
 
+    /* Updated navigation links for consistency */
     ul.nav-links {
       list-style: none;
       display: flex;
@@ -75,7 +79,7 @@
 
     ul.nav-links li a:hover,
     ul.nav-links li a.active {
-      background-color: #004080;
+      background-color: rgba(255, 255, 255, 0.2); /* Made consistent with homepage */
     }
 
     .menu-toggle {
@@ -97,17 +101,23 @@
         position: fixed;
         top: 55px;
         right: 0;
-        width: 200px;
+        width: 60%; /* Made consistent with homepage */
         height: calc(100% - 55px);
-        background-color: #004080;
+        background-color: #2ebe5e;
         flex-direction: column;
         padding-top: 1rem;
         transform: translateX(100%);
         transition: transform 0.3s ease-in-out;
+        box-shadow: -5px 0 10px rgba(0,0,0,0.1); /* Added for consistency */
       }
 
       ul.nav-links.open {
         transform: translateX(0);
+      }
+
+      ul.nav-links li {
+        margin: 0.8rem 0;
+        margin-left: 1rem;
       }
 
       .menu-toggle {
@@ -237,7 +247,7 @@
 
     @media (min-width: 768px) {
       .footer {
-        padding: 30px 400px;
+        padding: 30px 20px; /* Adjusted to be more reasonable */
         justify-content: space-around;
         text-align: left;
       }
@@ -344,7 +354,7 @@
 
       <div>
         <h4>Contact Us</h4>
-        <p>Email: <a href="tlcmoreblessings@gmail.com ">tlcmoreblessings@gmail.com </a></p>
+        <p>Email: <a href="mailto:tlcmoreblessings@gmail.com">tlcmoreblessings@gmail.com</a></p>
         <p>Phone: 09915436059</p>
         <p>Taburnal Learning Center<br>Zone 4 San Rafael Poblacion, Bato, Camarines Sur 4435</p>
       </div>
