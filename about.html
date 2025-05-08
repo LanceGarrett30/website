@@ -1,294 +1,467 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>School Website - Admissions</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      background-image: url('images/Background.jpg');
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: cover;
-      background-attachment: fixed;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>School Website - About Us</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background-image: url('images/Background.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* History section styles */
+  .history-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+  }
+
+  .history-image-left {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin-right: 1rem;
+  }
+
+  .history-image-right {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin-left: 1rem;
+  }
+
+  /* Responsive history sections */
+  @media (max-width: 768px) {
+    .history-section {
+      flex-direction: column;
     }
-    a { text-decoration: none; color: inherit; }
-    nav {
+    
+    .history-image-left, .history-image-right {
+      width: 100%;
+      height: auto;
+      max-height: 250px;
+      margin: 0 0 1rem 0;
+    }
+  }
+
+  /* Navigation styles */
+  nav {
+    background-color: #2ebe5e;
+    color: white;
+    padding: 0.8rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .nav-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-weight: bold;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+  }
+  .logo img {
+    height: 35px;
+    width: auto;
+    margin-right: 10px;
+  }
+  ul.nav-links {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+  }
+  ul.nav-links li {
+    margin-left: 1.3rem;
+  }
+  ul.nav-links li a {
+    color: white;
+    font-weight: 600;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  ul.nav-links li a:hover,
+  ul.nav-links li a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Mobile menu styling */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .menu-toggle div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+  }
+
+  /* Mobile navigation responsiveness */
+  @media (max-width: 768px) {
+    ul.nav-links {
+      position: fixed;
+      top: 55px;
+      right: 0;
+      width: 200px;
+      height: calc(100% - 55px);
       background-color: #2ebe5e;
-      color: white;
-      padding: 0.8rem 1rem;
-      position: sticky;
-      top: 0;
+      flex-direction: column;
+      padding: 1rem;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
       z-index: 1000;
     }
-    .nav-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo {
-      font-weight: bold;
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-    }
-    .logo img {
-      height: 35px;
-      margin-right: 10px;
-    }
-    ul.nav-links {
-      list-style: none;
-      display: flex;
-      padding: 0;
-      margin: 0;
+    ul.nav-links.open {
+      transform: translateX(0);
     }
     ul.nav-links li {
-      margin-left: 1.3rem;
+      margin: 1rem 0;
+      margin-left: 0;
     }
-    ul.nav-links li a {
-      color: white;
-      font-weight: 600;
-      padding: 0.4rem 0.6rem;
-      border-radius: 4px;
-      transition: background-color 0.3s ease;
-    }
-    ul.nav-links li a:hover,
-    ul.nav-links li a.active {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
     .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-    .menu-toggle div {
-      width: 25px;
-      height: 3px;
-      background-color: white;
-      margin: 4px 0;
-    }
-    @media (max-width: 768px) {
-      ul.nav-links {
-        position: fixed;
-        top: 55px;
-        right: 0;
-        width: 200px;
-        height: calc(100% - 55px);
-        background-color: #2ebe5e;
-        flex-direction: column;
-        padding: 1rem;
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-        z-index: 1000;
-      }
-      ul.nav-links.open {
-        transform: translateX(0);
-      }
-      ul.nav-links li {
-        margin: 1rem 0;
-        margin-left: 0;
-      }
-      .menu-toggle {
-        display: flex;
-      }
-    }
-
-    header.hero {
-      background: url('images/Bannerabout.png') no-repeat center center/cover;
-      height: 300px;
-      width: 100%;
-      color: white;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
-      margin-bottom: 2rem;
+    }
+  }
+
+  /* Main content styling */
+  main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  @media (max-width: 768px) {
+    main {
+      margin: 1rem auto;
+      padding: 0 0.5rem;
+    }
+  }
+
+  /* Hero section styling */
+  header.hero {
+    background: url('about3.jpeg') no-repeat center center/cover;
+    height: 300px;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+    margin-bottom: 2rem;
+  }
+
+  header.hero h1 {
+    font-size: 2.4rem;
+  }
+
+  @media (max-width: 768px) {
+    header.hero {
+      height: 200px;
     }
     header.hero h1 {
-      font-size: 2.4rem;
+      font-size: 1.8rem;
     }
-    @media (max-width: 768px) {
-      header.hero {
-        height: 200px;
-      }
-      header.hero h1 {
-        font-size: 1.8rem;
-      }
-    }
+  }
 
-    main {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
+  /* Section styling */
+  section {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.05);
+  }
 
+  @media (max-width: 768px) {
     section {
-      background: white;
-      padding: 1.5rem 2rem;
-      border-radius: 8px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.05);
+      padding: 1rem;
     }
+  }
 
-    h2 {
-      text-align: center;
-      color: #004080;
+  /* Typography */
+  h1, h2 {
+    color: #004080;
+  }
+
+  @media (max-width: 768px) {
+    h1, h2 {
+      font-size: 1.5rem;
     }
+  }
 
-    p {
-      text-align: justify;
-      line-height: 1.6;
+  /* Header image styling */
+  .header-image {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .header-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Lists styling */
+  ul {
+    padding-left: 1.2rem;
+  }
+
+  /* Image gallery styling */
+  .image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+  .image-gallery img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    width: 300px;
+  }
+
+  @media (max-width: 768px) {
+    .image-gallery {
+      gap: 0.5rem;
     }
+    .image-gallery img {
+      width: 100%;
+    }
+  }
 
+  /* Side-by-side layout */
+  .side-by-side {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .side-by-side {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  /* Centered title styling */
+  .centered-title {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .centered-title {
+      font-size: 1.3rem;
+    }
+  }
+
+  /* Text justification */
+  .side-by-side p {
+    text-align: justify;
+  }
+
+  /* Footer styling */
+  .footer {
+    background-color: #000000;
+    color: white;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+  }
+
+  .footer div {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+  }
+
+  .footer a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 5px 0;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    background-color: #56c252;
+    color: white;
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 768px) {
     .footer {
-      background-color: #000000;
-      color: white;
-      padding: 30px 20px;
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      font-size: 0.9rem;
+      padding: 20px;
+      flex-direction: column;
     }
-
+    
     .footer div {
-      flex: 1;
-      min-width: 200px;
-      margin: 10px;
+      margin-bottom: 20px;
+      min-width: auto;
     }
-
-    .footer a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      margin: 5px 0;
-    }
-
-    .footer a:hover {
-      text-decoration: underline;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      background-color: #56c252;
-      color: white;
-      padding: 10px;
-      font-size: 0.85rem;
-    }
-
-    @media (max-width: 768px) {
-      .footer {
-        padding: 20px;
-        flex-direction: column;
-      }
-      .footer div {
-        margin-bottom: 20px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <nav>
-    <div class="nav-container">
-      <div class="logo">
-        <img src="images/logo.png" alt="School Logo" />
+<nav>
+  <div class="nav-container">
+    <div class="logo">
+        <img src="images/logo.png" alt="School Logo">
         Taburnal Learning Center
-      </div>
-      <div class="menu-toggle" id="mobile-menu">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="admissions.html" class="active">Admissions</a></li>
-        <li><a href="virtual-tour.html">Virtual Tour</a></li>
-        <li><a href="news.html">News</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
     </div>
-  </nav>
-
-  <header class="hero">
-    <h1>Admissions</h1>
-  </header>
-
-  <main>
-    <section>
-      <h2>Enrollment Requirements</h2>
-      <p>
-        We welcome students from all backgrounds to apply to Taburnal Learning Center. To enroll, please prepare the following:
-      </p>
-      <ul>
-        <li>Copy of birth certificate (PSA)</li>
-        <li>Report card from the last school year</li>
-        <li>2x2 ID picture (2 copies)</li>
-        <li>Good moral certificate (for transferees)</li>
-        <li>Completed enrollment form (available at the office)</li>
-      </ul>
-
-      <h2>Enrollment Period</h2>
-      <p>
-        Enrollment opens every April and runs through June for the upcoming academic year. Late enrollees may still be accommodated based on available slots.
-      </p>
-
-      <h2>Contact Our Registrar</h2>
-      <p>
-        For further inquiries or assistance with enrollment, feel free to visit our school or contact our registrar's office during office hours. We're here to help!
-      </p>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer">
-      <div>
-        <h4>Quick Links</h4>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="admissions.html">Admissions</a>
-        <a href="virtual-tour.html">Virtual Tour</a>
-        <a href="news.html">News</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div>
-        <h4>Follow Us</h4>
-        <a href="https://www.facebook.com/profile.php?id=100057529355713" target="_blank">Facebook</a>
-        <a href="https://www.youtube.com/@taburnallearningcentertlco9458" target="_blank">YouTube</a>
-      </div>
-      <div>
-        <h4>Contact Us</h4>
-        <p>Email: <a href="mailto:tlcmoreblessings@gmail.com">tlcmoreblessings@gmail.com</a></p>
-        <p>Phone: 09915436059</p>
-        <p>Zone 4 San Rafael Poblacion, Bato, Camarines Sur 4435</p>
-      </div>
+    <div class="menu-toggle" id="mobile-menu">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
-    <div class="footer-bottom">
-      &copy; 2025 Taburnal Learning Center. All rights reserved.
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About Us</a></li>
+      <li><a href="admissions.html">Admissions</a></li>
+      <li><a href="virtual-tour.html">Virtual Tour</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="header-image">
+  <img src="images/Bannerabout.png" alt="School Header Image" />
+</div>
+
+<main>
+  <section>
+    <h2 class="centered-title" style="color: #2ebe5e;">The History of Taburnal Learning Center</h2>
+
+    <!-- First Image on the left side with text on the right -->
+    <div class="history-section">
+      <img src="images/about1.jpg" alt="Image 1" class="history-image-left">
+      <p>
+        In the heart of Zone 1, Santiago, Bato, Camarines Sur, The Nabua Educational Learning Center emerged as a beacon of educational excellence, gracing the educational landscape from 2014 to 2017. Our school, a visionary venture, has been steadfast in its commitment to shaping young minds within the Municipality of Bato, offering not just education but an accessible gateway to quality learning.
+        <br><br>
+        During 2018, the school director, Mr. Louie Garry B. Taburnal, and school administrator, Mrs. Warlita C. Taburnal, decided to move to a new site at San Rafael, Bato, Camarines Sur, which offered a picturesque and expansive campus, complete with an 8-room building.
+    </p>
     </div>
-  </footer>
 
-  <script>
-    const menuToggle = document.getElementById('mobile-menu');
-    const navLinks = document.getElementById('nav-links');
+    <p>The increasing number of registrants for the school year prompted the institution to seek out larger accommodations. In 2018, the school elected, at this point, to change its name to Taburnal Learning Center Inc.</p>
+  
+    <!-- Second Image on the right side with text on the left -->
+    <div class="history-section">
+      <p>
+        In 2020, Taburnal Learning Center Inc. took the significant step of establishing its High School Department in the heart of Bato, Camarines Sur. Since then, its enrollment has been steadily flourishing.
+        <br><br>
+        Throughout the academic year 2022-2023, the Department of Education Regional Office granted official recognition to the school's competency, issuing Government Recognition No. G-K-015, s. 2022; GR-E-016, s. 2022; GR-J-005, s. 2023. This recognition affirmed the institution's capability to provide quality education across Pre-school (Nursery and Kinder), Elementary (Grades 1-6), and Junior High School (Grades 7-10) levels.
+      </p>
+      <img src="images/about2.jpeg" alt="Image 2" class="history-image-right">
+    </div>
+    <div class="side-by-side"> 
+        <p>
+            For the forthcoming academic year 2023-2024, after careful foresight, the school's esteemed director and dedicated administrator jointly made the strategic decision to inaugurate the Senior High School Department within the institution's academic framework. This pivotal move aims to cater to the diverse educational needs and aspirations of the youth within the community. By offering such a diverse range of academic pathways, the institution endeavors to empower the youth with the essential skills, knowledge, and values to thrive in an ever-evolving global landscape. These strands include the disciplines of Accountancy, Business, and Management (ABM), Humanities and Social Sciences (HUMSS), Science, Technology, Engineering, and Mathematics (STEM), General Academic Strand (GAS), and Technical Vocational-Livelihood (TVL).
+            <br><br>
+            TLC stands as the cornerstone of our modern educational ethos, pioneering pragmatic approaches that resonate with the dynamic needs of our era. Within its nurturing embrace, TLC fosters an Excellent Foundation, meticulously crafted upon the Pillars of Quality Education.
+        </p>
+    </div>
+    <hr>
+        <div class="side-by-side">
+            <div>
+            <h2 class="centered-title">TLC Vision</h2>
+            <p>Through enhanced and improved education, we see our school equipped with talented and innovative teachers fostering learners' determination, socio-emotional well-being, leadership, and academic skills—enabling them to contribute to a rising community.</p>
+            </div>
+            <div>
+            <h2 class="centered-title">TLC Mission</h2>
+            <p>As an institution committed to advancing modern and holistic education, Taburnal Learning Center, Inc. promotes and inspires learners intellectually, physically, and spiritually to become responsible citizens and lifelong learners equipped with talents and skills.</p>
+            </div>
+        </div>
+  </section>
+</main>
 
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
+<footer>
+  <div class="footer">
+    <!-- Navigation Links -->
+    <div>
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="admissions.html">Admissions</a>
+      <a href="virtual-tour.html">Virtual Tour</a>
+      <a href="news.html">News</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h4>Follow Us</h4>
+      <a href="https://www.facebook.com/profile.php?id=100057529355713" target="_blank">Facebook</a>
+      <a href="https://www.youtube.com/@taburnallearningcentertlco9458" target="_blank">YouTube</a>
+    </div>
+
+    <!-- Contact Info -->
+    <div>
+      <h4>Contact Us</h4>
+      <p>Email: <a href="mailto:tlcmoreblessings@gmail.com">tlcmoreblessings@gmail.com</a></p>
+      <p>Phone: 09915436059</p>
+      <p>Taburnal Learning Center<br>Zone 4 San Rafael Poblacion, Bato, Camarines Sur 4435</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    &copy; 2025 Taburnal Learning Center. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  const menuToggle = document.getElementById('mobile-menu');
+  const navLinks = document.getElementById('nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if(navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+      }
     });
-
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if(navLinks.classList.contains('open')) {
-          navLinks.classList.remove('open');
-        }
-      });
-    });
-  </script>
+  });
+</script>
 </body>
 </html>
