@@ -4,259 +4,290 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>School Website - Admissions</title>
+<meta name="description" content="Discover the admission process at Taburnal Learning Center. Learn about our programs, requirements, and educational offerings.">
+<link rel="icon" href="https://via.placeholder.com/16" type="image/png">
+
 <style>
-    * {
+  * {
     box-sizing: border-box;
-    }
-    body {
-      background-image: url('images/Background.jpg');
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: cover;
-      background-attachment: fixed;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-    }
-    a {
+  }
+  body {
+    background-image: url('images/Background.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  a {
     text-decoration: none;
     color: inherit;
-    }
-    nav {
+  }
+  nav {
     background-color: #2ebe5e;
     color: white;
     padding: 0.8rem 1rem;
     position: sticky;
     top: 0;
     z-index: 1000;
-    }
-    .nav-container {
+  }
+  .nav-container {
     max-width: 1000px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    }
-    .logo {
+  }
+  .logo {
     font-weight: bold;
     font-size: 1.3rem;
+    letter-spacing: 1px;
     display: flex;
     align-items: center;
-    }
-    .logo img {
+  }
+  .logo img {
     height: 35px;
+    width: auto;
     margin-right: 10px;
-    }
-    ul.nav-links {
+  }
+  ul.nav-links {
     list-style: none;
     display: flex;
     padding: 0;
     margin: 0;
-    }
-    ul.nav-links li {
+  }
+  ul.nav-links li {
     margin-left: 1.3rem;
-    }
-    ul.nav-links li a {
+  }
+  ul.nav-links li a {
     color: white;
     font-weight: 600;
     padding: 0.4rem 0.6rem;
     border-radius: 4px;
     transition: background-color 0.3s ease;
-    }
-    ul.nav-links li a:hover,
-    ul.nav-links li a.active {
-    background-color: #1a9e44;
-    }
-    .menu-toggle {
+  }
+  ul.nav-links li a:hover,
+  ul.nav-links li a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .menu-toggle {
     display: none;
     flex-direction: column;
     cursor: pointer;
-    }
-    .menu-toggle div {
+  }
+  .menu-toggle div {
     width: 25px;
     height: 3px;
     background-color: white;
     margin: 4px 0;
-    }
-    
-    header img {
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 1rem auto;
+    padding: 0 1rem;
+  }
+
+  header.hero {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    overflow: hidden;
+    padding: 0;
+    margin: 0 auto 20px auto;
+  }
+
+  header.hero img {
     width: 100%;
     height: auto;
-    max-height: 400px;
-    display: block;
-    margin: 0 auto;
+    max-height: 450px;
     object-fit: cover;
-    }
-    
-    main {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    }
-    
-    section {
+    display: block;
+  }
+
+  section {
     background: white;
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 12px rgba(0,0,0,0.05);
     margin-bottom: 2rem;
-    }
-    
-    .grid-section {
+  }
+
+  .grid-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
-    }
-    
-    .grid-cell {
+  }
+
+  .grid-cell {
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 1rem;
     text-align: center;
-    height: auto;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    }
-    
-    .grid-cell img {
+  }
+
+  .grid-cell img {
     max-width: 100%;
     height: auto;
     max-height: 250px;
     object-fit: contain;
     border-radius: 4px;
     margin: 0 auto;
-    }
-    
-    .grid-cell h3 {
+  }
+
+  .grid-cell h3 {
     margin: 0.5rem 0;
     font-size: 1.2rem;
-    }
-    
-    .grid-cell p {
+    color: #2ebe5e;
+  }
+
+  .grid-cell p {
     flex-grow: 1;
-    }
-    
-    .grid-cell ul, 
-    .grid-cell li {
+    text-align: justify;
+  }
+
+  .grid-cell ul, 
+  .grid-cell li {
     text-align: left;
     list-style-position: inside;
     padding-left: 0.5rem;
-    }
-    
-    .grid-cell ul ul {
-    padding-left: 1rem;
-    }
+  }
 
-    .footer {
+  .grid-cell ul ul {
+    padding-left: 1rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 10px 20px;
+    background-color: #2ebe5e;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background-color: #1a9e44;
+  }
+
+  .footer {
     background-color: #000000;
     color: white;
-    padding: 2rem 1rem;
+    padding: 30px 20px;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     font-size: 0.9rem;
-    }
+  }
 
-    .footer div {
+  .footer div {
     flex: 1;
     min-width: 200px;
     margin: 10px;
-    }
+  }
 
-    .footer a {
+  .footer a {
     display: block;
     color: white;
     text-decoration: none;
     margin: 5px 0;
-    }
+  }
 
-    .footer a:hover {
+  .footer a:hover {
     text-decoration: underline;
-    }
+  }
 
-    .footer-bottom {
+  .footer-bottom {
     text-align: center;
     background-color: #56c252;
     color: white;
     padding: 10px;
     font-size: 0.85rem;
+  }
+
+  /* Mobile Responsive Styles */
+  @media (max-width: 768px) {
+    .logo {
+      font-size: 1.1rem;
     }
     
-    /* Mobile Responsive Styles */
-    @media (max-width: 768px) {
-        .nav-container {
-            position: relative;
-        }
-        
-        ul.nav-links {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            width: 100%;
-            background-color: #2ebe5e;
-            flex-direction: column;
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-in-out;
-            z-index: 1000;
-        }
-        
-        ul.nav-links.open {
-            max-height: 300px;
-            padding: 0.5rem 0;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-        }
-        
-        ul.nav-links li {
-            margin: 0.5rem 1rem;
-            text-align: center;
-        }
-        
-        .menu-toggle {
-            display: flex;
-        }
-        
-        .grid-section {
-            grid-template-columns: 1fr;
-        }
-        
-        .grid-cell {
-            max-width: 100%;
-            height: auto;
-        }
-        
-        .footer {
-            padding: 1.5rem 1rem;
-            flex-direction: column;
-            text-align: center;
-        }
-        
-        .footer div {
-            margin-bottom: 1.5rem;
-        }
+    ul.nav-links {
+      position: fixed;
+      top: 57px;
+      right: 0;
+      width: 60%;
+      height: 100vh;
+      background-color: #2ebe5e;
+      flex-direction: column;
+      padding-top: 1rem;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+      box-shadow: -5px 0 10px rgba(0,0,0,0.1);
     }
     
-    @media (max-width: 480px) {
-        .logo {
-            font-size: 1rem;
-        }
-        
-        .logo img {
-            height: 28px;
-        }
-        
-        section {
-            padding: 1rem;
-        }
-        
-        .grid-cell h3 {
-            font-size: 1.1rem;
-        }
+    ul.nav-links.open {
+      transform: translateX(0);
     }
+    
+    ul.nav-links li {
+      margin: 0.8rem 0;
+      margin-left: 1rem;
+    }
+    
+    .menu-toggle {
+      display: flex;
+    }
+
+    header.hero img {
+      height: auto;
+      max-height: 300px;
+    }
+    
+    .grid-section {
+      grid-template-columns: 1fr;
+    }
+    
+    .grid-cell {
+      max-width: 100%;
+    }
+    
+    .footer {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .footer div {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .logo {
+      font-size: 1rem;
+    }
+    
+    .logo img {
+      height: 28px;
+    }
+    
+    section {
+      padding: 1rem;
+    }
+    
+    .grid-cell h3 {
+      font-size: 1.1rem;
+    }
+  }
 </style>
 </head>
 <body>
@@ -264,10 +295,12 @@
   <div class="nav-container">
     <div class="logo">
       <img src="images/logo.png" alt="School Logo">
-      Tabrunal learning Center
+      Taburnal Learning Center
     </div>
-    <div class="menu-toggle" id="mobile-menu">
-      <div></div><div></div><div></div>
+    <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" role="button" tabindex="0">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -280,13 +313,15 @@
   </div>
 </nav>
 
-<header>
+<header class="hero">
   <img src="images/banneradmission.jpg" alt="Admissions Banner">
 </header>
 
 <main>
   <section>
-    <h2 style="color:rgb(65, 233, 59);">Why Choose Taburnal Learning Center?</h2>
+    <h2 style="color:#2ebe5e; text-align: center;">Why Choose Taburnal Learning Center?</h2>
+    <p style="text-align: center;">Discover our comprehensive educational programs designed to nurture every aspect of your child's development.</p>
+    
     <div class="grid-section">
       <div class="grid-cell">
         <h3>PRE-SCHOOL DEPARTMENT</h3>
@@ -311,23 +346,42 @@
       <div class="grid-cell">
         <h3>ACADEMIC TRACK</h3>
         <img src="images/Admission5.jpeg" alt="Academic Track">
-            <ul>
-                <li>General Academic Strand (GAS)</li>
-                <li>Humanities and Social Sciences Strand HUMSS</li>
-                <li>Science, Technology, Engineering, and Mathematics Strand (STEM)</li>
-                <li>Accountancy, Business, and Management Strand (ABM)</li>
-                
-                  <strong>Technical-Vocational-Livelihood Track (TVL):</strong>
-                  <ul>
-                    <li>AGRI-FISHERIES</li>
-                  </ul>
-            </ul>
+        <ul>
+          <li>General Academic Strand (GAS)</li>
+          <li>Humanities and Social Sciences Strand (HUMSS)</li>
+          <li>Science, Technology, Engineering, and Mathematics Strand (STEM)</li>
+          <li>Accountancy, Business, and Management Strand (ABM)</li>
+          
+          <strong>Technical-Vocational-Livelihood Track (TVL):</strong>
+          <ul>
+            <li>AGRI-FISHERIES</li>
+          </ul>
+        </ul>
       </div>
       <div class="grid-cell">
         <h3>ESC and Voucher Program</h3>
         <img src="images/Admission6.jpeg" alt="ESC Program">
         <p>Aims to increase access to quality basic education by providing financial assistance to "poor but deserving" elementary graduates to attend private high schools.</p>
       </div>
+    </div>
+  </section>
+  
+  <section>
+    <h2 style="color:#2ebe5e; text-align: center;">Admission Process</h2>
+    <p style="text-align: center;">Join our learning community by following these simple steps:</p>
+    
+    <ol style="max-width: 800px; margin: 0 auto;">
+      <li>Submit an application form (available online or at our office)</li>
+      <li>Provide required documents (birth certificate, report cards from previous schools)</li>
+      <li>Schedule an interview with our admissions team</li>
+      <li>Complete the entrance assessment</li>
+      <li>Receive admission decision</li>
+      <li>Complete enrollment and payment of fees</li>
+    </ol>
+    
+    <div style="text-align: center; margin-top: 2rem;">
+      <p>Ready to start your educational journey with us?</p>
+      <a href="contact.html" class="cta-button">Apply Now</a>
     </div>
   </section>
 </main>
@@ -367,28 +421,28 @@
 </footer>
 
 <script>
-  const menuToggle = document.getElementById('mobile-menu');
-  const navLinks = document.getElementById('nav-links');
+// Mobile menu
+const menuToggle = document.getElementById('mobile-menu');
+const navLinks = document.getElementById('nav-links');
 
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
 
-  // Close menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!menuToggle.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('open')) {
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    if(navLinks.classList.contains('open')) {
       navLinks.classList.remove('open');
     }
   });
+});
 
-  // Close menu when clicking a link
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      if(navLinks.classList.contains('open')) {
-        navLinks.classList.remove('open');
-      }
-    });
-  });
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!menuToggle.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('open')) {
+    navLinks.classList.remove('open');
+  }
+});
 </script>
 </body>
 </html>
