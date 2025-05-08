@@ -12,8 +12,8 @@
       background-image: url('images/Background.jpg');
       background-repeat: no-repeat;
       background-position: center center;
-      background-size: cover; /* or 'cover' depending on preference */
-      background-attachment: fixed; /* optional: keeps image fixed on scroll */
+      background-size: cover;
+      background-attachment: fixed;
       margin: 0;
       padding: 0;
       min-height: 100vh;
@@ -64,7 +64,7 @@
     }
     ul.nav-links li a:hover,
     ul.nav-links li a.active {
-      background-color: #2ebe5e;
+      background-color: rgba(255, 255, 255, 0.2);
     }
     main {
       max-width: 1220px;
@@ -78,19 +78,23 @@
       box-shadow: 0 0 12px rgba(0,0,0,0.05);
       margin-top: 2rem;
     }
-    .header-image {
-      width: 1200px;
-      height: 400px;
+    
+    /* Using the same header style as index.html */
+    header.hero {
+      width: 100%;
+      max-width: 1200px;
+      height: auto;
       overflow: hidden;
-      border-radius: 8px;
-      margin-bottom: 2rem;
+      padding: 0;
+      margin: 0 auto 20px auto;
     }
 
-    .header-image img {
+    header.hero img {
       width: 100%;
       height: auto;
+      max-height: 450px;
+      object-fit: cover;
       display: block;
-      margin: 0 auto;
     }
 
     .image-gallery {
@@ -341,6 +345,11 @@
         flex-direction: column;
         text-align: center;
       }
+      
+      header.hero img {
+        height: auto;
+        max-height: 300px;
+      }
     }
     
     /* Small mobile screens */
@@ -388,9 +397,10 @@
     </div>
   </nav>
 
-  <div class="header-image">
+  <!-- Changed from div.header-image to header.hero to match index.html -->
+  <header class="hero">
     <img src="images/Bannervirtual.png" alt="School Header Image" />
-  </div>
+  </header>
 
   <main>
     <section> 
