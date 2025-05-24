@@ -18,7 +18,941 @@
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
+    margin: 0;<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Taburnal Learning Center|Home</title>
+<meta name="description" content="Prestige School is dedicated to excellence in education and student development. Discover our programs and team.">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background-image: url('images/Background.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
     margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif; /* Added default font family */
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  nav {
+    background-color: #2ebe5e;
+    color: white;
+    padding: 0.8rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .nav-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-weight: bold;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+  }
+  .logo img {
+    height: 35px;
+    width: auto;
+    margin-right: 10px;
+  }
+  ul.nav-links {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+  }
+  ul.nav-links li {
+    margin-left: 1.3rem;
+  }
+  ul.nav-links li a {
+    color: white;
+    font-weight: 600;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  ul.nav-links li a:hover,
+  ul.nav-links li a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .menu-toggle div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 1rem auto;
+    padding: 0 1rem;
+  }
+
+  header.hero {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    overflow: hidden;
+    padding: 0;
+    margin: 0 auto 20px auto;
+  }
+
+  header.hero img {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: cover;
+    display: block;
+  }
+
+  header.hero h1 {
+    font-size: 2.4rem;
+  }
+
+  section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.05);
+    margin-top: 2rem;
+    position: relative;
+  }
+
+  .highlight-section {
+    background-color: #e6f2ff;
+  }
+
+  .team-grid, .gallery-grid {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .team-member, .gallery-image {
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+  }
+
+  .team-member img {
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+    width: 100px;
+    height: 100px;
+  }
+
+  .gallery-image img {
+    border-radius: 8px;
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+  }
+
+  .cta-button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 10px 20px;
+    background-color: #004080;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 3rem;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  input[type="email"], button[type="submit"] {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  button[type="submit"] {
+    background-color: #004080;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .achievement-grid {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-around;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .achievement-item {
+    text-align: center;
+    flex: 1;
+    min-width: 260px;
+    margin-bottom: 1.5rem;
+  }
+
+  .circle-image {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .achievement-item p {
+    font-size: 1.1rem;
+    margin-top: 0.8rem;
+  }
+
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    justify-items: center;
+  }
+
+  .image-grid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    aspect-ratio: 16/9;
+    margin: 1rem auto;
+    overflow: hidden;
+  }
+
+  .carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+  }
+
+  .carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+    min-width: 100%;
+  }
+
+  button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 100;
+  }
+
+  button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .prev {
+    left: 10px;
+  }
+
+  .next {
+    right: 10px;
+  }
+
+  .achievement-item h4 {
+    margin-top: 1rem;
+  }
+
+  .footer {
+    background-color: #000000;
+    color: white;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+  }
+
+  .footer div {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+  }
+
+  .footer a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 5px 0;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    background-color: #56c252;
+    color: white;
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+
+  .why-choose-us {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  .image-section {
+    flex: 1 1 100%;
+    position: relative;
+  }
+
+  .text-section {
+    flex: 1 1 100%;
+  }
+
+  .image-section img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+  }
+
+  .overlay-box {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1.5rem;
+    position: absolute;
+    left: 0;
+    transform: translateY(50%);
+    max-width: 80%;
+    font-weight: bold;
+  }
+
+  .small-header {
+    font-size: 0.8rem;
+    color: #4CAF50;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+
+  .text-section h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .text-section hr {
+    border: none;
+    border-top: 3px solid #4CAF50;
+    width: 50px;
+    margin: 1rem 0;
+  }
+
+  .virtual-campus-box {
+    display: flex;
+    flex-direction: column;
+    background-color: #f1fce9;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 1rem 0;
+  }
+
+  .virtual-campus-box img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+  }
+
+  .virtual-campus-box div {
+    padding: 1rem;
+  }
+
+  .btn-green {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 0.5rem;
+  }
+
+  .btn-outline {
+    display: inline-block;
+    border: 2px solid #4CAF50;
+    color: #4CAF50;
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 1rem;
+    font-weight: bold;
+  }
+
+  .icons-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .icon-card {
+    flex: 1 1 45%;
+    min-width: 150px;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .icon-card .icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #4CAF50;
+  }
+
+  /* Reaction System Styles */
+  .reaction-panel {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .reactions-bar {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .reaction-btn {
+    background: none;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    padding: 8px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    position: relative;
+    top: auto;
+    transform: none;
+    z-index: auto;
+  }
+
+  .reaction-btn:hover {
+    background-color: #f5f5f5;
+    transform: scale(1.05);
+  }
+
+  .reaction-btn.active {
+    border-color: #2ebe5e;
+    background-color: #e8f5e8;
+    color: #2ebe5e;
+  }
+
+  .reaction-emoji {
+    font-size: 1.2rem;
+  }
+
+  .reaction-count {
+    font-weight: bold;
+    min-width: 20px;
+  }
+
+  .comment-section {
+    margin-top: 1rem;
+  }
+
+  .comment-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .comment-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    resize: none;
+    font-family: inherit;
+  }
+
+  .comment-input:focus {
+    outline: none;
+    border-color: #2ebe5e;
+  }
+
+  .comment-submit {
+    background-color: #2ebe5e;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    position: relative;
+    top: auto;
+    transform: none;
+    z-index: auto;
+  }
+
+  .comment-submit:hover {
+    background-color: #26a84a;
+  }
+
+  .comments-list {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .comment-item {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    border-left: 3px solid #2ebe5e;
+  }
+
+  .comment-author {
+    font-weight: bold;
+    color: #2ebe5e;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+  }
+
+  .comment-text {
+    color: #333;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .comment-time {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 5px;
+  }
+
+  .toggle-comments {
+    background: none;
+    border: none;
+    color: #2ebe5e;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    position: relative;
+    top: auto;
+    transform: none;
+    z-index: auto;
+    padding: 5px 0;
+  }
+
+  .comment-section.collapsed .comments-list,
+  .comment-section.collapsed .comment-form {
+    display: none;
+  }
+
+  /* Mobile Responsive Styles */
+  @media (max-width: 768px) {
+    .logo {
+      font-size: 1.1rem;
+    }
+    
+    ul.nav-links {
+      position: fixed;
+      top: 57px;
+      right: 0;
+      width: 60%;
+      height: 100vh;
+      background-color: #2ebe5e;
+      flex-direction: column;
+      padding-top: 1rem;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+      box-shadow: -5px 0 10px rgba(0,0,0,0.1);
+    }
+    
+    ul.nav-links.open {
+      transform: translateX(0);
+    }
+    
+    ul.nav-links li {
+      margin: 0.8rem 0;
+      margin-left: 1rem;
+    }
+    
+    .menu-toggle {
+      display: flex;
+    }
+
+    header.hero img {
+      height: auto;
+      max-height: 300px;
+    }
+
+    .carousel-container {
+      height: auto;
+      aspect-ratio: 16/9;
+    }
+
+    .why-choose-us {
+      padding: 1rem;
+    }
+
+    .image-section, .text-section {
+      flex: 1 1 100%;
+    }
+
+    .virtual-campus-box {
+      flex-direction: column;
+    }
+
+    .virtual-campus-box img {
+      width: 100%;
+      max-height: 200px;
+    }
+
+    .achievement-grid {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .achievement-item {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    .image-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .image-grid img {
+      height: 200px;
+    }
+
+    .footer {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .footer div {
+      margin-bottom: 1.5rem;
+    }
+    
+    button.prev, button.next {
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    .reactions-bar {
+      gap: 0.5rem;
+    }
+
+    .reaction-btn {
+      padding: 6px 10px;
+      font-size: 0.8rem;
+    }
+
+    .comment-form {
+      flex-direction: column;
+    }
+
+    .comment-input {
+      min-width: auto;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .why-choose-us {
+      flex-direction: column;
+    }
+    
+    .image-section, .text-section {
+      flex: 1 1 100%;
+    }
+    
+    .virtual-campus-box {
+      flex-direction: row;
+    }
+    
+    .virtual-campus-box img {
+      width: 35%;
+      height: auto;
+    }
+    
+    .image-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .why-choose-us {
+      flex-direction: row;
+    }
+    
+    .image-section {
+      flex: 1 1 40%;
+    }
+    
+    .text-section {
+      flex: 1 1 55%;
+    }
+    
+    .virtual-campus-box {
+      flex-direction: row;
+    }
+    
+    .virtual-campus-box img {
+      width: 150px;
+      height: auto;
+    }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-container">
+    <div class="logo">
+      <img src="images/logo.png" alt="School Logo">
+      Taburnal Learning Center
+    </div>
+    <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" role="button" tabindex="0">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="admissions.html">Admissions</a></li>
+      <li><a href="virtual-tour.html">Virtual Tour</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <img src="images/bannerhome.jpg" alt="Banner">
+</header>
+
+<main>
+  <div class="carousel-container">
+    <div class="carousel">
+      <img src="images/carousel1.jpg" alt="Slide 1">
+      <img src="images/carousel2.jpg" alt="Slide 2">
+      <img src="images/carousel3.jpg" alt="Slide 3">
+      <img src="images/carousel4.jpg" alt="Slide 4">
+    </div>
+    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="next" onclick="moveSlide(1)">&#10095;</button>
+  </div>
+
+  <section class="why-choose-us" data-section="discover">
+    <div class="image-section">
+      <img src="images/homevirtual2.jpg" alt="Students working together">
+      <div class="icons-row">
+        <div class="icon-card">
+          <i class="icon">🎯</i>
+          <h5>Our Commitment</h5>
+          <p>Delivering innovative solutions for a comprehensive educational experiences</p>
+        </div>
+        <div class="icon-card">
+          <i class="icon">🌐</i>
+          <h5>What We Aspire To</h5>
+          <p>Empowering every learner through accessible, high-quality education.</p>
+        </div>
+      </div>
+      <a href="contact.html" class="btn-outline">REACH OUT TO US</a>
+    </div>
+
+    <div class="text-section">
+      <p class="small-header">DISCOVER TABURNAL LEARNING CENTER</p>
+      <h2>Where Innovation Meets Education</h2>
+      <p>
+        Immerse yourself in an educational journey that blends cutting-edge technology with a nurturing environment. Our dynamic feature keeps you informed about the latest school events and highlights, while our virtual tour offers an engaging experience to explore the campus from anywhere. Easily navigate our facilities with our photo-based directions, ensuring that you can find your way to the principal's office, classrooms, and more without hassle. Experience the future of learning with us!
+      </p>
+      <div class="virtual-campus-box">
+        <img src="images/homeVirtual.jpg" alt="Virtual Campus">
+        <div>
+          <h4>Explore Our Virtual Campus</h4>
+          <p>Take a comprehensive digital journey through our facilities. Discover classrooms, labs, recreational areas, and more from the comfort of your home.</p>
+          <a href="virtual-tour.html" class="btn-green">View the school virtually click here</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="reaction-panel">
+      <div class="reactions-bar">
+        <button class="reaction-btn" data-reaction="like" data-section="discover">
+          <span class="reaction-emoji">👍</span>
+          <span class="reaction-count">0</span>
+        </button>
+        <button class="reaction-btn" data-reaction="heart" data-section="discover">
+          <span class="reaction-emoji">❤️</span>
+          <span class="reaction-count">0</span>
+        </button>
+        <button class="reaction-btn" data-reaction="happy" data-section="discover">
+          <span class="reaction-emoji">😊</span>
+          <span class="reaction-count">0</span>
+        </button>
+      </div>
+      <div class="comment-section collapsed" data-section="discover">
+        <button class="toggle-comments">💬 View Comments (<span class="comment-count">0</span>)</button>
+        <div class="comment-form">
+          <textarea class="comment-input" placeholder="Share your thoughts about our learning center..." rows="2"></textarea>
+          <button class="comment-submit">Post</button>
+        </div>
+        <div class="comments-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-section="showcase">
+    <h5 style="text-align: center; color: #2ebe5e;">Showcase of Excellence at Taburnal Learning Center</h5>
+    <h2 style="text-align: center;">Dive into Our Vibrant Community</h2>
+    <p style="text-align:justify;">Discover the dynamic environment of Taburnal Learning Center through our carefully curated gallery. Each image represents not just moments, but milestones in our students' educational journey. Our carousel keeps you updated with the latest activities and events, ensuring you never miss out on the vibrancy of our school life. Explore our facility virtually, gaining firsthand insights into our classrooms, playgrounds, and unique spaces, all from the comfort of your home. With our intuitive photo-based directions, navigating to key locations like the principal's office or specific classrooms becomes effortless, making your experience seamless and engaging</p>
+    <div class="image-grid">
+      <img src="images/home1.jpg" alt="Highlight 1">
+      <img src="images/home2.jpg" alt="Highlight 2">
+      <img src="images/home3.jpg" alt="Highlight 3">
+      <img src="images/home4.jpg" alt="Highlight 4">
+      <img src="images/home5.jpg" alt="Highlight 5">
+      <img src="images/home6.jpg" alt="Highlight 6">
+    </div>
+
+    <div class="reaction-panel">
+      <div class="reactions-bar">
+        <button class="reaction-btn" data-reaction="like" data-section="showcase">
+          <span class="reaction-emoji">👍</span>
+          <span class="reaction-count">0</span>
+        </button>
+        <button class="reaction-btn" data-reaction="heart" data-section="showcase">
+          <span class="reaction-emoji">❤️</span>
+          <span class="reaction-count">0</span>
+        </button>
+        <button class="reaction-btn" data-reaction="happy" data-section="showcase">
+          <span class="reaction-emoji">😊</span>
+          <span class="reaction-count">0</span>
+        </button>
+      </div>
+      <div class="comment-section collapsed" data-section="showcase">
+        <button class="toggle-comments">💬 View Comments (<span class="comment-count">0</span>)</button>
+        <div class="comment-form">
+          <textarea class="comment-input" placeholder="What do you think about our vibrant community?" rows="2"></textarea>
+          <button class="comment-submit">Post</button>
+        </div>
+        <div class="comments-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-section="testimonials">
+    <p style="text-align: center; color: #2ebe5e;">Hear from our community</p>
+    <h1 style="text-align: center;">What Our Families Are Saying</h1>
+    <div class="achievement-grid">
+      <div class="achievement-item">
+        <img src="images/madrid.jpeg" alt="Achievement 1" class="circle-image">
+        <p>​The Taburnal Learning Center provides a well-structured curriculum that enhances my children's knowledge and critical thinking skills. I appreciate how the school offers various programs that help develop my children's talents, from arts and sports to leadership and teamwork. The teachers are dedicated and supportive, ensuring that my children receive guidance they need to excel.</p>
+        <h4>APRIL CHRISTINE T. MADRID</h4>
+        <p style="color:rgb(65, 233, 59);">Parent</p>
+      </div>
+      <div class="achievement-item">
+        <img src="images/sabordo.jpg" alt="Achievement 2" class="circle-image">
+        <p>The Taburnal Learning Center plays a big role in shaping my future. Through their commitment to providing 12 years of high-quality education, they have guided me along the right path, both academically and personally. The lessons I've learned and the values they've instilled in me have helped build a strong foundation for my dreams and goals. I'm truly grateful for the support, care, and dedication that the school has consistently shown throughout my journey.</p>
+        <h4>LUIS MARIO T. SABORDO</h4>
+        <p style="color:rgb(65, 233, 59);">Student</p>
+      </div>
+      <div class="achievement-item">
+        <img src="images/manalon.jpeg" alt="Achievement 3" class="circle-image">
+        <p>​The student activities and events of Taburnal Learning Center, Inc are exceptional and engaging. Students are exposed to fun and exciting activities may it be inside or outside the campus. Aside from the experiences, they are engaged and enable them to learn more. ​</p>
+        <h4>KENETH O. MANALON</h4>
+        <p style="color:rgb(65, 233, 59);">Teacher</p>
+      </div>
+    </div>
+
+    <div class="reaction-panel">
+      <div class="reactions-bar">
+        <button class="reaction-btn" data-reaction="like" data-section="testimonials">
+          <span class="reaction-emoji">👍</span>
+          <span class="reaction-count">0</span>
+        </button>
+        <button class="reaction-btn" data-reaction="heart" data-section="testimonials">
+          <span class="reaction-emoji">❤️</span>
+          <span class="reaction-count">0</span>
+        </button>
+        <button class="reaction-btn" data-reaction="happy" data-section="testimonials">
+          <span class="reaction-emoji">😊</span>
+          <span class="reaction-count">0</span>
+        </button>
+      </div>
+      <div class="comment-section collapsed" data-section="testimonials">
+        <button class="toggle-comments">💬 View Comments (<span class="comment-count">0</span>)</button>
+        <div class="comment-form">
+          <textarea class="comment-input" placeholder="Share your thoughts about these testimonials..." rows="2"></textarea>
+          <button class="comment-submit">Post</button>
+        </div>
+        <div class="comments-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="highlight-section" data-section="admissions">
+    <h2>Ready to Join Us?</h2>
+    <p>Explore our admissions process and see what makes Prestige School the right choice for your child.</p>
+    <a href="admissions.html" class="cta-button">Apply Now</a>
+
+    <div class="reaction-panel">
+      <div class="reactions-bar">
+        <button class="reaction-btn" data-reaction="like" data-section="admissions">
+          <span class="reaction-emoji">👍
     padding: 0;
     min-height: 100vh;
     font-family: Arial, sans-serif; /* Added default font family */
