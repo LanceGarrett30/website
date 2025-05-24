@@ -1028,49 +1028,53 @@ function highlightStars(rating) {
   });
 }
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const commentSection = document.querySelector(".comment-section");
-    const toggleBtn = commentSection.querySelector(".toggle-comments");
-    const commentForm = commentSection.querySelector(".comment-form");
-    const commentInput = commentSection.querySelector(".comment-input");
-    const commentSubmit = commentSection.querySelector(".comment-submit");
+document.addEventListener("DOMContentLoaded", () => {
+  function getComments(section) {
+    return JSON.parse(localStorage.getItem("comments_" + section)) || [];
+  }
+
+  function saveComments(section, comments) {
+    localStorage.setItem("comments_" + section, JSON.stringify(comments));
+  }
+
+  function updateCommentsUI(commentSection, comments) {
     const commentsList = commentSection.querySelector(".comments-list");
     const commentCount = commentSection.querySelector(".comment-count");
-    const sectionId = commentSection.dataset.section;
-    const storageKey = `comments-${sectionId}`;
+    commentsList.innerHTML = "";
+    comments.forEach(text => {
+      const p = document.createElement("p");
+      p.innerHTML = `<strong>User:</strong> ${text}`;
+      commentsList.appendChild(p);
+    });
+    commentCount.textContent = comments.length;
+  }
 
-    // Load comments from localStorage
-    let comments = JSON.parse(localStorage.getItem(storageKey)) || [];
+  document.querySelectorAll(".comment-section").forEach(commentSection => {
+    const section = commentSection.getAttribute("data-section");
+    let comments = getComments(section);
+    updateCommentsUI(commentSection, comments);
 
-    function renderComments() {
-      commentsList.innerHTML = "";
-      comments.forEach(comment => {
-        const commentEl = document.createElement("p");
-        commentEl.innerHTML = `<strong>User:</strong> ${comment}`;
-        commentsList.appendChild(commentEl);
-      });
-      commentCount.textContent = comments.length;
-    }
-
-    // Toggle visibility
+    // Toggle comments visibility
+    const toggleBtn = commentSection.querySelector(".toggle-comments");
     toggleBtn.addEventListener("click", () => {
       commentSection.classList.toggle("collapsed");
     });
 
-    // Post comment
+    // Submit comment
+    const commentInput = commentSection.querySelector(".comment-input");
+    const commentSubmit = commentSection.querySelector(".comment-submit");
+
     commentSubmit.addEventListener("click", () => {
-      const commentText = commentInput.value.trim();
-      if (commentText !== "") {
-        comments.push(commentText);
-        localStorage.setItem(storageKey, JSON.stringify(comments));
+      const text = commentInput.value.trim();
+      if (text !== "") {
+        comments.push(text);
+        saveComments(section, comments);
+        updateCommentsUI(commentSection, comments);
         commentInput.value = "";
-        renderComments();
       }
     });
-
-    // Render on page load
-    renderComments();
   });
+});
 
   document.addEventListener("DOMContentLoaded", function () {
     const buttons = document.querySelectorAll(".reaction-btn");
