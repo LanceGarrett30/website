@@ -1058,30 +1058,30 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-<script>
   document.addEventListener("DOMContentLoaded", function () {
-    const reactionButtons = document.querySelectorAll(".reaction-btn");
+    const buttons = document.querySelectorAll(".reaction-btn");
 
-    reactionButtons.forEach(button => {
+    buttons.forEach(button => {
       const reaction = button.dataset.reaction;
       const section = button.dataset.section;
       const key = `reaction-${section}-${reaction}`;
       const countSpan = button.querySelector(".reaction-count");
 
-      // Load saved count
+      // Load saved count from localStorage
       const savedCount = localStorage.getItem(key);
       if (savedCount !== null) {
         countSpan.textContent = savedCount;
       }
 
+      // When clicked, increase the count
       button.addEventListener("click", () => {
         let count = parseInt(countSpan.textContent);
         count++;
         countSpan.textContent = count;
-        localStorage.setItem(key, count);
+        localStorage.setItem(key, count); // Save the new count
       });
     });
-  });
+  });;
 
 </script>
 </body>
