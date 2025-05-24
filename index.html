@@ -120,6 +120,7 @@
     border-radius: 8px;
     box-shadow: 0 0 12px rgba(0,0,0,0.05);
     margin-top: 2rem;
+    position: relative;
   }
 
   .highlight-section {
@@ -431,6 +432,153 @@
     color: #4CAF50;
   }
 
+  /* Reaction System Styles */
+  .reaction-panel {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .reactions-bar {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .reaction-btn {
+    background: none;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    padding: 8px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    position: relative;
+    top: auto;
+    transform: none;
+    z-index: auto;
+  }
+
+  .reaction-btn:hover {
+    background-color: #f5f5f5;
+    transform: scale(1.05);
+  }
+
+  .reaction-btn.active {
+    border-color: #2ebe5e;
+    background-color: #e8f5e8;
+    color: #2ebe5e;
+  }
+
+  .reaction-emoji {
+    font-size: 1.2rem;
+  }
+
+  .reaction-count {
+    font-weight: bold;
+    min-width: 20px;
+  }
+
+  .comment-section {
+    margin-top: 1rem;
+  }
+
+  .comment-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .comment-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    resize: none;
+    font-family: inherit;
+  }
+
+  .comment-input:focus {
+    outline: none;
+    border-color: #2ebe5e;
+  }
+
+  .comment-submit {
+    background-color: #2ebe5e;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    position: relative;
+    top: auto;
+    transform: none;
+    z-index: auto;
+  }
+
+  .comment-submit:hover {
+    background-color: #26a84a;
+  }
+
+  .comments-list {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .comment-item {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    border-left: 3px solid #2ebe5e;
+  }
+
+  .comment-author {
+    font-weight: bold;
+    color: #2ebe5e;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+  }
+
+  .comment-text {
+    color: #333;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .comment-time {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 5px;
+  }
+
+  .toggle-comments {
+    background: none;
+    border: none;
+    color: #2ebe5e;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    position: relative;
+    top: auto;
+    transform: none;
+    z-index: auto;
+    padding: 5px 0;
+  }
+
+  .comment-section.collapsed .comments-list,
+  .comment-section.collapsed .comment-form {
+    display: none;
+  }
+
   /* Mobile Responsive Styles */
   @media (max-width: 768px) {
     .logo {
@@ -522,6 +670,23 @@
       padding: 8px;
       font-size: 16px;
     }
+
+    .reactions-bar {
+      gap: 0.5rem;
+    }
+
+    .reaction-btn {
+      padding: 6px 10px;
+      font-size: 0.8rem;
+    }
+
+    .comment-form {
+      flex-direction: column;
+    }
+
+    .comment-input {
+      min-width: auto;
+    }
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
@@ -610,7 +775,7 @@
     <button class="next" onclick="moveSlide(1)">&#10095;</button>
   </div>
 
-  <section class="why-choose-us">
+  <section class="why-choose-us" data-section="discover">
     <div class="image-section">
       <img src="images/homevirtual2.jpg" alt="Students working together">
       <div class="icons-row">
@@ -643,9 +808,34 @@
         </div>
       </div>
     </div>
+
+    <div class="reaction-panel">
+      <div class="reactions-bar">
+        <button class="reaction-btn" data-reaction="like" data-section="discover">
+          <span class="reaction-emoji">👍</span>
+          <span class="reaction-count">0</span>
+        </button>
+        <button class="reaction-btn" data-reaction="heart" data-section="discover">
+          <span class="reaction-emoji">❤️</span>
+          <span class="reaction-count">0</span>
+        </button>
+        <button class="reaction-btn" data-reaction="happy" data-section="discover">
+          <span class="reaction-emoji">😊</span>
+          <span class="reaction-count">0</span>
+        </button>
+      </div>
+      <div class="comment-section collapsed" data-section="discover">
+        <button class="toggle-comments">💬 View Comments (<span class="comment-count">0</span>)</button>
+        <div class="comment-form">
+          <textarea class="comment-input" placeholder="Share your thoughts about our learning center..." rows="2"></textarea>
+          <button class="comment-submit">Post</button>
+        </div>
+        <div class="comments-list"></div>
+      </div>
+    </div>
   </section>
 
-  <section>
+  <section data-section="showcase">
     <h5 style="text-align: center; color: #2ebe5e;">Showcase of Excellence at Taburnal Learning Center</h5>
     <h2 style="text-align: center;">Dive into Our Vibrant Community</h2>
     <p style="text-align:justify;">Discover the dynamic environment of Taburnal Learning Center through our carefully curated gallery. Each image represents not just moments, but milestones in our students' educational journey. Our carousel keeps you updated with the latest activities and events, ensuring you never miss out on the vibrancy of our school life. Explore our facility virtually, gaining firsthand insights into our classrooms, playgrounds, and unique spaces, all from the comfort of your home. With our intuitive photo-based directions, navigating to key locations like the principal's office or specific classrooms becomes effortless, making your experience seamless and engaging</p>
@@ -657,9 +847,34 @@
       <img src="images/home5.jpg" alt="Highlight 5">
       <img src="images/home6.jpg" alt="Highlight 6">
     </div>
+
+    <div class="reaction-panel">
+      <div class="reactions-bar">
+        <button class="reaction-btn" data-reaction="like" data-section="showcase">
+          <span class="reaction-emoji">👍</span>
+          <span class="reaction-count">0</span>
+        </button>
+        <button class="reaction-btn" data-reaction="heart" data-section="showcase">
+          <span class="reaction-emoji">❤️</span>
+          <span class="reaction-count">0</span>
+        </button>
+        <button class="reaction-btn" data-reaction="happy" data-section="showcase">
+          <span class="reaction-emoji">😊</span>
+          <span class="reaction-count">0</span>
+        </button>
+      </div>
+      <div class="comment-section collapsed" data-section="showcase">
+        <button class="toggle-comments">💬 View Comments (<span class="comment-count">0</span>)</button>
+        <div class="comment-form">
+          <textarea class="comment-input" placeholder="What do you think about our vibrant community?" rows="2"></textarea>
+          <button class="comment-submit">Post</button>
+        </div>
+        <div class="comments-list"></div>
+      </div>
+    </div>
   </section>
 
-  <section>
+  <section data-section="testimonials">
     <p style="text-align: center; color: #2ebe5e;">Hear from our community</p>
     <h1 style="text-align: center;">What Our Families Are Saying</h1>
     <div class="achievement-grid">
@@ -682,113 +897,39 @@
         <p style="color:rgb(65, 233, 59);">Teacher</p>
       </div>
     </div>
+
+    <div class="reaction-panel">
+      <div class="reactions-bar">
+        <button class="reaction-btn" data-reaction="like" data-section="testimonials">
+          <span class="reaction-emoji">👍</span>
+          <span class="reaction-count">0</span>
+        </button>
+        <button class="reaction-btn" data-reaction="heart" data-section="testimonials">
+          <span class="reaction-emoji">❤️</span>
+          <span class="reaction-count">0</span>
+        </button>
+        <button class="reaction-btn" data-reaction="happy" data-section="testimonials">
+          <span class="reaction-emoji">😊</span>
+          <span class="reaction-count">0</span>
+        </button>
+      </div>
+      <div class="comment-section collapsed" data-section="testimonials">
+        <button class="toggle-comments">💬 View Comments (<span class="comment-count">0</span>)</button>
+        <div class="comment-form">
+          <textarea class="comment-input" placeholder="Share your thoughts about these testimonials..." rows="2"></textarea>
+          <button class="comment-submit">Post</button>
+        </div>
+        <div class="comments-list"></div>
+      </div>
+    </div>
   </section>
 
-  <section class="highlight-section">
+  <section class="highlight-section" data-section="admissions">
     <h2>Ready to Join Us?</h2>
     <p>Explore our admissions process and see what makes Prestige School the right choice for your child.</p>
     <a href="admissions.html" class="cta-button">Apply Now</a>
-  </section>
-</main>
 
-<footer>
-  <div class="footer">
-    <!-- Navigation Links -->
-    <div>
-      <h4>Quick Links</h4>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="admissions.html">Admissions</a>
-      <a href="virtual-tour.html">Virtual Tour</a>
-      <a href="news.html">News</a>
-      <a href="contact.html">Contact</a>
-    </div>
-
-    <!-- Social Media -->
-    <div>
-      <h4>Follow Us</h4>
-      <a href="https://www.facebook.com/profile.php?id=100057529355713" target="_blank">Facebook</a>
-      <a href="https://www.youtube.com/@taburnallearningcentertlco9458" target="_blank">YouTube</a>
-    </div>
-
-    <!-- Contact Info -->
-    <div>
-      <h4>Contact Us</h4>
-      <p>Email: <a href="mailto:tlcmoreblessings@gmail.com">tlcmoreblessings@gmail.com</a></p>
-      <p>Phone: 09915436059</p>
-      <p>Taburnal Learning Center<br>Zone 4 San Rafael Poblacion, Bato, Camarines Sur 4435</p>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    &copy; 2025 Taburnal Learning Center. All rights reserved.
-  </div>
-</footer>
-
-<script>
-// Carousel
-let slideIndex = 0;
-
-function moveSlide(direction) {
-  const slides = document.querySelectorAll('.carousel img');
-  const totalSlides = slides.length;
-
-  slideIndex += direction;
-
-  if (slideIndex < 0) {
-    slideIndex = totalSlides - 1; // Go to the last slide
-  } else if (slideIndex >= totalSlides) {
-    slideIndex = 0; // Go back to the first slide
-  }
-
-  // Move carousel to show the current slide
-  const offset = -slideIndex * 100; // Each image takes up 100% width of the container
-  document.querySelector('.carousel').style.transform = `translateX(${offset}%)`;
-}
-
-// Automatically move the slide every 7 seconds
-setInterval(() => moveSlide(1), 7000);
-
-// Mobile menu
-const menuToggle = document.getElementById('mobile-menu');
-const navLinks = document.getElementById('nav-links');
-
-menuToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-});
-
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    if(navLinks.classList.contains('open')) {
-      navLinks.classList.remove('open');
-    }
-  });
-});
-
-// Add touch swipe functionality for carousel
-let touchStartX = 0;
-let touchEndX = 0;
-const carousel = document.querySelector('.carousel-container');
-
-carousel.addEventListener('touchstart', (e) => {
-  touchStartX = e.changedTouches[0].screenX;
-});
-
-carousel.addEventListener('touchend', (e) => {
-  touchEndX = e.changedTouches[0].screenX;
-  handleSwipe();
-});
-
-function handleSwipe() {
-  if (touchEndX < touchStartX) {
-    // Swipe left
-    moveSlide(1);
-  }
-  if (touchEndX > touchStartX) {
-    // Swipe right
-    moveSlide(-1);
-  }
-}
-</script>
-</body>
-</html>
+    <div class="reaction-panel">
+      <div class="reactions-bar">
+        <button class="reaction-btn" data-reaction="like" data-section="admissions">
+          <span class="reaction-emoji">👍
