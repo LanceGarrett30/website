@@ -142,6 +142,7 @@
       /* Reduce padding on mobile */
       border-radius: 10px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
     }
 
     .contact-left {
@@ -221,6 +222,113 @@
 
     .contact-form button:hover {
       background-color: #e0a800;
+    }
+
+    /* --- Rating Section Styles --- */
+    .rating-section {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .rating-section {
+        padding: 2rem;
+      }
+    }
+
+    .rating-section h2 {
+      color: #2ebe5e;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .rating-section > p {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .rating-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .rating-group {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .rating-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .star-rating {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .star {
+      font-size: 2rem;
+      color: #ddd;
+      cursor: pointer;
+      transition: color 0.2s ease;
+      user-select: none;
+    }
+
+    .star:hover,
+    .star.active {
+      color: #ffc107;
+    }
+
+    .rating-form input[type="text"],
+    .rating-form input[type="email"],
+    .rating-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .rating-form input[type="text"]:focus,
+    .rating-form input[type="email"]:focus,
+    .rating-form textarea:focus {
+      outline: none;
+      border-color: #2ebe5e;
+    }
+
+    .rating-form textarea {
+      resize: vertical;
+      height: 120px;
+    }
+
+    .rating-form button {
+      width: 100%;
+      background-color: #2ebe5e;
+      border: none;
+      padding: 0.9rem;
+      font-size: 1rem;
+      font-weight: bold;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .rating-form button:hover {
+      background-color: #26a651;
     }
 
     /* --- Improved Footer --- */
@@ -333,6 +441,35 @@
         </form>
       </div>
     </div>
+
+    <!-- Rating and Review Section -->
+    <div class="rating-section">
+      <h2>Rate Our Website</h2>
+      <p>We value your feedback! Please take a moment to rate your experience with our website and leave us your thoughts.</p>
+      
+      <form action="https://formsubmit.co/tlcmoreblessings@gmail.com" method="POST" class="rating-form">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="Website Rating & Review - Taburnal Learning Center">
+        <input type="hidden" name="rating" id="rating-value" value="">
+        
+        <div class="rating-group">
+          <label>How would you rate our website?</label>
+          <div class="star-rating" id="star-rating">
+            <span class="star" data-rating="1">★</span>
+            <span class="star" data-rating="2">★</span>
+            <span class="star" data-rating="3">★</span>
+            <span class="star" data-rating="4">★</span>
+            <span class="star" data-rating="5">★</span>
+          </div>
+        </div>
+
+        <input type="text" name="visitor_name" placeholder="Your Name (Optional)" />
+        <input type="email" name="visitor_email" placeholder="Your Email (Optional)" />
+        <textarea name="comment" placeholder="Share your thoughts about our website..." required></textarea>
+        
+        <button type="submit">SUBMIT RATING</button>
+      </form>
+    </div>
   </main>
 
   <footer>
@@ -381,6 +518,37 @@
         }
       });
     });
+
+    // Star Rating Functionality
+    const stars = document.querySelectorAll('.star');
+    const ratingValue = document.getElementById('rating-value');
+    let currentRating = 0;
+
+    stars.forEach((star, index) => {
+      star.addEventListener('mouseover', () => {
+        highlightStars(index + 1);
+      });
+
+      star.addEventListener('mouseout', () => {
+        highlightStars(currentRating);
+      });
+
+      star.addEventListener('click', () => {
+        currentRating = index + 1;
+        ratingValue.value = currentRating;
+        highlightStars(currentRating);
+      });
+    });
+
+    function highlightStars(rating) {
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
   </script>
 
 </body>
