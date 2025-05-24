@@ -1025,37 +1025,48 @@ function highlightStars(rating) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const commentSections = document.querySelectorAll(".comment-section");
+  document.addEventListener("DOMContentLoaded", function () {
+    const commentSection = document.querySelector(".comment-section");
+    const toggleBtn = commentSection.querySelector(".toggle-comments");
+    const commentForm = commentSection.querySelector(".comment-form");
+    const commentInput = commentSection.querySelector(".comment-input");
+    const commentSubmit = commentSection.querySelector(".comment-submit");
+    const commentsList = commentSection.querySelector(".comments-list");
+    const commentCount = commentSection.querySelector(".comment-count");
+    const sectionId = commentSection.dataset.section;
+    const storageKey = `comments-${sectionId}`;
 
-    commentSections.forEach(section => {
-      const toggleBtn = section.querySelector(".toggle-comments");
-      const commentForm = section.querySelector(".comment-form");
-      const commentInput = section.querySelector(".comment-input");
-      const commentSubmit = section.querySelector(".comment-submit");
-      const commentsList = section.querySelector(".comments-list");
-      const commentCount = section.querySelector(".comment-count");
+    // Load comments from localStorage
+    let comments = JSON.parse(localStorage.getItem(storageKey)) || [];
 
-      // Toggle comments visibility
-      toggleBtn.addEventListener("click", () => {
-        section.classList.toggle("collapsed");
+    function renderComments() {
+      commentsList.innerHTML = "";
+      comments.forEach(comment => {
+        const commentEl = document.createElement("p");
+        commentEl.innerHTML = `<strong>User:</strong> ${comment}`;
+        commentsList.appendChild(commentEl);
       });
+      commentCount.textContent = comments.length;
+    }
 
-      // Post comment
-      commentSubmit.addEventListener("click", () => {
-        const commentText = commentInput.value.trim();
-        if (commentText !== "") {
-          const commentElement = document.createElement("p");
-          commentElement.innerHTML = `<strong>User:</strong> ${commentText}`;
-          commentsList.appendChild(commentElement);
-          commentInput.value = "";
-
-          // Update comment count
-          const currentCount = parseInt(commentCount.textContent);
-          commentCount.textContent = currentCount + 1;
-        }
-      });
+    // Toggle visibility
+    toggleBtn.addEventListener("click", () => {
+      commentSection.classList.toggle("collapsed");
     });
+
+    // Post comment
+    commentSubmit.addEventListener("click", () => {
+      const commentText = commentInput.value.trim();
+      if (commentText !== "") {
+        comments.push(commentText);
+        localStorage.setItem(storageKey, JSON.stringify(comments));
+        commentInput.value = "";
+        renderComments();
+      }
+    });
+
+    // Render on page load
+    renderComments();
   });
 
   document.addEventListener("DOMContentLoaded", function () {
