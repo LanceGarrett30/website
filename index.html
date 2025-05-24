@@ -813,15 +813,15 @@
       <div class="reactions-bar">
         <button class="reaction-btn" data-reaction="like" data-section="discover">
           <span class="reaction-emoji">👍</span>
-          <span class="reaction-count">0</span>
+          <span class="reaction-count">1</span>
         </button>
         <button class="reaction-btn" data-reaction="heart" data-section="discover">
           <span class="reaction-emoji">❤️</span>
-          <span class="reaction-count">0</span>
+          <span class="reaction-count">1</span>
         </button>
         <button class="reaction-btn" data-reaction="happy" data-section="discover">
           <span class="reaction-emoji">😊</span>
-          <span class="reaction-count">0</span>
+          <span class="reaction-count">1</span>
         </button>
       </div>
       <div class="comment-section collapsed" data-section="discover">
@@ -852,15 +852,15 @@
       <div class="reactions-bar">
         <button class="reaction-btn" data-reaction="like" data-section="showcase">
           <span class="reaction-emoji">👍</span>
-          <span class="reaction-count">0</span>
+          <span class="reaction-count">2</span>
         </button>
         <button class="reaction-btn" data-reaction="heart" data-section="showcase">
           <span class="reaction-emoji">❤️</span>
-          <span class="reaction-count">0</span>
+          <span class="reaction-count">4</span>
         </button>
         <button class="reaction-btn" data-reaction="happy" data-section="showcase">
           <span class="reaction-emoji">😊</span>
-          <span class="reaction-count">0</span>
+          <span class="reaction-count">2</span>
         </button>
       </div>
       <div class="comment-section collapsed" data-section="showcase">
@@ -902,15 +902,15 @@
       <div class="reactions-bar">
         <button class="reaction-btn" data-reaction="like" data-section="testimonials">
           <span class="reaction-emoji">👍</span>
-          <span class="reaction-count">0</span>
+          <span class="reaction-count">3</span>
         </button>
         <button class="reaction-btn" data-reaction="heart" data-section="testimonials">
           <span class="reaction-emoji">❤️</span>
-          <span class="reaction-count">0</span>
+          <span class="reaction-count">2</span>
         </button>
         <button class="reaction-btn" data-reaction="happy" data-section="testimonials">
           <span class="reaction-emoji">😊</span>
-          <span class="reaction-count">0</span>
+          <span class="reaction-count">2</span>
         </button>
       </div>
       <div class="comment-section collapsed" data-section="testimonials">
@@ -929,7 +929,135 @@
     <p>Explore our admissions process and see what makes Prestige School the right choice for your child.</p>
     <a href="admissions.html" class="cta-button">Apply Now</a>
 
-    <div class="reaction-panel">
-      <div class="reactions-bar">
-        <button class="reaction-btn" data-reaction="like" data-section="admissions">
-          <span class="reaction-emoji">👍
+<script>
+// Carousel
+let slideIndex = 0;
+
+function moveSlide(direction) {
+  const slides = document.querySelectorAll('.carousel img');
+  const totalSlides = slides.length;
+
+  slideIndex += direction;
+
+  if (slideIndex < 0) {
+    slideIndex = totalSlides - 1; // Go to the last slide
+  } else if (slideIndex >= totalSlides) {
+    slideIndex = 0; // Go back to the first slide
+  }
+
+  // Move carousel to show the current slide
+  const offset = -slideIndex * 100; // Each image takes up 100% width of the container
+  document.querySelector('.carousel').style.transform = `translateX(${offset}%)`;
+}
+
+// Automatically move the slide every 7 seconds
+setInterval(() => moveSlide(1), 7000);
+
+// Mobile menu
+const menuToggle = document.getElementById('mobile-menu');
+const navLinks = document.getElementById('nav-links');
+
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    if(navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+    }
+  });
+});
+
+// Add touch swipe functionality for carousel
+let touchStartX = 0;
+let touchEndX = 0;
+const carousel = document.querySelector('.carousel-container');
+
+carousel.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+carousel.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  if (touchEndX < touchStartX) {
+    // Swipe left
+    moveSlide(1);
+  }
+  if (touchEndX > touchStartX) {
+    // Swipe right
+    moveSlide(-1);
+  }
+}
+
+// Star Rating Functionality for index.html
+const stars = document.querySelectorAll('.star');
+const ratingValue = document.getElementById('rating-value');
+let currentRating = 0;
+
+stars.forEach((star, index) => {
+  star.addEventListener('mouseover', () => {
+    highlightStars(index + 1);
+  });
+
+  star.addEventListener('mouseout', () => {
+    highlightStars(currentRating);
+  });
+
+  star.addEventListener('click', () => {
+    currentRating = index + 1;
+    ratingValue.value = currentRating;
+    highlightStars(currentRating);
+  });
+});
+
+function highlightStars(rating) {
+  stars.forEach((star, index) => {
+    if (index < rating) {
+      star.style.color = '#ffc107';
+    } else {
+      star.style.color = '#ddd';
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const commentSections = document.querySelectorAll(".comment-section");
+
+    commentSections.forEach(section => {
+      const toggleBtn = section.querySelector(".toggle-comments");
+      const commentForm = section.querySelector(".comment-form");
+      const commentInput = section.querySelector(".comment-input");
+      const commentSubmit = section.querySelector(".comment-submit");
+      const commentsList = section.querySelector(".comments-list");
+      const commentCount = section.querySelector(".comment-count");
+
+      // Toggle comments visibility
+      toggleBtn.addEventListener("click", () => {
+        section.classList.toggle("collapsed");
+      });
+
+      // Post comment
+      commentSubmit.addEventListener("click", () => {
+        const commentText = commentInput.value.trim();
+        if (commentText !== "") {
+          const commentElement = document.createElement("p");
+          commentElement.innerHTML = `<strong>User:</strong> ${commentText}`;
+          commentsList.appendChild(commentElement);
+          commentInput.value = "";
+
+          // Update comment count
+          const currentCount = parseInt(commentCount.textContent);
+          commentCount.textContent = currentCount + 1;
+        }
+      });
+    });
+  });
+
+</script>
+</body>
+</html>
