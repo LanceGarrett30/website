@@ -21,7 +21,7 @@
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif; /* Added default font family */
   }
   a {
     text-decoration: none;
@@ -120,7 +120,6 @@
     border-radius: 8px;
     box-shadow: 0 0 12px rgba(0,0,0,0.05);
     margin-top: 2rem;
-    position: relative;
   }
 
   .highlight-section {
@@ -432,75 +431,6 @@
     color: #4CAF50;
   }
 
-  /* Reaction System Styles */
-  .reaction-panel {
-    border-top: 1px solid #e0e0e0;
-    padding-top: 1rem;
-    margin-top: 1.5rem;
-  }
-
-  .reactions-bar {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .reaction-btn {
-    background: none;
-    border: 2px solid #e0e0e0;
-    border-radius: 25px;
-    padding: 8px 15px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    position: relative;
-    top: auto;
-    transform: none;
-    z-index: auto;
-  }
-
-  .reaction-btn:hover {
-    background-color: #f5f5f5;
-    transform: scale(1.05);
-  }
-
-  .reaction-btn.active {
-    border-color: #2ebe5e;
-    background-color: #e8f5e8;
-    color: #2ebe5e;
-  }
-
-  .reaction-emoji {
-    font-size: 1.2rem;
-  }
-
-  .reaction-count {
-    font-weight: bold;
-    min-width: 20px;
-  }
-
-  .notification-message {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 10000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .notification-message.show {
-    opacity: 1;
-  }
-
   /* Mobile Responsive Styles */
   @media (max-width: 768px) {
     .logo {
@@ -592,15 +522,6 @@
       padding: 8px;
       font-size: 16px;
     }
-
-    .reactions-bar {
-      gap: 0.5rem;
-    }
-
-    .reaction-btn {
-      padding: 6px 10px;
-      font-size: 0.8rem;
-    }
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
@@ -689,7 +610,7 @@
     <button class="next" onclick="moveSlide(1)">&#10095;</button>
   </div>
 
-  <section class="why-choose-us" data-section="discover">
+  <section class="why-choose-us">
     <div class="image-section">
       <img src="images/homevirtual2.jpg" alt="Students working together">
       <div class="icons-row">
@@ -722,26 +643,9 @@
         </div>
       </div>
     </div>
-
-    <div class="reaction-panel">
-      <div class="reactions-bar">
-        <button class="reaction-btn" data-reaction="like" data-section="discover">
-          <span class="reaction-emoji">👍</span>
-          <span class="reaction-count">0</span>
-        </button>
-        <button class="reaction-btn" data-reaction="heart" data-section="discover">
-          <span class="reaction-emoji">❤️</span>
-          <span class="reaction-count">0</span>
-        </button>
-        <button class="reaction-btn" data-reaction="happy" data-section="discover">
-          <span class="reaction-emoji">😊</span>
-          <span class="reaction-count">0</span>
-        </button>
-      </div>
-    </div>
   </section>
 
-  <section data-section="showcase">
+  <section>
     <h5 style="text-align: center; color: #2ebe5e;">Showcase of Excellence at Taburnal Learning Center</h5>
     <h2 style="text-align: center;">Dive into Our Vibrant Community</h2>
     <p style="text-align:justify;">Discover the dynamic environment of Taburnal Learning Center through our carefully curated gallery. Each image represents not just moments, but milestones in our students' educational journey. Our carousel keeps you updated with the latest activities and events, ensuring you never miss out on the vibrancy of our school life. Explore our facility virtually, gaining firsthand insights into our classrooms, playgrounds, and unique spaces, all from the comfort of your home. With our intuitive photo-based directions, navigating to key locations like the principal's office or specific classrooms becomes effortless, making your experience seamless and engaging</p>
@@ -753,26 +657,9 @@
       <img src="images/home5.jpg" alt="Highlight 5">
       <img src="images/home6.jpg" alt="Highlight 6">
     </div>
-
-    <div class="reaction-panel">
-      <div class="reactions-bar">
-        <button class="reaction-btn" data-reaction="like" data-section="showcase">
-          <span class="reaction-emoji">👍</span>
-          <span class="reaction-count">0</span>
-        </button>
-        <button class="reaction-btn" data-reaction="heart" data-section="showcase">
-          <span class="reaction-emoji">❤️</span>
-          <span class="reaction-count">0</span>
-        </button>
-        <button class="reaction-btn" data-reaction="happy" data-section="showcase">
-          <span class="reaction-emoji">😊</span>
-          <span class="reaction-count">0</span>
-        </button>
-      </div>
-    </div>
   </section>
 
-  <section data-section="testimonials">
+  <section>
     <p style="text-align: center; color: #2ebe5e;">Hear from our community</p>
     <h1 style="text-align: center;">What Our Families Are Saying</h1>
     <div class="achievement-grid">
@@ -795,132 +682,113 @@
         <p style="color:rgb(65, 233, 59);">Teacher</p>
       </div>
     </div>
-
-    <div class="reaction-panel">
-      <div class="reactions-bar">
-        <button class="reaction-btn" data-reaction="like" data-section="testimonials">
-          <span class="reaction-emoji">👍</span>
-          <span class="reaction-count">0</span>
-        </button>
-        <button class="reaction-btn" data-reaction="heart" data-section="testimonials">
-          <span class="reaction-emoji">❤️</span>
-          <span class="reaction-count">0</span>
-        </button>
-        <button class="reaction-btn" data-reaction="happy" data-section="testimonials">
-          <span class="reaction-emoji">😊</span>
-          <span class="reaction-count">0</span>
-        </button>
-      </div>
-    </div>
   </section>
 
-  <section class="highlight-section" data-section="admissions">
+  <section class="highlight-section">
     <h2>Ready to Join Us?</h2>
     <p>Explore our admissions process and see what makes Prestige School the right choice for your child.</p>
     <a href="admissions.html" class="cta-button">Apply Now</a>
-
-    <div class="reaction-panel">
-      <div class="reactions-bar">
-        <button class="reaction-btn" data-reaction="like" data-section="admissions">
-          <span class="reaction-emoji">👍</span>
-          <span class="reaction-count">0</span>
-        </button>
-        <button class="reaction-btn" data-reaction="heart" data-section="admissions">
-          <span class="reaction-emoji">❤️</span>
-          <span class="reaction-count">0</span>
-        </button>
-        <button class="reaction-btn" data-reaction="happy" data-section="admissions">
-          <span class="reaction-emoji">😊</span>
-          <span class="reaction-count">0</span>
-        </button>
-      </div>
-    </div>
   </section>
 </main>
 
-<div class="notification-message" id="notification"></div>
+<footer>
+  <div class="footer">
+    <!-- Navigation Links -->
+    <div>
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="admissions.html">Admissions</a>
+      <a href="virtual-tour.html">Virtual Tour</a>
+      <a href="news.html">News</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h4>Follow Us</h4>
+      <a href="https://www.facebook.com/profile.php?id=100057529355713" target="_blank">Facebook</a>
+      <a href="https://www.youtube.com/@taburnallearningcentertlco9458" target="_blank">YouTube</a>
+    </div>
+
+    <!-- Contact Info -->
+    <div>
+      <h4>Contact Us</h4>
+      <p>Email: <a href="mailto:tlcmoreblessings@gmail.com">tlcmoreblessings@gmail.com</a></p>
+      <p>Phone: 09915436059</p>
+      <p>Taburnal Learning Center<br>Zone 4 San Rafael Poblacion, Bato, Camarines Sur 4435</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    &copy; 2025 Taburnal Learning Center. All rights reserved.
+  </div>
+</footer>
 
 <script>
-// Carousel functionality
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel img');
-const totalSlides = slides.length;
+// Carousel
+let slideIndex = 0;
 
 function moveSlide(direction) {
-  currentSlide += direction;
-  if (currentSlide >= totalSlides) {
-    currentSlide = 0;
-  } else if (currentSlide < 0) {
-    currentSlide = totalSlides - 1;
+  const slides = document.querySelectorAll('.carousel img');
+  const totalSlides = slides.length;
+
+  slideIndex += direction;
+
+  if (slideIndex < 0) {
+    slideIndex = totalSlides - 1; // Go to the last slide
+  } else if (slideIndex >= totalSlides) {
+    slideIndex = 0; // Go back to the first slide
   }
-  
-  const carousel = document.querySelector('.carousel');
-  carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+  // Move carousel to show the current slide
+  const offset = -slideIndex * 100; // Each image takes up 100% width of the container
+  document.querySelector('.carousel').style.transform = `translateX(${offset}%)`;
 }
 
-// Auto-slide every 5 seconds
-setInterval(() => {
-  moveSlide(1);
-}, 5000);
+// Automatically move the slide every 7 seconds
+setInterval(() => moveSlide(1), 7000);
 
-// Mobile menu toggle
-const mobileMenu = document.getElementById('mobile-menu');
+// Mobile menu
+const menuToggle = document.getElementById('mobile-menu');
 const navLinks = document.getElementById('nav-links');
 
-mobileMenu.addEventListener('click', () => {
+menuToggle.addEventListener('click', () => {
   navLinks.classList.toggle('open');
 });
 
-mobileMenu.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    navLinks.classList.toggle('open');
-  }
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    if(navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+    }
+  });
 });
 
-// Reaction system with email notifications
-const reactionData = {
-  discover: { like: 0, heart: 0, happy: 0 },
-  showcase: { like: 0, heart: 0, happy: 0 },
-  testimonials: { like: 0, heart: 0, happy: 0 },
-  admissions: { like: 0, heart: 0, happy: 0 }
-};
+// Add touch swipe functionality for carousel
+let touchStartX = 0;
+let touchEndX = 0;
+const carousel = document.querySelector('.carousel-container');
 
-// Load reaction counts from memory (simulated persistence)
-function loadReactionCounts() {
-  // In a real application, this would load from a database
-  // For now, we'll start with some sample counts
-  reactionData.discover = { like: 12, heart: 8, happy: 15 };
-  reactionData.showcase = { like: 9, heart: 14, happy: 7 };
-  reactionData.testimonials = { like: 18, heart: 22, happy: 11 };
-  reactionData.admissions = { like: 6, heart: 4, happy: 9 };
-  
-  updateReactionCounts();
+carousel.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+carousel.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  if (touchEndX < touchStartX) {
+    // Swipe left
+    moveSlide(1);
+  }
+  if (touchEndX > touchStartX) {
+    // Swipe right
+    moveSlide(-1);
+  }
 }
-
-function updateReactionCounts() {
-  Object.keys(reactionData).forEach(section => {
-    Object.keys(reactionData[section]).forEach(reaction => {
-      const button = document.querySelector(`[data-section="${section}"][data-reaction="${reaction}"]`);
-      if (button) {
-        const countSpan = button.querySelector('.reaction-count');
-        countSpan.textContent = reactionData[section][reaction];
-      }
-    });
-  });
-}
-
-function sendEmailNotification(section, reaction, count) {
-  const sectionNames = {
-    discover: 'Discover Taburnal Learning Center',
-    showcase: 'Showcase of Excellence',
-    testimonials: 'Family Testimonials',
-    admissions: 'Admissions Section'
-  };
-  
-  const reactionNames = {
-    like: 'liked',
-    heart: 'loved',
-    happy: 'smiled at'
-  };
-  
-  // Using EmailJS service (you'll need to set this up)
+</script>
+</body>
+</html>
