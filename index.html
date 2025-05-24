@@ -902,7 +902,7 @@
       <div class="reactions-bar">
         <button class="reaction-btn" data-reaction="like" data-section="testimonials">
           <span class="reaction-emoji"style="color: #2ebe5e;">👍</span>
-          <span class="reaction-count">3</span>
+          <span class="reaction-count" style="color: #2ebe5e;">3</span>
         </button>
         <button class="reaction-btn" data-reaction="heart" data-section="testimonials">
           <span class="reaction-emoji">❤️</span>
@@ -1054,6 +1054,31 @@ document.addEventListener("DOMContentLoaded", function () {
           const currentCount = parseInt(commentCount.textContent);
           commentCount.textContent = currentCount + 1;
         }
+      });
+    });
+  });
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const reactionButtons = document.querySelectorAll(".reaction-btn");
+
+    reactionButtons.forEach(button => {
+      const reaction = button.dataset.reaction;
+      const section = button.dataset.section;
+      const key = `reaction-${section}-${reaction}`;
+      const countSpan = button.querySelector(".reaction-count");
+
+      // Load saved count
+      const savedCount = localStorage.getItem(key);
+      if (savedCount !== null) {
+        countSpan.textContent = savedCount;
+      }
+
+      button.addEventListener("click", () => {
+        let count = parseInt(countSpan.textContent);
+        count++;
+        countSpan.textContent = count;
+        localStorage.setItem(key, count);
       });
     });
   });
