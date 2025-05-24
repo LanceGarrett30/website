@@ -11,6 +11,22 @@
 <meta name="description" content="Prestige School is dedicated to excellence in education and student development. Discover our programs and team.">
 <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+
+const firebaseConfig = {
+apiKey: "AIzaSyDJ0nb21EotevRLBNaQRp6ceIcX0DfaAfI",
+authDomain: "taburnallearningcenter-e3ab3.firebaseapp.com",
+projectId: "taburnallearningcenter-e3ab3",
+storageBucket: "taburnallearningcenter-e3ab3.firebasestorage.app",
+messagingSenderId: "700797568863",
+appId: "1:700797568863:web:a127a7ca1c4fa0902bd8ea"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+</script>
 <style>
   * {
     box-sizing: border-box;
@@ -1028,49 +1044,46 @@ function highlightStars(rating) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  function getComments(section) {
-    return JSON.parse(localStorage.getItem("comments_" + section)) || [];
-  }
+document.addEventListener("DOMContentLoaded", function () {
+  const commentSections = document.querySelectorAll(".comment-section");
 
-  function saveComments(section, comments) {
-    localStorage.setItem("comments_" + section, JSON.stringify(comments));
-  }
+  commentSections.forEach(section => {
+    const sectionId = section.dataset.section;
+    const toggleBtn = section.querySelector(".toggle-comments");
+    const commentForm = section.querySelector(".comment-form");
+    const commentInput = section.querySelector(".comment-input");
+    const commentSubmit = section.querySelector(".comment-submit");
+    const commentsList = section.querySelector(".comments-list");
+    const commentCount = section.querySelector(".comment-count");
 
-  function updateCommentsUI(commentSection, comments) {
-    const commentsList = commentSection.querySelector(".comments-list");
-    const commentCount = commentSection.querySelector(".comment-count");
-    commentsList.innerHTML = "";
-    comments.forEach(text => {
-      const p = document.createElement("p");
-      p.innerHTML = `<strong>User:</strong> ${text}`;
-      commentsList.appendChild(p);
-    });
-    commentCount.textContent = comments.length;
-  }
-
-  document.querySelectorAll(".comment-section").forEach(commentSection => {
-    const section = commentSection.getAttribute("data-section");
-    let comments = getComments(section);
-    updateCommentsUI(commentSection, comments);
-
-    // Toggle comments visibility
-    const toggleBtn = commentSection.querySelector(".toggle-comments");
+    // Toggle visibility
     toggleBtn.addEventListener("click", () => {
-      commentSection.classList.toggle("collapsed");
+      section.classList.toggle("collapsed");
+    });
+
+    // Load comments from Firestore
+    db.collection("comments").where("section", "==", sectionId).onSnapshot(snapshot => {
+      commentsList.innerHTML = "";
+      commentCount.textContent = snapshot.size;
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const commentEl = document.createElement("p");
+        commentEl.innerHTML = `<strong>User:</strong> ${data.text}`;
+        commentsList.appendChild(commentEl);
+      });
     });
 
     // Submit comment
-    const commentInput = commentSection.querySelector(".comment-input");
-    const commentSubmit = commentSection.querySelector(".comment-submit");
-
     commentSubmit.addEventListener("click", () => {
-      const text = commentInput.value.trim();
-      if (text !== "") {
-        comments.push(text);
-        saveComments(section, comments);
-        updateCommentsUI(commentSection, comments);
-        commentInput.value = "";
+      const commentText = commentInput.value.trim();
+      if (commentText !== "") {
+        db.collection("comments").add({
+          section: sectionId,
+          text: commentText,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(() => {
+          commentInput.value = "";
+        });
       }
     });
   });
