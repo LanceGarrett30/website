@@ -1,11 +1,110 @@
 [
   {
     "id": 1748154630376,
-    "name": "test1",
-    "email": "",
-    "text": "testinggg",
+    "name": "Sarah Johnson",
+    "email": "sarah.johnson@email.com",
+    "text": "Excellent school! My daughter has been thriving here. The teachers are incredibly dedicated and the curriculum is well-structured. Highly recommend!",
     "rating": 5,
     "date": "5/25/2025",
     "timestamp": "2025-05-25T06:30:30.379Z"
+  },
+  {
+    "id": 1748154630377,
+    "name": "Mike Rodriguez",
+    "email": "mike.r@email.com",
+    "text": "Great learning environment. My son loves going to school here and his grades have improved significantly. The virtual tour feature is really impressive.",
+    "rating": 5,
+    "date": "5/24/2025",
+    "timestamp": "2025-05-24T14:22:15.123Z"
+  },
+  {
+    "id": 1748154630378,
+    "name": "Anna Chen",
+    "email": "",
+    "text": "Very good school overall. The facilities are nice and the staff is friendly. Could use more extracurricular activities though.",
+    "rating": 4,
+    "date": "5/23/2025",
+    "timestamp": "2025-05-23T09:45:22.456Z"
+  },
+  {
+    "id": 1748154630379,
+    "name": "David Thompson",
+    "email": "d.thompson@email.com",
+    "text": "Solid education and caring teachers. My twins have been here for 3 years now. The only downside is parking can be challenging during pickup.",
+    "rating": 4,
+    "date": "5/22/2025",
+    "timestamp": "2025-05-22T16:12:08.789Z"
+  },
+  {
+    "id": 1748154630380,
+    "name": "Lisa Martinez",
+    "email": "lisa.martinez@email.com",
+    "text": "Outstanding school! The personalized attention each student receives is remarkable. The virtual campus tour helped us make our decision.",
+    "rating": 5,
+    "date": "5/21/2025",
+    "timestamp": "2025-05-21T11:33:44.234Z"
+  },
+  {
+    "id": 1748154630381,
+    "name": "Robert Kim",
+    "email": "",
+    "text": "Good school with dedicated staff. The curriculum is comprehensive and my daughter enjoys her classes. Communication with parents could be better.",
+    "rating": 4,
+    "date": "5/20/2025",
+    "timestamp": "2025-05-20T13:28:17.567Z"
+  },
+  {
+    "id": 1748154630382,
+    "name": "Jennifer White",
+    "email": "j.white@email.com",
+    "text": "It's an okay school. The teachers are nice but I feel like there could be more innovative teaching methods. Average experience overall.",
+    "rating": 3,
+    "date": "5/19/2025",
+    "timestamp": "2025-05-19T10:15:33.890Z"
+  },
+  {
+    "id": 1748154630383,
+    "name": "Carlos Gonzalez",
+    "email": "carlos.g@email.com",
+    "text": "Fantastic school! The blend of traditional and modern teaching approaches works perfectly. My son has grown so much academically and socially.",
+    "rating": 5,
+    "date": "5/18/2025",
+    "timestamp": "2025-05-18T15:47:29.123Z"
+  },
+  {
+    "id": 1748154630384,
+    "name": "Amanda Davis",
+    "email": "",
+    "text": "Pretty good school. The facilities are well-maintained and the staff is professional. Would like to see more parent involvement opportunities.",
+    "rating": 4,
+    "date": "5/17/2025",
+    "timestamp": "2025-05-17T08:52:16.456Z"
+  },
+  {
+    "id": 1748154630385,
+    "name": "Thomas Wilson",
+    "email": "t.wilson@email.com",
+    "text": "The school is fine, nothing exceptional. My child is learning but I expected more given the reputation. It's an average experience.",
+    "rating": 3,
+    "date": "5/16/2025",
+    "timestamp": "2025-05-16T12:24:07.789Z"
+  },
+  {
+    "id": 1748154630386,
+    "name": "Maria Fernandez",
+    "email": "maria.f@email.com",
+    "text": "Excellent educational institution! The teachers genuinely care about each student's success. The virtual tour feature is a great addition to their website.",
+    "rating": 5,
+    "date": "5/15/2025",
+    "timestamp": "2025-05-15T17:18:55.234Z"
+  },
+  {
+    "id": 1748154630387,
+    "name": "Kevin Brown",
+    "email": "",
+    "text": "Good school with decent facilities. The curriculum is solid and my daughter is doing well. Could improve on technology integration in classrooms.",
+    "rating": 4,
+    "date": "5/14/2025",
+    "timestamp": "2025-05-14T14:35:42.567Z"
   }
 ]
