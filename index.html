@@ -1177,264 +1177,517 @@ function handleSwipe() {
   }
 }
 
-        let reviews = [];
-        let showingAllReviews = false;
-        let currentRating = 0;
+//         let reviews = [];
+//         let showingAllReviews = false;
+//         let currentRating = 0;
 
-        // Wait for DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            loadReviewsFromFile();
-            setupEventListeners();
-        });
+//         // Wait for DOM to be fully loaded
+//         document.addEventListener('DOMContentLoaded', function() {
+//             loadReviewsFromFile();
+//             setupEventListeners();
+//         });
 
-        // Also setup immediately in case DOM is already loaded
-        if (document.readyState !== 'loading') {
-            setupEventListeners();
-        }
+//         // Also setup immediately in case DOM is already loaded
+//         if (document.readyState !== 'loading') {
+//             setupEventListeners();
+//         }
 
-        function setupEventListeners() {
-            // Write review button
-            const writeBtn = document.getElementById('writeReviewBtn');
-            if (writeBtn) {
-                writeBtn.addEventListener('click', function() {
-                    document.getElementById('reviewForm').style.display = 'block';
-                    writeBtn.scrollIntoView({ behavior: 'smooth' });
-                });
-            }
+//         function setupEventListeners() {
+//             // Write review button
+//             const writeBtn = document.getElementById('writeReviewBtn');
+//             if (writeBtn) {
+//                 writeBtn.addEventListener('click', function() {
+//                     document.getElementById('reviewForm').style.display = 'block';
+//                     writeBtn.scrollIntoView({ behavior: 'smooth' });
+//                 });
+//             }
 
-            // Cancel button
-            const cancelBtn = document.getElementById('cancelBtn');
-            if (cancelBtn) {
-                cancelBtn.addEventListener('click', function() {
-                    resetForm();
-                });
-            }
+//             // Cancel button
+//             const cancelBtn = document.getElementById('cancelBtn');
+//             if (cancelBtn) {
+//                 cancelBtn.addEventListener('click', function() {
+//                     resetForm();
+//                 });
+//             }
 
-            // Submit button
-            const submitBtn = document.getElementById('submitBtn');
-            if (submitBtn) {
-                submitBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    handleSubmit();
-                });
-            }
+//             // Submit button
+//             const submitBtn = document.getElementById('submitBtn');
+//             if (submitBtn) {
+//                 submitBtn.addEventListener('click', function(e) {
+//                     e.preventDefault();
+//                     handleSubmit();
+//                 });
+//             }
 
-            // Star rating
-            const stars = document.querySelectorAll('.rating-star');
-            stars.forEach(function(star) {
-                star.addEventListener('click', function() {
-                    currentRating = parseInt(star.getAttribute('data-rating'));
-                    updateStarHighlight();
-                    updateRatingLabel();
-                });
-            });
-        }
+//             // Star rating
+//             const stars = document.querySelectorAll('.rating-star');
+//             stars.forEach(function(star) {
+//                 star.addEventListener('click', function() {
+//                     currentRating = parseInt(star.getAttribute('data-rating'));
+//                     updateStarHighlight();
+//                     updateRatingLabel();
+//                 });
+//             });
+//         }
 
-        function handleSubmit() {
-            const name = document.getElementById('reviewerName').value.trim();
-            const email = document.getElementById('reviewerEmail').value.trim();
-            const text = document.getElementById('reviewText').value.trim();
+//         function handleSubmit() {
+//             const name = document.getElementById('reviewerName').value.trim();
+//             const email = document.getElementById('reviewerEmail').value.trim();
+//             const text = document.getElementById('reviewText').value.trim();
 
-            // Validation
-            if (!name) {
-                alert('Please enter your name');
-                return;
-            }
-            if (!text) {
-                alert('Please enter your review');
-                return;
-            }
-            if (currentRating === 0) {
-                alert('Please select a rating');
-                return;
-            }
+//             // Validation
+//             if (!name) {
+//                 alert('Please enter your name');
+//                 return;
+//             }
+//             if (!text) {
+//                 alert('Please enter your review');
+//                 return;
+//             }
+//             if (currentRating === 0) {
+//                 alert('Please select a rating');
+//                 return;
+//             }
 
-            // Add review
-            const newReview = {
-                id: Date.now(),
-                name: name,
-                email: email,
-                text: text,
-                rating: currentRating,
-                date: new Date().toLocaleDateString(),
-                timestamp: new Date().toISOString()
-            };
+//             // Add review
+//             const newReview = {
+//                 id: Date.now(),
+//                 name: name,
+//                 email: email,
+//                 text: text,
+//                 rating: currentRating,
+//                 date: new Date().toLocaleDateString(),
+//                 timestamp: new Date().toISOString()
+//             };
 
-            reviews.unshift(newReview);
-            showingAllReviews = false; // Reset to show only first 3
-            updateReviewsUI();
-            resetForm();
+//             reviews.unshift(newReview);
+//             showingAllReviews = false; // Reset to show only first 3
+//             updateReviewsUI();
+//             resetForm();
 
-            exportReviews();
-        }
+//             exportReviews();
+//         }
 
-        function resetForm() {
-            document.getElementById('reviewForm').style.display = 'none';
-            document.getElementById('reviewerName').value = '';
-            document.getElementById('reviewerEmail').value = '';
-            document.getElementById('reviewText').value = '';
-            currentRating = 0;
-            updateStarHighlight();
-            updateRatingLabel();
-        }
+//         function resetForm() {
+//             document.getElementById('reviewForm').style.display = 'none';
+//             document.getElementById('reviewerName').value = '';
+//             document.getElementById('reviewerEmail').value = '';
+//             document.getElementById('reviewText').value = '';
+//             currentRating = 0;
+//             updateStarHighlight();
+//             updateRatingLabel();
+//         }
 
-        function updateStarHighlight() {
-            const stars = document.querySelectorAll('.rating-star');
-            stars.forEach(function(star) {
-                const rating = parseInt(star.getAttribute('data-rating'));
-                if (rating <= currentRating) {
-                    star.classList.add('active');
-                } else {
-                    star.classList.remove('active');
-                }
-            });
-        }
+//         function updateStarHighlight() {
+//             const stars = document.querySelectorAll('.rating-star');
+//             stars.forEach(function(star) {
+//                 const rating = parseInt(star.getAttribute('data-rating'));
+//                 if (rating <= currentRating) {
+//                     star.classList.add('active');
+//                 } else {
+//                     star.classList.remove('active');
+//                 }
+//             });
+//         }
 
-        function updateRatingLabel() {
-            const label = document.getElementById('ratingLabel');
-            if (currentRating === 0) {
-                label.textContent = 'Click to rate';
-            } else {
-                const ratingText = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
-                label.textContent = currentRating + ' star' + (currentRating > 1 ? 's' : '') + ' - ' + ratingText[currentRating];
-            }
-        }
+//         function updateRatingLabel() {
+//             const label = document.getElementById('ratingLabel');
+//             if (currentRating === 0) {
+//                 label.textContent = 'Click to rate';
+//             } else {
+//                 const ratingText = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+//                 label.textContent = currentRating + ' star' + (currentRating > 1 ? 's' : '') + ' - ' + ratingText[currentRating];
+//             }
+//         }
 
-        function createReviewCard(review) {
-            const div = document.createElement('div');
-            div.className = 'review-card';
-            div.innerHTML = 
-                '<div class="review-card-header">' +
-                    '<h4>' + escapeHtml(review.name) + '</h4>' +
-                    (review.email ? '<small>' + escapeHtml(review.email) + '</small>' : '') +
-                    '<div class="stars">' + '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating) + '</div>' +
-                '</div>' +
-                '<div class="review-card-content">' +
-                    '<p>' + escapeHtml(review.text) + '</p>' +
-                '</div>' +
-                '<div class="review-card-footer">' +
-                    '<small>Posted on ' + review.date + '</small>' +
-                '</div>';
-            return div;
-        }
+//         function createReviewCard(review) {
+//             const div = document.createElement('div');
+//             div.className = 'review-card';
+//             div.innerHTML = 
+//                 '<div class="review-card-header">' +
+//                     '<h4>' + escapeHtml(review.name) + '</h4>' +
+//                     (review.email ? '<small>' + escapeHtml(review.email) + '</small>' : '') +
+//                     '<div class="stars">' + '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating) + '</div>' +
+//                 '</div>' +
+//                 '<div class="review-card-content">' +
+//                     '<p>' + escapeHtml(review.text) + '</p>' +
+//                 '</div>' +
+//                 '<div class="review-card-footer">' +
+//                     '<small>Posted on ' + review.date + '</small>' +
+//                 '</div>';
+//             return div;
+//         }
 
-        function updateReviewsUI() {
-            const container = document.getElementById('reviewsContainer');
+//         function updateReviewsUI() {
+//             const container = document.getElementById('reviewsContainer');
             
-            if (reviews.length === 0) {
-                container.innerHTML = '<div class="no-reviews" id="noReviews"><h3>No reviews yet</h3><p>Be the first to share your experience!</p></div>';
-                return;
-            }
+//             if (reviews.length === 0) {
+//                 container.innerHTML = '<div class="no-reviews" id="noReviews"><h3>No reviews yet</h3><p>Be the first to share your experience!</p></div>';
+//                 return;
+//             }
 
-            // Clear container
-            container.innerHTML = '';
+//             // Clear container
+//             container.innerHTML = '';
 
-            // Determine how many reviews to show
-            const reviewsToShow = showingAllReviews ? reviews.length : Math.min(3, reviews.length);
+//             // Determine how many reviews to show
+//             const reviewsToShow = showingAllReviews ? reviews.length : Math.min(3, reviews.length);
             
-            // Add reviews
-            for (let i = 0; i < reviewsToShow; i++) {
-                const reviewCard = createReviewCard(reviews[i]);
-                container.appendChild(reviewCard);
-            }
+//             // Add reviews
+//             for (let i = 0; i < reviewsToShow; i++) {
+//                 const reviewCard = createReviewCard(reviews[i]);
+//                 container.appendChild(reviewCard);
+//             }
 
-            // Add "Show More" button if there are more than 3 reviews and not showing all
-            if (reviews.length > 3 && !showingAllReviews) {
-                const showMoreDiv = document.createElement('div');
-                showMoreDiv.className = 'show-more-btn';
-                showMoreDiv.innerHTML = '<button onclick="showMoreReviews()">Show More Reviews (' + (reviews.length - 3) + ' remaining)</button>';
-                container.appendChild(showMoreDiv);
-            } else if (reviews.length > 3 && showingAllReviews) {
-                const showLessDiv = document.createElement('div');
-                showLessDiv.className = 'show-more-btn';
-                showLessDiv.innerHTML = '<button onclick="showLessReviews()">Show Less</button>';
-                container.appendChild(showLessDiv);
-            }
+//             // Add "Show More" button if there are more than 3 reviews and not showing all
+//             if (reviews.length > 3 && !showingAllReviews) {
+//                 const showMoreDiv = document.createElement('div');
+//                 showMoreDiv.className = 'show-more-btn';
+//                 showMoreDiv.innerHTML = '<button onclick="showMoreReviews()">Show More Reviews (' + (reviews.length - 3) + ' remaining)</button>';
+//                 container.appendChild(showMoreDiv);
+//             } else if (reviews.length > 3 && showingAllReviews) {
+//                 const showLessDiv = document.createElement('div');
+//                 showLessDiv.className = 'show-more-btn';
+//                 showLessDiv.innerHTML = '<button onclick="showLessReviews()">Show Less</button>';
+//                 container.appendChild(showLessDiv);
+//             }
 
-            // Update overall rating
-            let totalRating = 0;
-            reviews.forEach(function(review) {
-                totalRating += review.rating;
-            });
+//             // Update overall rating
+//             let totalRating = 0;
+//             reviews.forEach(function(review) {
+//                 totalRating += review.rating;
+//             });
 
-            const avg = totalRating / reviews.length;
-            document.getElementById('overallRating').textContent = avg.toFixed(1);
-            document.getElementById('reviewCount').textContent = 'Over ' + reviews.length + ' Review' + (reviews.length !== 1 ? 's' : '');
+//             const avg = totalRating / reviews.length;
+//             document.getElementById('overallRating').textContent = avg.toFixed(1);
+//             document.getElementById('reviewCount').textContent = 'Over ' + reviews.length + ' Review' + (reviews.length !== 1 ? 's' : '');
             
-            const overallStarsContainer = document.getElementById('overallStars');
-            overallStarsContainer.innerHTML = '';
-            for (let i = 1; i <= 5; i++) {
-                const star = document.createElement('span');
-                star.className = 'star-display';
-                star.textContent = i <= Math.round(avg) ? '★' : '☆';
-                overallStarsContainer.appendChild(star);
-            }
-        }
+//             const overallStarsContainer = document.getElementById('overallStars');
+//             overallStarsContainer.innerHTML = '';
+//             for (let i = 1; i <= 5; i++) {
+//                 const star = document.createElement('span');
+//                 star.className = 'star-display';
+//                 star.textContent = i <= Math.round(avg) ? '★' : '☆';
+//                 overallStarsContainer.appendChild(star);
+//             }
+//         }
 
-        function showMoreReviews() {
-            showingAllReviews = true;
-            updateReviewsUI();
-        }
+//         function showMoreReviews() {
+//             showingAllReviews = true;
+//             updateReviewsUI();
+//         }
 
-        function showLessReviews() {
-            showingAllReviews = false;
-            updateReviewsUI();
-            // Scroll to reviews section
-            document.getElementById('reviewsContainer').scrollIntoView({ behavior: 'smooth' });
-        }
+//         function showLessReviews() {
+//             showingAllReviews = false;
+//             updateReviewsUI();
+//             // Scroll to reviews section
+//             document.getElementById('reviewsContainer').scrollIntoView({ behavior: 'smooth' });
+//         }
 
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
+//         function escapeHtml(text) {
+//             const div = document.createElement('div');
+//             div.textContent = text;
+//             return div.innerHTML;
+//         }
 
-        async function loadReviewsFromFile() {
-          try {
-            const response = await fetch('./reviews/taburnal_reviews.json');
-            if (response.ok) {
-              const data = await response.json();
-              reviews = Array.isArray(data) ? data : [];
-              updateReviewsUI();
-            } else {
-              reviews = [];
-              updateReviewsUI();
-            }
-          } catch (e) {
-            reviews = [];
-            updateReviewsUI();
-          }
-        }
+//         async function loadReviewsFromFile() {
+//           try {
+//             const response = await fetch('./reviews/taburnal_reviews.json');
+//             if (response.ok) {
+//               const data = await response.json();
+//               reviews = Array.isArray(data) ? data : [];
+//               updateReviewsUI();
+//             } else {
+//               reviews = [];
+//               updateReviewsUI();
+//             }
+//           } catch (e) {
+//             reviews = [];
+//             updateReviewsUI();
+//           }
+//         }
 
-        function exportReviews() {
-          const dataStr = JSON.stringify(reviews, null, 2);
-          const dataBlob = new Blob([dataStr], {type: 'application/json'});
-          const url = URL.createObjectURL(dataBlob);
-          const link = document.createElement('a');
-          link.href = url;
-          link.download = 'taburnal_reviews.json';
-          link.click();
+//         function exportReviews() {
+//           const dataStr = JSON.stringify(reviews, null, 2);
+//           const dataBlob = new Blob([dataStr], {type: 'application/json'});
+//           const url = URL.createObjectURL(dataBlob);
+//           const link = document.createElement('a');
+//           link.href = url;
+//           link.download = 'taburnal_reviews.json';
+//           link.click();
 
-          setTimeout(() => URL.revokeObjectURL(url), 100);
-        }
+//           setTimeout(() => URL.revokeObjectURL(url), 100);
+//         }
+// 
 </script>
+// Replace the entire script section starting from the Firebase import
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
-  import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+  import { getFirestore, collection, addDoc, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
+  // Your web app's Firebase configuration
   const firebaseConfig = {
-    apiKey: "AIzaSyB60fwh7fDKD18uazYTJkYIQLULkHTGGxc",
-    authDomain: "reviewwebsite-b40bb.firebaseapp.com",
-    projectId: "reviewwebsite-b40bb",
-    storageBucket: "reviewwebsite-b40bb.appspot.com",
-    messagingSenderId: "510781443137",
-    appId: "1:510781443137:web:19d2302841755e71cbcac0"
+    apiKey: "AIzaSyDJ0nb21EotevRLBNaQRp6ceIcX0DfaAfI",
+    authDomain: "taburnallearningcenter-e3ab3.firebaseapp.com",
+    projectId: "taburnallearningcenter-e3ab3",
+    storageBucket: "taburnallearningcenter-e3ab3.firebasestorage.app",
+    messagingSenderId: "700797568863",
+    appId: "1:700797568863:web:a127a7ca1c4fa0902bd8ea"
   };
 
+  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // Your Firestore code here
+  let reviews = [];
+  let showingAllReviews = false;
+  let currentRating = 0;
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      loadReviewsFromFirebase();
+      setupEventListeners();
+    });
+  } else {
+    loadReviewsFromFirebase();
+    setupEventListeners();
+  }
+
+  function setupEventListeners() {
+      // Write review button
+      const writeBtn = document.getElementById('writeReviewBtn');
+      if (writeBtn) {
+          writeBtn.addEventListener('click', function() {
+              document.getElementById('reviewForm').style.display = 'block';
+              writeBtn.scrollIntoView({ behavior: 'smooth' });
+          });
+      }
+
+      // Cancel button
+      const cancelBtn = document.getElementById('cancelBtn');
+      if (cancelBtn) {
+          cancelBtn.addEventListener('click', function() {
+              resetForm();
+          });
+      }
+
+      // Submit button
+      const submitBtn = document.getElementById('submitBtn');
+      if (submitBtn) {
+          submitBtn.addEventListener('click', function(e) {
+              e.preventDefault();
+              handleSubmit();
+          });
+      }
+
+      // Star rating
+      const stars = document.querySelectorAll('.rating-star');
+      stars.forEach(function(star) {
+          star.addEventListener('click', function() {
+              currentRating = parseInt(star.getAttribute('data-rating'));
+              updateStarHighlight();
+              updateRatingLabel();
+          });
+      });
+  }
+
+  async function handleSubmit() {
+      const name = document.getElementById('reviewerName').value.trim();
+      const email = document.getElementById('reviewerEmail').value.trim();
+      const text = document.getElementById('reviewText').value.trim();
+
+      // Validation
+      if (!name) {
+          alert('Please enter your name');
+          return;
+      }
+      if (!text) {
+          alert('Please enter your review');
+          return;
+      }
+      if (currentRating === 0) {
+          alert('Please select a rating');
+          return;
+      }
+
+      // Disable submit button to prevent double submission
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Posting...';
+
+      try {
+          // Add review to Firebase
+          const newReview = {
+              name: name,
+              email: email,
+              text: text,
+              rating: currentRating,
+              date: new Date().toLocaleDateString(),
+              timestamp: new Date().toISOString()
+          };
+
+          await addDoc(collection(db, "reviews"), newReview);
+          
+          // Reload reviews from Firebase to get the latest data
+          await loadReviewsFromFirebase();
+          
+          resetForm();
+
+      } catch (error) {
+          console.error('Error adding review:', error);
+          alert('Error posting review. Please try again.');
+      } finally {
+          // Re-enable submit button
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Post Review';
+      }
+  }
+
+  function resetForm() {
+      document.getElementById('reviewForm').style.display = 'none';
+      document.getElementById('reviewerName').value = '';
+      document.getElementById('reviewerEmail').value = '';
+      document.getElementById('reviewText').value = '';
+      currentRating = 0;
+      updateStarHighlight();
+      updateRatingLabel();
+  }
+
+  function updateStarHighlight() {
+      const stars = document.querySelectorAll('.rating-star');
+      stars.forEach(function(star) {
+          const rating = parseInt(star.getAttribute('data-rating'));
+          if (rating <= currentRating) {
+              star.classList.add('active');
+          } else {
+              star.classList.remove('active');
+          }
+      });
+  }
+
+  function updateRatingLabel() {
+      const label = document.getElementById('ratingLabel');
+      if (currentRating === 0) {
+          label.textContent = 'Click to rate';
+      } else {
+          const ratingText = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+          label.textContent = currentRating + ' star' + (currentRating > 1 ? 's' : '') + ' - ' + ratingText[currentRating];
+      }
+  }
+
+  function createReviewCard(review) {
+      const div = document.createElement('div');
+      div.className = 'review-card';
+      div.innerHTML = 
+          '<div class="review-card-header">' +
+              '<h4>' + escapeHtml(review.name) + '</h4>' +
+              (review.email ? '<small>' + escapeHtml(review.email) + '</small>' : '') +
+              '<div class="stars">' + '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating) + '</div>' +
+          '</div>' +
+          '<div class="review-card-content">' +
+              '<p>' + escapeHtml(review.text) + '</p>' +
+          '</div>' +
+          '<div class="review-card-footer">' +
+              '<small>Posted on ' + review.date + '</small>' +
+          '</div>';
+      return div;
+  }
+
+  function updateReviewsUI() {
+      const container = document.getElementById('reviewsContainer');
+      
+      if (reviews.length === 0) {
+          container.innerHTML = '<div class="no-reviews" id="noReviews"><h3>No reviews yet</h3><p>Be the first to share your experience!</p></div>';
+          return;
+      }
+
+      // Clear container
+      container.innerHTML = '';
+
+      // Determine how many reviews to show
+      const reviewsToShow = showingAllReviews ? reviews.length : Math.min(3, reviews.length);
+      
+      // Add reviews
+      for (let i = 0; i < reviewsToShow; i++) {
+          const reviewCard = createReviewCard(reviews[i]);
+          container.appendChild(reviewCard);
+      }
+
+      // Add "Show More" button if there are more than 3 reviews and not showing all
+      if (reviews.length > 3 && !showingAllReviews) {
+          const showMoreDiv = document.createElement('div');
+          showMoreDiv.className = 'show-more-btn';
+          showMoreDiv.innerHTML = '<button onclick="showMoreReviews()">Show More Reviews (' + (reviews.length - 3) + ' remaining)</button>';
+          container.appendChild(showMoreDiv);
+      } else if (reviews.length > 3 && showingAllReviews) {
+          const showLessDiv = document.createElement('div');
+          showLessDiv.className = 'show-more-btn';
+          showLessDiv.innerHTML = '<button onclick="showLessReviews()">Show Less</button>';
+          container.appendChild(showLessDiv);
+      }
+
+      // Update overall rating
+      let totalRating = 0;
+      reviews.forEach(function(review) {
+          totalRating += review.rating;
+      });
+
+      const avg = totalRating / reviews.length;
+      document.getElementById('overallRating').textContent = avg.toFixed(1);
+      document.getElementById('reviewCount').textContent = 'Over ' + reviews.length + ' Review' + (reviews.length !== 1 ? 's' : '');
+      
+      const overallStarsContainer = document.getElementById('overallStars');
+      overallStarsContainer.innerHTML = '';
+      for (let i = 1; i <= 5; i++) {
+          const star = document.createElement('span');
+          star.className = 'star-display';
+          star.textContent = i <= Math.round(avg) ? '★' : '☆';
+          overallStarsContainer.appendChild(star);
+      }
+  }
+
+  // Make these functions global so they can be called from onclick handlers
+  window.showMoreReviews = function() {
+      showingAllReviews = true;
+      updateReviewsUI();
+  }
+
+  window.showLessReviews = function() {
+      showingAllReviews = false;
+      updateReviewsUI();
+      // Scroll to reviews section
+      document.getElementById('reviewsContainer').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+  }
+
+  async function loadReviewsFromFirebase() {
+      try {
+          const container = document.getElementById('reviewsContainer');
+          container.innerHTML = '<div class="no-reviews"><h3>Loading reviews...</h3></div>';
+
+          const q = query(collection(db, "reviews"), orderBy("timestamp", "desc"));
+          const querySnapshot = await getDocs(q);
+          
+          reviews = [];
+          querySnapshot.forEach((doc) => {
+              const data = doc.data();
+              reviews.push({
+                  id: doc.id,
+                  ...data
+              });
+          });
+
+          updateReviewsUI();
+      } catch (error) {
+          console.error('Error loading reviews:', error);
+          const container = document.getElementById('reviewsContainer');
+          container.innerHTML = '<div class="no-reviews"><h3>Error loading reviews</h3><p>Please refresh the page to try again.</p></div>';
+      }
+  }
 </script>
 </body>
 </html>
