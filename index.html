@@ -21,7 +21,7 @@
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    font-family: Arial, sans-serif; /* Added default font family */
+    font-family: Arial, sans-serif;
   }
   a {
     text-decoration: none;
@@ -171,17 +171,13 @@
     font-size: 0.9rem;
   }
 
-  /* Note: Removed the generic `button[type="submit"]` rule here,
-     as it's often better to style specific buttons via classes.
-     Your .btn-submit class already handles this. */
   input[type="email"],
-  input[type="text"], /* Added input[type="text"] for consistency in forms */
+  input[type="text"],
   input[type="email"],
   textarea {
     padding: 0.5rem;
     margin-top: 0.5rem;
   }
-
 
   .achievement-grid {
     display: flex;
@@ -249,7 +245,6 @@
     min-width: 100%;
   }
 
-  /* FIX: Applied position: absolute specifically to buttons within .carousel-container */
   .carousel-container button {
     position: absolute;
     top: 50%;
@@ -263,7 +258,6 @@
     z-index: 100;
   }
 
-  /* FIX: Applied hover state specifically to buttons within .carousel-container */
   .carousel-container button:hover {
     background-color: rgba(0, 0, 0, 0.8);
   }
@@ -433,7 +427,6 @@
     color: #4CAF50;
   }
 
-  /* Mobile Responsive Styles */
   @media (max-width: 768px) {
     .logo {
       font-size: 1.1rem;
@@ -520,7 +513,6 @@
       margin-bottom: 1.5rem;
     }
 
-    /* FIX: More specific for mobile carousel buttons */
     .carousel-container button.prev,
     .carousel-container button.next {
       padding: 8px;
@@ -574,7 +566,6 @@
     }
   }
 
-/* --- Review Widget Specific Styles --- */
         .review-widget .container {
             max-width: 1100px;
             margin: 2rem auto;
@@ -870,7 +861,6 @@
             display: none;
         }
 
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .reviews-grid {
                 grid-template-columns: 1fr;
@@ -1079,7 +1069,6 @@
 
 <footer>
   <div class="footer">
-    <!-- Navigation Links -->
     <div>
       <h4>Quick Links</h4>
       <a href="index.html">Home</a>
@@ -1089,16 +1078,11 @@
       <a href="news.html">News</a>
       <a href="contact.html">Contact</a>
     </div>
-
-    <!-- Social Media -->
     <div>
       <h4>Follow Us</h4>
       <a href="https://www.facebook.com/profile.php?id=100057529355713" target="_blank">Facebook</a>
       <a href="https://www.youtube.com/@taburnallearningcentertlco9458" target="_blank">YouTube</a>
     </div>
-
-
-    <!-- Contact Info -->
     <div>
       <h4>Contact Us</h4>
       <p>Email: <a href="mailto:tlcmoreblessings@gmail.com">tlcmoreblessings@gmail.com</a></p>
@@ -1106,14 +1090,12 @@
       <p>Taburnal Learning Center<br>Zone 4 San Rafael Poblacion, Bato, Camarines Sur 4435</p>
     </div>
   </div>
-
   <div class="footer-bottom">
     &copy; 2025 Taburnal Learning Center. All rights reserved.
   </div>
 </footer>
 
 <script>
-// Carousel
 let slideIndex = 0;
 
 function moveSlide(direction) {
@@ -1123,20 +1105,17 @@ function moveSlide(direction) {
   slideIndex += direction;
 
   if (slideIndex < 0) {
-    slideIndex = totalSlides - 1; // Go to the last slide
+    slideIndex = totalSlides - 1;
   } else if (slideIndex >= totalSlides) {
-    slideIndex = 0; // Go back to the first slide
+    slideIndex = 0;
   }
 
-  // Move carousel to show the current slide
-  const offset = -slideIndex * 100; // Each image takes up 100% width of the container
+  const offset = -slideIndex * 100;
   document.querySelector('.carousel').style.transform = `translateX(${offset}%)`;
 }
 
-// Automatically move the slide every 7 seconds
 setInterval(() => moveSlide(1), 7000);
 
-// Mobile menu
 const menuToggle = document.getElementById('mobile-menu');
 const navLinks = document.getElementById('nav-links');
 
@@ -1152,7 +1131,6 @@ navLinks.querySelectorAll('a').forEach(link => {
   });
 });
 
-// Add touch swipe functionality for carousel
 let touchStartX = 0;
 let touchEndX = 0;
 const carousel = document.querySelector('.carousel-container');
@@ -1168,263 +1146,17 @@ carousel.addEventListener('touchend', (e) => {
 
 function handleSwipe() {
   if (touchEndX < touchStartX) {
-    // Swipe left
     moveSlide(1);
   }
   if (touchEndX > touchStartX) {
-    // Swipe right
     moveSlide(-1);
   }
 }
-
-//         let reviews = [];
-//         let showingAllReviews = false;
-//         let currentRating = 0;
-
-//         // Wait for DOM to be fully loaded
-//         document.addEventListener('DOMContentLoaded', function() {
-//             loadReviewsFromFile();
-//             setupEventListeners();
-//         });
-
-//         // Also setup immediately in case DOM is already loaded
-//         if (document.readyState !== 'loading') {
-//             setupEventListeners();
-//         }
-
-//         function setupEventListeners() {
-//             // Write review button
-//             const writeBtn = document.getElementById('writeReviewBtn');
-//             if (writeBtn) {
-//                 writeBtn.addEventListener('click', function() {
-//                     document.getElementById('reviewForm').style.display = 'block';
-//                     writeBtn.scrollIntoView({ behavior: 'smooth' });
-//                 });
-//             }
-
-//             // Cancel button
-//             const cancelBtn = document.getElementById('cancelBtn');
-//             if (cancelBtn) {
-//                 cancelBtn.addEventListener('click', function() {
-//                     resetForm();
-//                 });
-//             }
-
-//             // Submit button
-//             const submitBtn = document.getElementById('submitBtn');
-//             if (submitBtn) {
-//                 submitBtn.addEventListener('click', function(e) {
-//                     e.preventDefault();
-//                     handleSubmit();
-//                 });
-//             }
-
-//             // Star rating
-//             const stars = document.querySelectorAll('.rating-star');
-//             stars.forEach(function(star) {
-//                 star.addEventListener('click', function() {
-//                     currentRating = parseInt(star.getAttribute('data-rating'));
-//                     updateStarHighlight();
-//                     updateRatingLabel();
-//                 });
-//             });
-//         }
-
-//         function handleSubmit() {
-//             const name = document.getElementById('reviewerName').value.trim();
-//             const email = document.getElementById('reviewerEmail').value.trim();
-//             const text = document.getElementById('reviewText').value.trim();
-
-//             // Validation
-//             if (!name) {
-//                 alert('Please enter your name');
-//                 return;
-//             }
-//             if (!text) {
-//                 alert('Please enter your review');
-//                 return;
-//             }
-//             if (currentRating === 0) {
-//                 alert('Please select a rating');
-//                 return;
-//             }
-
-//             // Add review
-//             const newReview = {
-//                 id: Date.now(),
-//                 name: name,
-//                 email: email,
-//                 text: text,
-//                 rating: currentRating,
-//                 date: new Date().toLocaleDateString(),
-//                 timestamp: new Date().toISOString()
-//             };
-
-//             reviews.unshift(newReview);
-//             showingAllReviews = false; // Reset to show only first 3
-//             updateReviewsUI();
-//             resetForm();
-
-//             exportReviews();
-//         }
-
-//         function resetForm() {
-//             document.getElementById('reviewForm').style.display = 'none';
-//             document.getElementById('reviewerName').value = '';
-//             document.getElementById('reviewerEmail').value = '';
-//             document.getElementById('reviewText').value = '';
-//             currentRating = 0;
-//             updateStarHighlight();
-//             updateRatingLabel();
-//         }
-
-//         function updateStarHighlight() {
-//             const stars = document.querySelectorAll('.rating-star');
-//             stars.forEach(function(star) {
-//                 const rating = parseInt(star.getAttribute('data-rating'));
-//                 if (rating <= currentRating) {
-//                     star.classList.add('active');
-//                 } else {
-//                     star.classList.remove('active');
-//                 }
-//             });
-//         }
-
-//         function updateRatingLabel() {
-//             const label = document.getElementById('ratingLabel');
-//             if (currentRating === 0) {
-//                 label.textContent = 'Click to rate';
-//             } else {
-//                 const ratingText = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
-//                 label.textContent = currentRating + ' star' + (currentRating > 1 ? 's' : '') + ' - ' + ratingText[currentRating];
-//             }
-//         }
-
-//         function createReviewCard(review) {
-//             const div = document.createElement('div');
-//             div.className = 'review-card';
-//             div.innerHTML = 
-//                 '<div class="review-card-header">' +
-//                     '<h4>' + escapeHtml(review.name) + '</h4>' +
-//                     (review.email ? '<small>' + escapeHtml(review.email) + '</small>' : '') +
-//                     '<div class="stars">' + '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating) + '</div>' +
-//                 '</div>' +
-//                 '<div class="review-card-content">' +
-//                     '<p>' + escapeHtml(review.text) + '</p>' +
-//                 '</div>' +
-//                 '<div class="review-card-footer">' +
-//                     '<small>Posted on ' + review.date + '</small>' +
-//                 '</div>';
-//             return div;
-//         }
-
-//         function updateReviewsUI() {
-//             const container = document.getElementById('reviewsContainer');
-            
-//             if (reviews.length === 0) {
-//                 container.innerHTML = '<div class="no-reviews" id="noReviews"><h3>No reviews yet</h3><p>Be the first to share your experience!</p></div>';
-//                 return;
-//             }
-
-//             // Clear container
-//             container.innerHTML = '';
-
-//             // Determine how many reviews to show
-//             const reviewsToShow = showingAllReviews ? reviews.length : Math.min(3, reviews.length);
-            
-//             // Add reviews
-//             for (let i = 0; i < reviewsToShow; i++) {
-//                 const reviewCard = createReviewCard(reviews[i]);
-//                 container.appendChild(reviewCard);
-//             }
-
-//             // Add "Show More" button if there are more than 3 reviews and not showing all
-//             if (reviews.length > 3 && !showingAllReviews) {
-//                 const showMoreDiv = document.createElement('div');
-//                 showMoreDiv.className = 'show-more-btn';
-//                 showMoreDiv.innerHTML = '<button onclick="showMoreReviews()">Show More Reviews (' + (reviews.length - 3) + ' remaining)</button>';
-//                 container.appendChild(showMoreDiv);
-//             } else if (reviews.length > 3 && showingAllReviews) {
-//                 const showLessDiv = document.createElement('div');
-//                 showLessDiv.className = 'show-more-btn';
-//                 showLessDiv.innerHTML = '<button onclick="showLessReviews()">Show Less</button>';
-//                 container.appendChild(showLessDiv);
-//             }
-
-//             // Update overall rating
-//             let totalRating = 0;
-//             reviews.forEach(function(review) {
-//                 totalRating += review.rating;
-//             });
-
-//             const avg = totalRating / reviews.length;
-//             document.getElementById('overallRating').textContent = avg.toFixed(1);
-//             document.getElementById('reviewCount').textContent = 'Over ' + reviews.length + ' Review' + (reviews.length !== 1 ? 's' : '');
-            
-//             const overallStarsContainer = document.getElementById('overallStars');
-//             overallStarsContainer.innerHTML = '';
-//             for (let i = 1; i <= 5; i++) {
-//                 const star = document.createElement('span');
-//                 star.className = 'star-display';
-//                 star.textContent = i <= Math.round(avg) ? '★' : '☆';
-//                 overallStarsContainer.appendChild(star);
-//             }
-//         }
-
-//         function showMoreReviews() {
-//             showingAllReviews = true;
-//             updateReviewsUI();
-//         }
-
-//         function showLessReviews() {
-//             showingAllReviews = false;
-//             updateReviewsUI();
-//             // Scroll to reviews section
-//             document.getElementById('reviewsContainer').scrollIntoView({ behavior: 'smooth' });
-//         }
-
-//         function escapeHtml(text) {
-//             const div = document.createElement('div');
-//             div.textContent = text;
-//             return div.innerHTML;
-//         }
-
-//         async function loadReviewsFromFile() {
-//           try {
-//             const response = await fetch('./reviews/taburnal_reviews.json');
-//             if (response.ok) {
-//               const data = await response.json();
-//               reviews = Array.isArray(data) ? data : [];
-//               updateReviewsUI();
-//             } else {
-//               reviews = [];
-//               updateReviewsUI();
-//             }
-//           } catch (e) {
-//             reviews = [];
-//             updateReviewsUI();
-//           }
-//         }
-
-//         function exportReviews() {
-//           const dataStr = JSON.stringify(reviews, null, 2);
-//           const dataBlob = new Blob([dataStr], {type: 'application/json'});
-//           const url = URL.createObjectURL(dataBlob);
-//           const link = document.createElement('a');
-//           link.href = url;
-//           link.download = 'taburnal_reviews.json';
-//           link.click();
-
-//           setTimeout(() => URL.revokeObjectURL(url), 100);
-//         }
-// 
 </script>
-// Replace the entire script section starting from the Firebase import
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
-  import { getFirestore, collection, addDoc, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+  import { getFirestore, collection, addDoc, getDocs, orderBy, query, onSnapshot } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
-  // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyDJ0nb21EotevRLBNaQRp6ceIcX0DfaAfI",
     authDomain: "taburnallearningcenter-e3ab3.firebaseapp.com",
@@ -1434,7 +1166,6 @@ function handleSwipe() {
     appId: "1:700797568863:web:a127a7ca1c4fa0902bd8ea"
   };
 
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
@@ -1453,7 +1184,6 @@ function handleSwipe() {
   }
 
   function setupEventListeners() {
-      // Write review button
       const writeBtn = document.getElementById('writeReviewBtn');
       if (writeBtn) {
           writeBtn.addEventListener('click', function() {
@@ -1462,7 +1192,6 @@ function handleSwipe() {
           });
       }
 
-      // Cancel button
       const cancelBtn = document.getElementById('cancelBtn');
       if (cancelBtn) {
           cancelBtn.addEventListener('click', function() {
@@ -1470,7 +1199,6 @@ function handleSwipe() {
           });
       }
 
-      // Submit button
       const submitBtn = document.getElementById('submitBtn');
       if (submitBtn) {
           submitBtn.addEventListener('click', function(e) {
@@ -1479,7 +1207,6 @@ function handleSwipe() {
           });
       }
 
-      // Star rating
       const stars = document.querySelectorAll('.rating-star');
       stars.forEach(function(star) {
           star.addEventListener('click', function() {
@@ -1495,7 +1222,6 @@ function handleSwipe() {
       const email = document.getElementById('reviewerEmail').value.trim();
       const text = document.getElementById('reviewText').value.trim();
 
-      // Validation
       if (!name) {
           alert('Please enter your name');
           return;
@@ -1509,13 +1235,11 @@ function handleSwipe() {
           return;
       }
 
-      // Disable submit button to prevent double submission
       const submitBtn = document.getElementById('submitBtn');
       submitBtn.disabled = true;
       submitBtn.textContent = 'Posting...';
 
       try {
-          // Add review to Firebase
           const newReview = {
               name: name,
               email: email,
@@ -1527,16 +1251,12 @@ function handleSwipe() {
 
           await addDoc(collection(db, "reviews"), newReview);
           
-          // Reload reviews from Firebase to get the latest data
-          await loadReviewsFromFirebase();
-          
           resetForm();
 
       } catch (error) {
           console.error('Error adding review:', error);
           alert('Error posting review. Please try again.');
       } finally {
-          // Re-enable submit button
           submitBtn.disabled = false;
           submitBtn.textContent = 'Post Review';
       }
@@ -1600,19 +1320,15 @@ function handleSwipe() {
           return;
       }
 
-      // Clear container
       container.innerHTML = '';
 
-      // Determine how many reviews to show
       const reviewsToShow = showingAllReviews ? reviews.length : Math.min(3, reviews.length);
       
-      // Add reviews
       for (let i = 0; i < reviewsToShow; i++) {
           const reviewCard = createReviewCard(reviews[i]);
           container.appendChild(reviewCard);
       }
 
-      // Add "Show More" button if there are more than 3 reviews and not showing all
       if (reviews.length > 3 && !showingAllReviews) {
           const showMoreDiv = document.createElement('div');
           showMoreDiv.className = 'show-more-btn';
@@ -1625,7 +1341,6 @@ function handleSwipe() {
           container.appendChild(showLessDiv);
       }
 
-      // Update overall rating
       let totalRating = 0;
       reviews.forEach(function(review) {
           totalRating += review.rating;
@@ -1645,7 +1360,6 @@ function handleSwipe() {
       }
   }
 
-  // Make these functions global so they can be called from onclick handlers
   window.showMoreReviews = function() {
       showingAllReviews = true;
       updateReviewsUI();
@@ -1654,7 +1368,6 @@ function handleSwipe() {
   window.showLessReviews = function() {
       showingAllReviews = false;
       updateReviewsUI();
-      // Scroll to reviews section
       document.getElementById('reviewsContainer').scrollIntoView({ behavior: 'smooth' });
   }
 
@@ -1670,18 +1383,22 @@ function handleSwipe() {
           container.innerHTML = '<div class="no-reviews"><h3>Loading reviews...</h3></div>';
 
           const q = query(collection(db, "reviews"), orderBy("timestamp", "desc"));
-          const querySnapshot = await getDocs(q);
           
-          reviews = [];
-          querySnapshot.forEach((doc) => {
+          onSnapshot(q, (querySnapshot) => {
+            reviews = [];
+            querySnapshot.forEach((doc) => {
               const data = doc.data();
               reviews.push({
-                  id: doc.id,
-                  ...data
+                id: doc.id,
+                ...data
               });
+            });
+            updateReviewsUI();
+          }, (error) => {
+            console.error('Error loading reviews: ', error);
+            const container = document.getElementById('reviewsContainer');
+            container.innerHTML = '<div class="no-reviews"><h3>Error loading reviews</h3><p>Please refresh the page to try again.</p></div>';
           });
-
-          updateReviewsUI();
       } catch (error) {
           console.error('Error loading reviews:', error);
           const container = document.getElementById('reviewsContainer');
