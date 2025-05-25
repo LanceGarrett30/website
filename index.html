@@ -1177,12 +1177,13 @@ function handleSwipe() {
   }
 }
 
-        let currentRating = 0;
-        const reviews = [];
+        let reviews = [];
         let showingAllReviews = false;
+        let currentRating = 0;
 
         // Wait for DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function() {
+            loadReviewsFromFile();
             setupEventListeners();
         });
 
@@ -1250,19 +1251,21 @@ function handleSwipe() {
 
             // Add review
             const newReview = {
+                id: Date.now(),
                 name: name,
                 email: email,
                 text: text,
                 rating: currentRating,
-                date: new Date().toLocaleDateString()
+                date: new Date().toLocaleDateString(),
+                timestamp: new Date().toISOString()
             };
 
             reviews.unshift(newReview);
             showingAllReviews = false; // Reset to show only first 3
             updateReviewsUI();
             resetForm();
-            
-            alert('Thank you for your review!');
+
+            exportReviews();
         }
 
         function resetForm() {
@@ -1384,6 +1387,35 @@ function handleSwipe() {
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
+        }
+
+        async function loadReviewsFromFile() {
+          try {
+            const response = await fetch('./reviews/taburnal_reviews.json');
+            if (response.ok) {
+              const data = await response.json();
+              reviews = Array.isArray(data) ? data : [];
+              updateReviewsUI();
+            } else {
+              reviews = [];
+              updateReviewsUI();
+            }
+          } catch (e) {
+            reviews = [];
+            updateReviewsUI();
+          }
+        }
+
+        function exportReviews() {
+          const dataStr = JSON.stringify(reviews, null, 2);
+          const dataBlob = new Blob([dataStr], {type: 'application/json'});
+          const url = URL.createObjectURL(dataBlob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = 'taburnal_reviews.json';
+          link.click();
+
+          setTimeout(() => URL.revokeObjectURL(url), 100);
         }
 </script>
 <script type="module">
