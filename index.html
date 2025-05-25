@@ -171,17 +171,17 @@
     font-size: 0.9rem;
   }
 
-  input[type="email"], button[type="submit"] {
+  /* Note: Removed the generic `button[type="submit"]` rule here,
+     as it's often better to style specific buttons via classes.
+     Your .btn-submit class already handles this. */
+  input[type="email"],
+  input[type="text"], /* Added input[type="text"] for consistency in forms */
+  input[type="email"],
+  textarea {
     padding: 0.5rem;
     margin-top: 0.5rem;
   }
 
-  button[type="submit"] {
-    background-color: #004080;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
 
   .achievement-grid {
     display: flex;
@@ -249,7 +249,8 @@
     min-width: 100%;
   }
 
-  button {
+  /* FIX: Applied position: absolute specifically to buttons within .carousel-container */
+  .carousel-container button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -262,7 +263,8 @@
     z-index: 100;
   }
 
-  button:hover {
+  /* FIX: Applied hover state specifically to buttons within .carousel-container */
+  .carousel-container button:hover {
     background-color: rgba(0, 0, 0, 0.8);
   }
 
@@ -518,7 +520,9 @@
       margin-bottom: 1.5rem;
     }
 
-    button.prev, button.next {
+    /* FIX: More specific for mobile carousel buttons */
+    .carousel-container button.prev,
+    .carousel-container button.next {
       padding: 8px;
       font-size: 16px;
     }
@@ -569,6 +573,320 @@
       height: auto;
     }
   }
+
+/* --- Review Widget Specific Styles --- */
+        .review-widget .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            font-family: inherit;
+        }
+
+        .review-widget .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .reviews-title h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: #2ebe5e;
+        }
+
+        .reviews-title h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .rating-summary {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.3rem;
+        }
+
+        .overall-rating {
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .stars-display .star-display {
+            font-size: 1.3rem;
+            color: #ffd700;
+        }
+
+        .review-count {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .write-review-btn {
+            background-color: #2ebe5e;
+            color: white;
+            padding: 0.8rem 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .write-review-btn:hover {
+            background-color: #259c4e;
+        }
+
+        .review-form {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .review-form h3 {
+            margin-bottom: 1rem;
+            color: #2d2d2d;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            flex: 1 1 48%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .full-width {
+            flex: 1 1 100%;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2ebe5e;
+        }
+
+        .rating-input {
+            margin: 1rem 0;
+        }
+
+        .rating-input label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 0.3rem;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .rating-star {
+            cursor: pointer;
+            color: #ddd;
+            transition: color 0.2s ease;
+            user-select: none;
+        }
+
+        .rating-star:hover,
+        .rating-star.active {
+            color: #ffd700;
+        }
+
+        #ratingLabel {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .form-actions {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .btn-cancel, .btn-submit {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .btn-cancel {
+            background-color: #eee;
+            color: #333;
+        }
+
+        .btn-cancel:hover {
+            background-color: #ddd;
+        }
+
+        .btn-submit {
+            background-color: #2ebe5e;
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background-color: #259c4e;
+        }
+
+        .reviews-grid {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .review-card {
+            background-color: #f4fff1;
+            border: 1px solid #b8e5b2;
+            padding: 1.5rem;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            aspect-ratio: 1;
+            min-height: 250px;
+            box-sizing: border-box;
+        }
+
+        .review-card-header {
+            flex-shrink: 0;
+        }
+
+        .review-card h4 {
+            margin: 0 0 0.5rem 0;
+            color: #2ebe5e;
+            font-size: 1.1rem;
+        }
+
+        .review-card .stars {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .review-card small {
+            color: #666;
+        }
+
+        .review-card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .review-card p {
+            margin: 0;
+            line-height: 1.5;
+            color: #333;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            line-clamp: 4;
+            -webkit-box-orient: vertical;
+        }
+
+        .review-card-footer {
+            flex-shrink: 0;
+            margin-top: auto;
+        }
+
+        .review-card-footer small {
+            color: #999;
+        }
+
+        .no-reviews {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .no-reviews h3 {
+            color: #2ebe5e;
+            margin-bottom: 0.5rem;
+        }
+
+        .show-more-btn {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .show-more-btn button {
+            background-color: #2ebe5e;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+
+        .show-more-btn button:hover {
+            background-color: #259c4e;
+        }
+
+        .hidden-reviews {
+            display: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .review-card {
+                min-height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .review-card {
+                min-height: 180px;
+                padding: 1rem;
+            }
+        }
 </style>
 </head>
 <body>
@@ -595,7 +913,6 @@
 </nav>
 
 <header class="hero">
-  <img src="images/bannerhome.png" alt="Banner">
   <img src="images/bannerhome.jpg" alt="Banner">
 </header>
 
@@ -685,6 +1002,74 @@
     </div>
   </section>
 
+    <section class="review-widget">
+        <div class="container">
+            <div class="header">
+                <div class="reviews-title">
+                    <h1>Our Customers</h1>
+                    <h2>Reviews</h2>
+                    <div class="rating-summary">
+                        <span class="overall-rating" id="overallRating">0.0</span>
+                        <div class="stars-display" id="overallStars">
+                            <span class="star-display">☆</span>
+                            <span class="star-display">☆</span>
+                            <span class="star-display">☆</span>
+                            <span class="star-display">☆</span>
+                            <span class="star-display">☆</span>
+                        </div>
+                    </div>
+                    <div class="review-count" id="reviewCount">Over 0 Reviews</div>
+                </div>
+                <button class="write-review-btn" id="writeReviewBtn">
+                    ✏️ Write a Review
+                </button>
+            </div>
+
+            <div class="review-form" id="reviewForm" style="display: none;">
+                <h3>Share Your Experience</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="reviewerName">Name *</label>
+                        <input type="text" id="reviewerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewerEmail">Email (optional)</label>
+                        <input type="email" id="reviewerEmail">
+                    </div>
+                </div>
+
+                <div class="rating-input">
+                    <label>Your Rating *</label>
+                    <div class="rating-stars" id="ratingStars">
+                        <span class="rating-star" data-rating="1">★</span>
+                        <span class="rating-star" data-rating="2">★</span>
+                        <span class="rating-star" data-rating="3">★</span>
+                        <span class="rating-star" data-rating="4">★</span>
+                        <span class="rating-star" data-rating="5">★</span>
+                    </div>
+                    <span id="ratingLabel">Click to rate</span>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="reviewText">Your Review *</label>
+                    <textarea id="reviewText" placeholder="Tell others about your experience..." required rows="4"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" id="cancelBtn">Cancel</button>
+                    <button type="button" class="btn-submit" id="submitBtn">Post Review</button>
+                </div>
+            </div>
+
+            <div class="reviews-grid" id="reviewsContainer">
+                <div class="no-reviews" id="noReviews">
+                    <h3>No reviews yet</h3>
+                    <p>Be the first to share your experience!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
   <section class="highlight-section">
     <h2>Ready to Join Us?</h2>
     <p>Explore our admissions process and see what makes Prestige School the right choice for your child.</p>
@@ -711,6 +1096,7 @@
       <a href="https://www.facebook.com/profile.php?id=100057529355713" target="_blank">Facebook</a>
       <a href="https://www.youtube.com/@taburnallearningcentertlco9458" target="_blank">YouTube</a>
     </div>
+
 
     <!-- Contact Info -->
     <div>
@@ -790,6 +1176,271 @@ function handleSwipe() {
     moveSlide(-1);
   }
 }
+
 </script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        // Ensure these versions are up-to-date or match your Firebase project
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB60fwh7fDKD18uazYTJkYIQLULkHTGGxc", // <--- IMPORTANT: Replace with your actual API Key from Firebase Console
+            authDomain: "reviewwebsite-b40bb.firebaseapp.com",
+            projectId: "reviewwebsite-b40bb",
+            storageBucket: "reviewwebsite-b40bb.firebasestorage.app",
+            messagingSenderId: "510781443137",
+            appId: "1:510781443137:web:19d2302841755e71cbcac0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app); // Get a reference to the Firestore database
+
+        let currentRating = 0;
+        let reviews = []; // This will now store reviews loaded from Firestore
+        let showingAllReviews = false;
+
+        // Function to set up all event listeners
+        function setupEventListeners() {
+            const writeBtn = document.getElementById('writeReviewBtn');
+            if (writeBtn) {
+                writeBtn.addEventListener('click', function() {
+                    document.getElementById('reviewForm').style.display = 'block';
+                    writeBtn.scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+
+            const cancelBtn = document.getElementById('cancelBtn');
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', function() {
+                    resetForm();
+                });
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                submitBtn.addEventListener('click', async function(e) { // Added 'async' here
+                    e.preventDefault();
+                    await handleSubmit(); // Added 'await' here
+                });
+            }
+
+            const stars = document.querySelectorAll('.rating-star');
+            stars.forEach(function(star) {
+                star.addEventListener('click', function() {
+                    currentRating = parseInt(star.getAttribute('data-rating'));
+                    updateStarHighlight();
+                    updateRatingLabel();
+                });
+            });
+        }
+
+        // Function to handle review submission
+        async function handleSubmit() { // Made this function async
+            const name = document.getElementById('reviewerName').value.trim();
+            const email = document.getElementById('reviewerEmail').value.trim();
+            const text = document.getElementById('reviewText').value.trim();
+
+            if (!name) {
+                alert('Please enter your name');
+                return;
+            }
+            if (!text) {
+                alert('Please enter your review');
+                return;
+            }
+            if (currentRating === 0) {
+                alert('Please select a rating');
+                return;
+            }
+
+            const newReview = {
+                name: name,
+                email: email,
+                text: text,
+                rating: currentRating,
+                date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }), // Nicer date format
+                timestamp: Date.now() // Add a timestamp for consistent ordering (for newest first)
+            };
+
+            try {
+                // Add a new document with a generated ID to the "reviews" collection
+                const docRef = await addDoc(collection(db, "reviews"), newReview);
+                console.log("Document written with ID: ", docRef.id);
+
+                // Re-fetch reviews to ensure UI is consistent with database state
+                // This is simpler than trying to manipulate the local 'reviews' array
+                await fetchReviews();
+                resetForm();
+
+                alert('Thank you for your review!');
+            } catch (e) {
+                console.error("Error adding document: ", e);
+                alert("There was an error submitting your review. Please try again.");
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('reviewForm').style.display = 'none';
+            document.getElementById('reviewerName').value = '';
+            document.getElementById('reviewerEmail').value = '';
+            document.getElementById('reviewText').value = '';
+            currentRating = 0;
+            updateStarHighlight();
+            updateRatingLabel();
+        }
+
+        function updateStarHighlight() {
+            const stars = document.querySelectorAll('.rating-star');
+            stars.forEach(function(star) {
+                const rating = parseInt(star.getAttribute('data-rating'));
+                if (rating <= currentRating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        function updateRatingLabel() {
+            const label = document.getElementById('ratingLabel');
+            if (currentRating === 0) {
+                label.textContent = 'Click to rate';
+            } else {
+                const ratingText = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+                label.textContent = currentRating + ' star' + (currentRating > 1 ? 's' : '') + ' - ' + ratingText[currentRating];
+            }
+        }
+
+        function createReviewCard(review) {
+            const div = document.createElement('div');
+            div.className = 'review-card';
+            div.innerHTML =
+                '<div class="review-card-header">' +
+                    '<h4>' + escapeHtml(review.name) + '</h4>' +
+                    (review.email ? '<small>' + escapeHtml(review.email) + '</small>' : '') +
+                    '<div class="stars">' + '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating) + '</div>' +
+                '</div>' +
+                '<div class="review-card-content">' +
+                    '<p>' + escapeHtml(review.text) + '</p>' +
+                '</div>' +
+                '<div class="review-card-footer">' +
+                    '<small>Posted on ' + review.date + '</small>' +
+                '</div>';
+            return div;
+        }
+
+        function updateReviewsUI() {
+            const container = document.getElementById('reviewsContainer');
+
+            if (reviews.length === 0) {
+                container.innerHTML = '<div class="no-reviews" id="noReviews"><h3>No reviews yet</h3><p>Be the first to share your experience!</p></div>';
+                document.getElementById('overallRating').textContent = '0.0';
+                document.getElementById('reviewCount').textContent = 'Over 0 Reviews';
+                document.getElementById('overallStars').innerHTML = '☆'.repeat(5); // Show empty stars
+                return;
+            }
+
+            // Clear container
+            container.innerHTML = '';
+
+            // Determine how many reviews to show
+            const reviewsToShow = showingAllReviews ? reviews.length : Math.min(3, reviews.length);
+
+            // Add reviews
+            for (let i = 0; i < reviewsToShow; i++) {
+                const reviewCard = createReviewCard(reviews[i]);
+                container.appendChild(reviewCard);
+            }
+
+            // Add "Show More" / "Show Less" button logic
+            if (reviews.length > 3 && !showingAllReviews) {
+                const showMoreDiv = document.createElement('div');
+                showMoreDiv.className = 'show-more-btn';
+                showMoreDiv.innerHTML = '<button onclick="showMoreReviews()">Show More Reviews (' + (reviews.length - 3) + ' remaining)</button>';
+                container.appendChild(showMoreDiv);
+            } else if (reviews.length > 3 && showingAllReviews) {
+                const showLessDiv = document.createElement('div');
+                showLessDiv.className = 'show-more-btn';
+                showLessDiv.innerHTML = '<button onclick="showLessReviews()">Show Less</button>';
+                container.appendChild(showLessDiv);
+            }
+
+            // Update overall rating
+            let totalRating = 0;
+            reviews.forEach(function(review) {
+                totalRating += review.rating;
+            });
+
+            const avg = totalRating / reviews.length;
+            document.getElementById('overallRating').textContent = avg.toFixed(1);
+            document.getElementById('reviewCount').textContent = 'Over ' + reviews.length + ' Review' + (reviews.length !== 1 ? 's' : '');
+
+            const overallStarsContainer = document.getElementById('overallStars');
+            overallStarsContainer.innerHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const star = document.createElement('span');
+                star.className = 'star-display';
+                star.textContent = i <= Math.round(avg) ? '★' : '☆';
+                overallStarsContainer.appendChild(star);
+            }
+        }
+
+        // Global functions for "Show More" and "Show Less" buttons (as they are called from HTML `onclick`)
+        window.showMoreReviews = function() {
+            showingAllReviews = true;
+            updateReviewsUI();
+        };
+
+        window.showLessReviews = function() {
+            showingAllReviews = false;
+            updateReviewsUI();
+            // Scroll to reviews section (optional)
+            document.getElementById('reviewsContainer').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        // Utility function to escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Function to fetch reviews from Firestore
+        async function fetchReviews() {
+            reviews = []; // Clear current reviews
+            try {
+                // Create a query to get documents from the "reviews" collection, ordered by timestamp descending
+                const q = query(collection(db, "reviews"), orderBy("timestamp", "desc"));
+                const querySnapshot = await getDocs(q);
+
+                querySnapshot.forEach((doc) => {
+                    // doc.data() is never undefined for query doc snapshots
+                    reviews.push(doc.data());
+                });
+                console.log("Reviews loaded:", reviews);
+                updateReviewsUI(); // Update UI after fetching
+            } catch (error) {
+                console.error("Error fetching reviews: ", error);
+                // Optionally display an error message to the user
+                document.getElementById('reviewsContainer').innerHTML = '<div class="no-reviews"><h3>Error loading reviews.</h3><p>Please try again later.</p></div>';
+            }
+        }
+
+        // Initialize on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', async function() {
+            setupEventListeners();
+            await fetchReviews(); // Fetch reviews when the page loads
+        });
+
+        // Also setup immediately in case DOM is already loaded (though DOMContentLoaded is safer for modules)
+        if (document.readyState !== 'loading') {
+            // This part might run *before* the module is fully processed by the browser,
+            // so it's generally safer to rely on DOMContentLoaded for module scripts.
+            // Keeping it for consistency with your original code, but DOMContentLoaded is preferred for modules.
+        }
+    </script>
 </body>
 </html>
