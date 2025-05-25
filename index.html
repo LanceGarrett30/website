@@ -1177,270 +1177,213 @@ function handleSwipe() {
   }
 }
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB60fwh7fDKD18uazYTJkYIQLULkHTGGxc",
+  authDomain: "reviewwebsite-b40bb.firebaseapp.com",
+  projectId: "reviewwebsite-b40bb",
+  storageBucket: "reviewwebsite-b40bb.firebasestorage.app",
+  messagingSenderId: "510781443137",
+  appId: "1:510781443137:web:19d2302841755e71cbcac0"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const reviewsCollection = collection(db, "reviews");
+const reviewsQuery = query(reviewsCollection, orderBy("date", "desc"));
+
+let currentRating = 0;
+const reviews = [];
+let showingAllReviews = false;
+
+function setupEventListeners() {
+  const writeBtn = document.getElementById('writeReviewBtn');
+  const cancelBtn = document.getElementById('cancelBtn');
+  const submitBtn = document.getElementById('submitBtn');
+  const stars = document.querySelectorAll('.rating-star');
+
+  writeBtn?.addEventListener('click', () => {
+    document.getElementById('reviewForm').style.display = 'block';
+    writeBtn.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  cancelBtn?.addEventListener('click', resetForm);
+
+  submitBtn?.addEventListener('click', async (e) => {
+    e.preventDefault();
+    await handleSubmit();
+  });
+
+  stars.forEach(star => {
+    star.addEventListener('click', () => {
+      currentRating = parseInt(star.getAttribute('data-rating'));
+      updateStarHighlight();
+      updateRatingLabel();
+    });
+  });
+}
+
+function updateStarHighlight() {
+  const stars = document.querySelectorAll('.rating-star');
+  stars.forEach(star => {
+    const rating = parseInt(star.getAttribute('data-rating'));
+    if (rating <= currentRating) star.classList.add('active');
+    else star.classList.remove('active');
+  });
+}
+
+function updateRatingLabel() {
+  const label = document.getElementById('ratingLabel');
+  if (currentRating === 0) {
+    label.textContent = 'Click to rate';
+  } else {
+    const ratingText = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+    label.textContent = `${currentRating} star${currentRating > 1 ? 's' : ''} - ${ratingText[currentRating]}`;
+  }
+}
+
+function resetForm() {
+  document.getElementById('reviewForm').style.display = 'none';
+  document.getElementById('reviewerName').value = '';
+  document.getElementById('reviewerEmail').value = '';
+  document.getElementById('reviewText').value = '';
+  currentRating = 0;
+  updateStarHighlight();
+  updateRatingLabel();
+}
+
+async function handleSubmit() {
+  const name = document.getElementById('reviewerName').value.trim();
+  const email = document.getElementById('reviewerEmail').value.trim();
+  const text = document.getElementById('reviewText').value.trim();
+
+  if (!name) { alert('Please enter your name'); return; }
+  if (!text) { alert('Please enter your review'); return; }
+  if (currentRating === 0) { alert('Please select a rating'); return; }
+
+  const newReview = {
+    name,
+    email,
+    text,
+    rating: currentRating,
+    date: new Date().toISOString()
+  };
+
+  try {
+    await addDoc(reviewsCollection, newReview);
+    alert('Thank you for your review!');
+    resetForm();
+  } catch (error) {
+    console.error("Error adding review: ", error);
+    alert("Failed to submit review, please try again.");
+  }
+}
+
+function createReviewCard(review) {
+  const div = document.createElement('div');
+  div.className = 'review-card';
+  div.innerHTML =
+    `<div class="review-card-header">
+      <h4>${escapeHtml(review.name)}</h4>
+      ${review.email ? `<small>${escapeHtml(review.email)}</small>` : ''}
+      <div class="stars">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</div>
+    </div>
+    <div class="review-card-content">
+      <p>${escapeHtml(review.text)}</p>
+    </div>
+    <div class="review-card-footer">
+      <small>Posted on ${new Date(review.date).toLocaleDateString()}</small>
+    </div>`;
+  return div;
+}
+
+function updateReviewsUI() {
+  const container = document.getElementById('reviewsContainer');
+
+  if (reviews.length === 0) {
+    container.innerHTML = '<div class="no-reviews"><h3>No reviews yet</h3><p>Be the first to share your experience!</p></div>';
+    document.getElementById('overallRating').textContent = '0.0';
+    document.getElementById('reviewCount').textContent = 'No reviews yet';
+    document.getElementById('overallStars').innerHTML = '';
+    return;
+  }
+
+  container.innerHTML = '';
+
+  const reviewsToShow = showingAllReviews ? reviews.length : Math.min(3, reviews.length);
+
+  for (let i = 0; i < reviewsToShow; i++) {
+    const card = createReviewCard(reviews[i]);
+    container.appendChild(card);
+  }
+
+  if (reviews.length > 3 && !showingAllReviews) {
+    const showMoreDiv = document.createElement('div');
+    showMoreDiv.className = 'show-more-btn';
+    showMoreDiv.innerHTML = `<button onclick="showMoreReviews()">Show More Reviews (${reviews.length - 3} remaining)</button>`;
+    container.appendChild(showMoreDiv);
+  } else if (reviews.length > 3 && showingAllReviews) {
+    const showLessDiv = document.createElement('div');
+    showLessDiv.className = 'show-more-btn';
+    showLessDiv.innerHTML = `<button onclick="showLessReviews()">Show Less</button>`;
+    container.appendChild(showLessDiv);
+  }
+
+  // Update overall rating
+  let totalRating = 0;
+  reviews.forEach(r => totalRating += r.rating);
+  const avg = totalRating / reviews.length;
+  document.getElementById('overallRating').textContent = avg.toFixed(1);
+  document.getElementById('reviewCount').textContent = `Over ${reviews.length} Review${reviews.length !== 1 ? 's' : ''}`;
+
+  const overallStarsContainer = document.getElementById('overallStars');
+  overallStarsContainer.innerHTML = '';
+  for (let i = 1; i <= 5; i++) {
+    const star = document.createElement('span');
+    star.className = 'star-display';
+    star.textContent = i <= Math.round(avg) ? '★' : '☆';
+    overallStarsContainer.appendChild(star);
+  }
+}
+
+function showMoreReviews() {
+  showingAllReviews = true;
+  updateReviewsUI();
+}
+
+function showLessReviews() {
+  showingAllReviews = false;
+  updateReviewsUI();
+  document.getElementById('reviewsContainer').scrollIntoView({ behavior: 'smooth' });
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function setupRealtimeListener() {
+  onSnapshot(reviewsQuery, (querySnapshot) => {
+    reviews.length = 0;
+    querySnapshot.forEach(doc => {
+      reviews.push(doc.data());
+    });
+    updateReviewsUI();
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  setupEventListeners();
+  setupRealtimeListener();
+});
+
+// Make these global so inline onclicks work
+window.showMoreReviews = showMoreReviews;
+window.showLessReviews = showLessReviews;
 </script>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        // Ensure these versions are up-to-date or match your Firebase project
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getFirestore, collection, addDoc, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyB60fwh7fDKD18uazYTJkYIQLULkHTGGxc", // <--- IMPORTANT: Replace with your actual API Key from Firebase Console
-            authDomain: "reviewwebsite-b40bb.firebaseapp.com",
-            projectId: "reviewwebsite-b40bb",
-            storageBucket: "reviewwebsite-b40bb.firebasestorage.app",
-            messagingSenderId: "510781443137",
-            appId: "1:510781443137:web:19d2302841755e71cbcac0"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app); // Get a reference to the Firestore database
-
-        let currentRating = 0;
-        let reviews = []; // This will now store reviews loaded from Firestore
-        let showingAllReviews = false;
-
-        // Function to set up all event listeners
-        function setupEventListeners() {
-            const writeBtn = document.getElementById('writeReviewBtn');
-            if (writeBtn) {
-                writeBtn.addEventListener('click', function() {
-                    document.getElementById('reviewForm').style.display = 'block';
-                    writeBtn.scrollIntoView({ behavior: 'smooth' });
-                });
-            }
-
-            const cancelBtn = document.getElementById('cancelBtn');
-            if (cancelBtn) {
-                cancelBtn.addEventListener('click', function() {
-                    resetForm();
-                });
-            }
-
-            const submitBtn = document.getElementById('submitBtn');
-            if (submitBtn) {
-                submitBtn.addEventListener('click', async function(e) { // Added 'async' here
-                    e.preventDefault();
-                    await handleSubmit(); // Added 'await' here
-                });
-            }
-
-            const stars = document.querySelectorAll('.rating-star');
-            stars.forEach(function(star) {
-                star.addEventListener('click', function() {
-                    currentRating = parseInt(star.getAttribute('data-rating'));
-                    updateStarHighlight();
-                    updateRatingLabel();
-                });
-            });
-        }
-
-        // Function to handle review submission
-        async function handleSubmit() { // Made this function async
-            const name = document.getElementById('reviewerName').value.trim();
-            const email = document.getElementById('reviewerEmail').value.trim();
-            const text = document.getElementById('reviewText').value.trim();
-
-            if (!name) {
-                alert('Please enter your name');
-                return;
-            }
-            if (!text) {
-                alert('Please enter your review');
-                return;
-            }
-            if (currentRating === 0) {
-                alert('Please select a rating');
-                return;
-            }
-
-            const newReview = {
-                name: name,
-                email: email,
-                text: text,
-                rating: currentRating,
-                date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }), // Nicer date format
-                timestamp: Date.now() // Add a timestamp for consistent ordering (for newest first)
-            };
-
-            try {
-                // Add a new document with a generated ID to the "reviews" collection
-                const docRef = await addDoc(collection(db, "reviews"), newReview);
-                console.log("Document written with ID: ", docRef.id);
-
-                // Re-fetch reviews to ensure UI is consistent with database state
-                // This is simpler than trying to manipulate the local 'reviews' array
-                await fetchReviews();
-                resetForm();
-
-                alert('Thank you for your review!');
-            } catch (e) {
-                console.error("Error adding document: ", e);
-                alert("There was an error submitting your review. Please try again.");
-            }
-        }
-
-        function resetForm() {
-            document.getElementById('reviewForm').style.display = 'none';
-            document.getElementById('reviewerName').value = '';
-            document.getElementById('reviewerEmail').value = '';
-            document.getElementById('reviewText').value = '';
-            currentRating = 0;
-            updateStarHighlight();
-            updateRatingLabel();
-        }
-
-        function updateStarHighlight() {
-            const stars = document.querySelectorAll('.rating-star');
-            stars.forEach(function(star) {
-                const rating = parseInt(star.getAttribute('data-rating'));
-                if (rating <= currentRating) {
-                    star.classList.add('active');
-                } else {
-                    star.classList.remove('active');
-                }
-            });
-        }
-
-        function updateRatingLabel() {
-            const label = document.getElementById('ratingLabel');
-            if (currentRating === 0) {
-                label.textContent = 'Click to rate';
-            } else {
-                const ratingText = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
-                label.textContent = currentRating + ' star' + (currentRating > 1 ? 's' : '') + ' - ' + ratingText[currentRating];
-            }
-        }
-
-        function createReviewCard(review) {
-            const div = document.createElement('div');
-            div.className = 'review-card';
-            div.innerHTML =
-                '<div class="review-card-header">' +
-                    '<h4>' + escapeHtml(review.name) + '</h4>' +
-                    (review.email ? '<small>' + escapeHtml(review.email) + '</small>' : '') +
-                    '<div class="stars">' + '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating) + '</div>' +
-                '</div>' +
-                '<div class="review-card-content">' +
-                    '<p>' + escapeHtml(review.text) + '</p>' +
-                '</div>' +
-                '<div class="review-card-footer">' +
-                    '<small>Posted on ' + review.date + '</small>' +
-                '</div>';
-            return div;
-        }
-
-        function updateReviewsUI() {
-            const container = document.getElementById('reviewsContainer');
-
-            if (reviews.length === 0) {
-                container.innerHTML = '<div class="no-reviews" id="noReviews"><h3>No reviews yet</h3><p>Be the first to share your experience!</p></div>';
-                document.getElementById('overallRating').textContent = '0.0';
-                document.getElementById('reviewCount').textContent = 'Over 0 Reviews';
-                document.getElementById('overallStars').innerHTML = '☆'.repeat(5); // Show empty stars
-                return;
-            }
-
-            // Clear container
-            container.innerHTML = '';
-
-            // Determine how many reviews to show
-            const reviewsToShow = showingAllReviews ? reviews.length : Math.min(3, reviews.length);
-
-            // Add reviews
-            for (let i = 0; i < reviewsToShow; i++) {
-                const reviewCard = createReviewCard(reviews[i]);
-                container.appendChild(reviewCard);
-            }
-
-            // Add "Show More" / "Show Less" button logic
-            if (reviews.length > 3 && !showingAllReviews) {
-                const showMoreDiv = document.createElement('div');
-                showMoreDiv.className = 'show-more-btn';
-                showMoreDiv.innerHTML = '<button onclick="showMoreReviews()">Show More Reviews (' + (reviews.length - 3) + ' remaining)</button>';
-                container.appendChild(showMoreDiv);
-            } else if (reviews.length > 3 && showingAllReviews) {
-                const showLessDiv = document.createElement('div');
-                showLessDiv.className = 'show-more-btn';
-                showLessDiv.innerHTML = '<button onclick="showLessReviews()">Show Less</button>';
-                container.appendChild(showLessDiv);
-            }
-
-            // Update overall rating
-            let totalRating = 0;
-            reviews.forEach(function(review) {
-                totalRating += review.rating;
-            });
-
-            const avg = totalRating / reviews.length;
-            document.getElementById('overallRating').textContent = avg.toFixed(1);
-            document.getElementById('reviewCount').textContent = 'Over ' + reviews.length + ' Review' + (reviews.length !== 1 ? 's' : '');
-
-            const overallStarsContainer = document.getElementById('overallStars');
-            overallStarsContainer.innerHTML = '';
-            for (let i = 1; i <= 5; i++) {
-                const star = document.createElement('span');
-                star.className = 'star-display';
-                star.textContent = i <= Math.round(avg) ? '★' : '☆';
-                overallStarsContainer.appendChild(star);
-            }
-        }
-
-        // Global functions for "Show More" and "Show Less" buttons (as they are called from HTML `onclick`)
-        window.showMoreReviews = function() {
-            showingAllReviews = true;
-            updateReviewsUI();
-        };
-
-        window.showLessReviews = function() {
-            showingAllReviews = false;
-            updateReviewsUI();
-            // Scroll to reviews section (optional)
-            document.getElementById('reviewsContainer').scrollIntoView({ behavior: 'smooth' });
-        };
-
-        // Utility function to escape HTML to prevent XSS
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        // Function to fetch reviews from Firestore
-        async function fetchReviews() {
-            reviews = []; // Clear current reviews
-            try {
-                // Create a query to get documents from the "reviews" collection, ordered by timestamp descending
-                const q = query(collection(db, "reviews"), orderBy("timestamp", "desc"));
-                const querySnapshot = await getDocs(q);
-
-                querySnapshot.forEach((doc) => {
-                    // doc.data() is never undefined for query doc snapshots
-                    reviews.push(doc.data());
-                });
-                console.log("Reviews loaded:", reviews);
-                updateReviewsUI(); // Update UI after fetching
-            } catch (error) {
-                console.error("Error fetching reviews: ", error);
-                // Optionally display an error message to the user
-                document.getElementById('reviewsContainer').innerHTML = '<div class="no-reviews"><h3>Error loading reviews.</h3><p>Please try again later.</p></div>';
-            }
-        }
-
-        // Initialize on DOMContentLoaded
-        document.addEventListener('DOMContentLoaded', async function() {
-            setupEventListeners();
-            await fetchReviews(); // Fetch reviews when the page loads
-        });
-
-        // Also setup immediately in case DOM is already loaded (though DOMContentLoaded is safer for modules)
-        if (document.readyState !== 'loading') {
-            // This part might run *before* the module is fully processed by the browser,
-            // so it's generally safer to rely on DOMContentLoaded for module scripts.
-            // Keeping it for consistency with your original code, but DOMContentLoaded is preferred for modules.
-        }
-    </script>
 </body>
 </html>
